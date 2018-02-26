@@ -5,7 +5,7 @@ Guidelines for Coding
 Documentation will be done similar to the [Qt](https://doc.qt.io/qt-5/qtwritingstyle-cpp.html) documentation style. Here is a general idea of how this will look:
 
 ```c++
-/*! \brief Returns the distance between two points\n
+/*! \brief Returns the distance between two points
  *
  * \param (Vec2) point1 - The first point
  * \param (Vec2) point2 - The second point
