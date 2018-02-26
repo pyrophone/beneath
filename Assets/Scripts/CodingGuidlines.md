@@ -17,7 +17,7 @@ float distance(Vec2 point1, Vec2 point2)
     ...
 }
 ```
-The brief tag should just be a basic description. Other comments can be left throughout the code, especially in areas that seem complex.
+The brief tag should just be a basic description. Other comments can be left throughout the code, especially in areas that seem complex or difficult to understand.
 In front of classes, documentation should look like:
 
 ```c++
@@ -31,7 +31,7 @@ class Vec2
 ```
 
 ## Code Conventions
-Variable names should be lower camel case, and function names should be upper camel case. Curly braces should also be on a new line. Enum variables and constants should be CAPITAL.
+Variable names should be lower camel case, and function names should be upper camel case. Curly braces should also be on a new line. Enum variables and constants should be capitals.
 ```c++
 enum states { INGAME, PAUSE };
 
