@@ -1,4 +1,4 @@
 # beneath
 IGM Production Studio Project
 
-Please see the [Coding Guidelines](Assets/Scripts/CodingGuidlines.md) before contributing.
+Please see the [CONTRIBUTING.md](CONTRIBUTING.md) for information on how to contribute.
