@@ -1,5 +1,7 @@
 Guidelines for Coding
 =====================
+## SDKs
+Currently, the only SDK used by the project is the Mapbox SDK for Unity version 1.3.0. This is already integrated into the Unity project on the GitHub repo.
 
 ## Documentation
 Documentation will be done similar to the [Qt](https://doc.qt.io/qt-5/qtwritingstyle-cpp.html) documentation style. Here is a general idea of how this will look:
@@ -31,7 +33,7 @@ class Vec2
 ```
 
 ## Code Conventions
-Variable names should be lower camel case, and function names should be upper camel case. Curly braces should also be on a new line. Enum variables and constants should be capitals.
+Variable and file names should be lower camel case, and function and folder names should be upper camel case. Curly braces should also be on a new line. Enum variables and constants should be capitals.
 ```c++
 enum states { INGAME, PAUSE };
 
