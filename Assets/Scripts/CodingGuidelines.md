@@ -44,3 +44,5 @@ void MethodName()
 	int methodVar;
 }
 ```
+
+For more information on contributing, please read the [Contributing Guidelines](../../CONTRIBUTING.md).
