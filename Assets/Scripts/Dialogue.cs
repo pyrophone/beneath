@@ -2,15 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Dialogue : MonoBehaviour {
+public class Dialogue : MonoBehaviour
+{
+	/*! \brief Called when the object is initialized
+	 */
+	void Start()
+	{
 
-	// Use this for initialization
-	void Start () {
-		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	/*! \brief Updates the object
+	 */
+	void Update()
+	{
+
 	}
 }
