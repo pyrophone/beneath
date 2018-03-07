@@ -12,14 +12,13 @@ using UnityEngine;
  */
 public class Player : Mappable
 {
-	[SerializeField]
-	private GameObject playObj;
-	private int experience;
+	private int experience; //! The players experience
 
 	/*! \brief Called when the object is initialized
 	 */
 	IEnumerator Start()
 	{
+		//Setup the location info
 		if(!Input.location.isEnabledByUser)
 			yield break;
 
@@ -37,14 +36,13 @@ public class Player : Mappable
 			yield break;
 		}
 
+		//Instantiate the player
 		if(Input.location.status != LocationServiceStatus.Failed)
 		{
 			this.loc = new Vector2d(Input.location.lastData.latitude, Input.location.lastData.longitude);
+			this.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
 		}
 
-		this.instance = (GameObject)Instantiate(playObj);
-		this.instance.transform.localPosition = this.map.GeoToWorldPosition(this.loc);
-		this.instance.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
 	}
 
 	/*! \brief Updates the object
@@ -54,7 +52,7 @@ public class Player : Mappable
 		if(Input.location.status != LocationServiceStatus.Failed)
 		{
 			this.loc = new Vector2d(Input.location.lastData.latitude, Input.location.lastData.longitude);
-			this.instance.transform.localPosition = this.map.GeoToWorldPosition(this.loc);
+			this.transform.localPosition = this.map.GeoToWorldPosition(this.loc);
 		}
 	}
 }

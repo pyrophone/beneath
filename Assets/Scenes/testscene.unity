@@ -180,6 +180,8 @@ GameObject:
   m_Component:
   - component: {fileID: 994545823}
   - component: {fileID: 994545822}
+  - component: {fileID: 994545824}
+  - component: {fileID: 994545825}
   - component: {fileID: 994545821}
   m_Layer: 0
   m_Name: GameManager
@@ -196,11 +198,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 994545820}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd55d65cdf9784897bc05f5005bd85ef, type: 3}
+  m_Script: {fileID: 11500000, guid: 1f0fce1cb5e72084aa225b0062694832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 1948860555242468, guid: f46c6d0aa44754942b421b482b24651c,
+    type: 2}
   map: {fileID: 645182928}
-  pinObj: {fileID: 1769190167227140, guid: cbb820b2735644cdeb1004e63accbf1f, type: 2}
 --- !u!114 &994545822
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -213,7 +216,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   map: {fileID: 645182928}
-  playObj: {fileID: 1948860555242468, guid: f46c6d0aa44754942b421b482b24651c, type: 2}
 --- !u!4 &994545823
 Transform:
   m_ObjectHideFlags: 0
@@ -227,6 +229,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &994545824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 994545820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9c066b1eeff48d478117a8b062622ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  marker: {fileID: 1769190167227140, guid: cbb820b2735644cdeb1004e63accbf1f, type: 2}
+--- !u!114 &994545825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 994545820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19f655c404783ab4d9fdc1eb8772885a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1669029389
 GameObject:
   m_ObjectHideFlags: 0
