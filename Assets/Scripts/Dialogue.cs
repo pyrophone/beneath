@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*! \class Dialogue
+ *	\brief Handles dialogue display
+ */
 public class Dialogue : MonoBehaviour
 {
 	/*! \brief Called when the object is initialized

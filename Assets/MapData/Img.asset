@@ -11,13 +11,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b10536479dade041b6db9893fdf723a, type: 3}
   m_Name: Img
   m_EditorClassIdentifier: 
-  _mapIdType: 0
+  _mapIdType: 1
   _customStyle:
-    Name: 
-    Id: 
+    Name: Vintage
+    Id: mapbox://styles/pyrophones/cjeeoe1l43y2f2rqt4tmddr6p
     Modified: 
     UserName: 
-  _mapId: mapbox://styles/mapbox/dark-v9
-  _useCompression: 1
+  _mapId: mapbox://styles/pyrophones/cjeeoe1l43y2f2rqt4tmddr6p
+  _useCompression: 0
   _useMipMap: 1
   _useRetina: 0

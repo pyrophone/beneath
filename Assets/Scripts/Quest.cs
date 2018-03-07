@@ -2,18 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*! \class Quest
+ *	\brief Holds information of quests
+ */
 public class Quest : MonoBehaviour
 {
 	/*! \brief Called when the object is initialized
 	 */
-	void Start()
+	private void Start()
 	{
 
 	}
 
 	/*! \brief Updates the object
 	 */
-	void Update()
+	private void Update()
 	{
 
 	}
