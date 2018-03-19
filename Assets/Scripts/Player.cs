@@ -12,15 +12,19 @@ using UnityEngine;
  */
 public class Player : Mappable
 {
-	private int experience; //! The players experience
+	private int xp; //! The players experience
 
 	/*! \brief Called when the object is initialized
 	 */
 	IEnumerator Start()
 	{
-		//Setup the location info
-		if(!Input.location.isEnabledByUser)
-			yield break;
+        //Setup the location info
+        if (!Input.location.isEnabledByUser)
+        {
+            loc = new Vector2d(42.641787, 18.106856); //debug for testing markers on laptop
+            yield break;
+        }
+            
 
 		Input.location.Start();
 		int maxWait = 30;
@@ -33,11 +37,11 @@ public class Player : Mappable
 
 		if(maxWait == 0) {
 			Debug.Log("Timeout");
-			yield break;
+            yield break;
 		}
 
-		//Instantiate the player
-		if(Input.location.status != LocationServiceStatus.Failed)
+        //Instantiate the player
+        if (Input.location.status != LocationServiceStatus.Failed)
 		{
 			this.loc = new Vector2d(Input.location.lastData.latitude, Input.location.lastData.longitude);
 			this.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
@@ -49,7 +53,7 @@ public class Player : Mappable
 	 */
 	void Update()
 	{
-		if(Input.location.status != LocationServiceStatus.Failed)
+		if(Input.location.status != LocationServiceStatus.Failed && Input.location.isEnabledByUser)
 		{
 			this.loc = new Vector2d(Input.location.lastData.latitude, Input.location.lastData.longitude);
 			this.transform.localPosition = this.map.GeoToWorldPosition(this.loc);

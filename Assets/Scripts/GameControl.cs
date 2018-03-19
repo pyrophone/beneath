@@ -24,6 +24,7 @@ public class GameControl : MonoBehaviour
 	{
 		player = (GameObject)Instantiate(playerPrefab);
 		player.GetComponent<Player>().Map = this.map;
+        player.name = "player";
 	}
 
 	/*! \brief Updates the object

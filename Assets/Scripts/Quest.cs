@@ -11,74 +11,94 @@ using UnityEngine;
  */
 public class Quest : MonoBehaviour
 {
-	[SerializeField]
-	private GameObject marker; //! Marker GameObject
+    [SerializeField]
+    private GameObject marker; //! marker prefab
 
-	private int id; //! The ID of the quest
-	private string name; //! The name of the quest
-	private List<GameObject> markerList; //! The list of markers for the quest
-	private bool isTutorial; //! If the quest is the tutorial quest
-	private int timeToCompleteMin; //! The minimum time to complete the quest
-	private string reward; //! The quest reward
-	private int prereqQuestID; //! The prerequisite quest ID
+    [SerializeField]
+    private int id; //! The ID of the quest
+    [SerializeField]
+    private string name; //! The name of the quest
+    [SerializeField]
+    private List<Vector2d> markerGenList; //! The list of marker locations for the quest, used for generation
+    private List<GameObject> markerList; //! holds the markers for the quest for easy access
+    private int markerCurrent; //! current marker index in the list
+    [SerializeField]
+    private bool isTutorial; //! If the quest is the tutorial quest
+    [SerializeField]
+    private int timeToCompleteMin; //! The minimum time to complete the quest
+    [SerializeField]
+    private string reward; //! The quest reward
+    [SerializeField]
+    private int prereqQuestID; //! The prerequisite quest ID, if nil, ignored
 
 	/*! \brief Called when the object is initialized
 	 */
 	private void Start()
 	{
 		markerList = new List<GameObject>();
+        LoadMarkers("ReplaceMeWithRealThing", id);
+        markerCurrent = 0;
+        
 
-		//NOTE: This code is temporary for testing quests, just creates a bunch of markers and sets them
-		GameObject m = (GameObject)Instantiate(marker);
-		m.GetComponent<Marker>().Loc = new Vector2d(42.641787, 18.106856);
-		m.GetComponent<Marker>().Map = GetComponent<GameControl>().Map;
-		markerList.Add(m);
-
-		m = (GameObject)Instantiate(marker);
-		m.GetComponent<Marker>().Loc = new Vector2d(42.641787, 18.107329);
-		m.GetComponent<Marker>().Map = GetComponent<GameControl>().Map;
-		markerList.Add(m);
-
-		m = (GameObject)Instantiate(marker);
-		m.GetComponent<Marker>().Loc = new Vector2d(42.641361, 18.108965);
-		m.GetComponent<Marker>().Map = GetComponent<GameControl>().Map;
-		markerList.Add(m);
-
-		m = (GameObject)Instantiate(marker);
-		m.GetComponent<Marker>().Loc = new Vector2d(42.640865, 18.110373);
-		m.GetComponent<Marker>().Map = GetComponent<GameControl>().Map;
-		markerList.Add(m);
 	}
 
 	/*! \brief Updates the object
 	 */
 	private void Update()
 	{
-
+        ProgressQuest();
 	}
 
-	/*! \brief Loads the markers
+	/*! \brief Loads the markers, sets all parameters
 	 *
 	 * \param (string) fileDirectory - The directory to load the quest
 	 * \param (int) questID - The ID of the quest
 	 */
 	public void LoadMarkers(string fileDirectory, int questID)
 	{
+        //!for now, marker lists will be set manually until JSON / XML integration is implemented
+        //loop through the given marker list after loading and prep each marker on the map.
+        for (int i = 0; i < markerGenList.Count; i++)
+        {
+            GameObject m = Instantiate(marker);
+            m.GetComponent<Marker>().Loc = markerGenList[i];
+            m.GetComponent<Marker>().Map = GetComponent<GameControl>().Map;
+            m.GetComponent<Marker>().Radius = 15;
+            m.name = "q" + id + "." + "marker" + i;
+            if (i != 0)
+            {
+                m.SetActive(false);
+            }
+            markerList.Add(m);
+        }
+    }
 
-	}
-
-	/*! \brief Initializes the quest
+	/*! \brief progresses the quest, advances one marker
 	 */
-	public void StartQuest()
+	public void ProgressQuest()
 	{
+        if (markerList[markerCurrent].GetComponent<Marker>().Triggered)
+        {
+            markerList[markerCurrent].SetActive(false);
+            markerCurrent++;
+            markerList[markerCurrent].SetActive(true);
+        }
 
-	}
+        if (markerCurrent == markerList.Count)
+            OnComplete();
 
-	/*! \brief Runs upon quest completion
+    }
+
+	/*! \brief Runs upon quest completion, synonymous with reaching and completing all tasks at final marker
 	 */
 	public void OnComplete()
 	{
-
+        //unload markers
+        for (int i = markerList.Count; i >= 0; i--)
+        {
+            Destroy(markerList[i]);
+            markerList.RemoveAt(i);
+        }
 	}
 
 	/*! \brief Gets the id

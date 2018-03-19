@@ -14,7 +14,8 @@ public class Mappable : MonoBehaviour
 {
 	[SerializeField]
 	protected AbstractMap map; //! Reference to the map object
-	protected Vector2d loc; //! Location for the object (longitude and latitude)
+    [SerializeField]
+    protected Vector2d loc; //! Location for the object (longitude and latitude)
 
 	/*! \brief Gets and sets the map data
 	 *
