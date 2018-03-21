@@ -77,15 +77,24 @@ public class Quest : MonoBehaviour
 	 */
 	public void ProgressQuest()
 	{
-        if (markerList[markerCurrent].GetComponent<Marker>().Triggered)
+        //duct tape for vuforia
+        try
         {
-            markerList[markerCurrent].SetActive(false);
-            markerCurrent++;
-            markerList[markerCurrent].SetActive(true);
-        }
+            if (markerList[markerCurrent].GetComponent<Marker>().Triggered)
+            {
+                markerList[markerCurrent].SetActive(false);
+                markerCurrent++;
+                markerList[markerCurrent].SetActive(true);
+            }
 
-        if (markerCurrent == markerList.Count)
-            OnComplete();
+            if (markerCurrent == markerList.Count)
+                OnComplete();
+        }
+        catch
+        {
+
+        }
+        
 
     }
 

@@ -13,21 +13,21 @@ using UnityEngine;
 public class Marker : Mappable
 {
     [SerializeField]
-    protected bool isQuest; // is the marker in a list of markers that make up a quest, and will need to be hidden until needed?
+    protected bool isQuest; //! is the marker in a list of markers that make up a quest, and will need to be hidden until needed?
     [SerializeField]
-    protected bool isPuzzle; // does the marker include a puzzle?
+    protected bool isPuzzle; //! does the marker include a puzzle?
     [SerializeField]
-    protected bool triggered; // is marker triggered?
+    protected bool triggered; //! is marker triggered?
     [SerializeField]
-    protected string mName; // name of the marker
+    protected string mName; //! name of the marker
     [SerializeField]
-    protected Puzzle puzzle; // puzzle type NOT IMPLEMENTED YET
+    protected Puzzle puzzle; //! puzzle type NOT IMPLEMENTED YET
     [SerializeField]
-    protected string DialogueFile; // directory of dialogue NOT IMPLEMENTED YET
+    protected string DialogueFile; //! directory of dialogue NOT IMPLEMENTED YET
     [SerializeField]
-    protected GameObject player; // reference to player object
+    protected GameObject player; //! reference to player object
     [SerializeField]
-    protected int radius; // radius of the marker (in meters) aka trigger distance
+    protected int radius; //! radius of the marker (in meters) aka trigger distance
 
 
     /*! \brief Called when the object is initialized
@@ -85,6 +85,10 @@ public class Marker : Mappable
 	 */
     public void OnArrive()
     {
+        //trigger some text for now
+        GameObject text = GameObject.Find("TextTest");
+        text.GetComponent<TextMesh>().text = name;
+
         triggered = true; // ideally triggered should not be set true until player has completed all events at marker
         //TODO
     }
