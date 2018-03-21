@@ -19,30 +19,36 @@ public class GameControl : MonoBehaviour
 
 	private GameObject player; //! The player object
 
-    /*! \brief Called when the game is initialized (ensures this code runs first no matter what)
+    /*! \brief Called when the scene is initialized (ensures this code runs first no matter what)
 	 */
     private void Awake()
     {
         DontDestroyOnLoad(this);
-        player = (GameObject)Instantiate(playerPrefab);
-        player.GetComponent<Player>().Map = this.map;
-        player.name = "player";
-        DontDestroyOnLoad(player);
     }
 
     /*! \brief Called when the object is initialized
 	 */
     private void Start()
 	{
-		//TODO: something that needs to go here everytime the scene is loaded
-	}
+
+        //if PlayerObject exists, use that, if not, make another one
+        if ((player = GameObject.Find("player")) is GameObject) { }
+        else
+        {
+            player = Instantiate(playerPrefab);
+            player.GetComponent<Player>().Map = this.map;
+            player.name = "player";
+            DontDestroyOnLoad(player);
+        }
+        
+    }
 
 	/*! \brief Updates the object
 	 */
 	private void Update()
 	{
         //for now, this will test vuforia by switching the scene on click or tap.
-        if (Input.GetMouseButtonDown(0) && Input.touchCount > 2)
+        if (Input.GetMouseButtonDown(0) && (Input.touchCount > 2 || Application.platform == RuntimePlatform.WindowsEditor))
         {
             if (SceneManager.GetActiveScene().buildIndex == 0)
                 SceneManager.LoadScene(1);
