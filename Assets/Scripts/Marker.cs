@@ -24,11 +24,13 @@ public class Marker : Mappable
     protected Puzzle puzzle; //! puzzle type NOT IMPLEMENTED YET
     [SerializeField]
     protected string DialogueFile; //! directory of dialogue NOT IMPLEMENTED YET
+    protected string dialogue;
     [SerializeField]
     protected GameObject player; //! reference to player object
     [SerializeField]
     protected int radius; //! radius of the marker (in meters) aka trigger distance
 
+    private bool inRange; //! If the player is in range of the marker
 
     /*! \brief Called when the object is initialized
 	 */
@@ -38,6 +40,7 @@ public class Marker : Mappable
 
         //get player object
         player = GameObject.Find("player");
+        dialogue = "This is test text. Have you heard of the tradegy of Darth Plageius the Wise? I thought not. It's not a story the Jedi would tell you. It's a Sith legend.";
 	}
 
 	/*! \brief Updates the object
@@ -48,6 +51,8 @@ public class Marker : Mappable
         if (IsColliding())
             OnArrive();
 		//this.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
+
+		//if(Input.GetMouseButtonDown(0) && inRange)
 	}
 
     /*! \brief Checks if the player object and the marker are colliding
@@ -74,23 +79,30 @@ public class Marker : Mappable
 
         if (distance < radius)
             return true;
-            
+
         return false;
         //TODO: make quest trigger be forced to a click, rather than distance.
     }
 
-    /*! \brief The behavior triggered when player reaches the marker
-     * this will pretty much always include the puzzle/dialogue, as well
+    /*! \brief The behavior triggered when player reaches the marker.
+     * This will pretty much always include the puzzle/dialogue, as well
      * as preparing the next marker.
 	 */
     public void OnArrive()
     {
-        //trigger some text for now
-        GameObject text = GameObject.Find("TextTest");
-        text.GetComponent<TextMesh>().text = name;
+        if(!inRange)
+        {
+			Handheld.Vibrate();
+			inRange = true;
+        }
 
-        triggered = true; // ideally triggered should not be set true until player has completed all events at marker
         //TODO
+    }
+
+    public void OnMouseDown()
+    {
+		if(inRange)
+			triggered = true; // ideally triggered should not be set true until player has completed all events at marker
     }
 
     /*! \brief Gets the bool for if current marker is part of a quest
@@ -138,4 +150,10 @@ public class Marker : Mappable
         set { radius = value; }
         get { return radius; }
     }
+
+    public string Dialogue
+	{
+		get { return dialogue; }
+		set { dialogue = value; }
+	}
 }

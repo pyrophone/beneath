@@ -16,31 +16,32 @@ public class GameControl : MonoBehaviour
 
 	[SerializeField]
 	private AbstractMap map; //! The map
-
+	[SerializeField]
+	private GameObject mapObj; //! The map as a game object
+	private QControl qControl;
+	private UIControl uiControl;
 	private GameObject player; //! The player object
 
-    /*! \brief Called when the scene is initialized (ensures this code runs first no matter what)
+    /*! \brief Called when the game is initialized (ensures this code runs first no matter what)
 	 */
     private void Awake()
     {
+        qControl = GetComponent<QControl>();
+        uiControl = GetComponent<UIControl>();
+
         DontDestroyOnLoad(this);
+		player = (GameObject)Instantiate(playerPrefab);
+		player.GetComponent<Player>().Map = this.map;
+		player.name = "player";
+        player.GetComponentInChildren<RotateHand>().Quests = qControl;
+		DontDestroyOnLoad(player);
     }
 
     /*! \brief Called when the object is initialized
 	 */
     private void Start()
 	{
-
-        //if PlayerObject exists, use that, if not, make another one
-        if ((player = GameObject.Find("player")) is GameObject) { }
-        else
-        {
-            player = Instantiate(playerPrefab);
-            player.GetComponent<Player>().Map = this.map;
-            player.name = "player";
-            DontDestroyOnLoad(player);
-        }
-        
+        //TODO: something that needs to go here everytime the scene is loaded
     }
 
 	/*! \brief Updates the object
@@ -48,7 +49,7 @@ public class GameControl : MonoBehaviour
 	private void Update()
 	{
         //for now, this will test vuforia by switching the scene on click or tap.
-        if (Input.GetMouseButtonDown(0) && (Input.touchCount > 2 || Application.platform == RuntimePlatform.WindowsEditor))
+        if (Input.GetMouseButtonDown(0) && Input.touchCount > 2)
         {
             if (SceneManager.GetActiveScene().buildIndex == 0)
                 SceneManager.LoadScene(1);
@@ -56,6 +57,54 @@ public class GameControl : MonoBehaviour
                 SceneManager.LoadScene(0);
         }
 
+        //state machine
+        if(qControl.CurQuest != null)
+        {
+			switch(uiControl.CurrentUIState)
+			{
+				case UIState.MAP:
+					if (qControl.SwitchToDialogue)
+					{
+						if(qControl.CurQuest.dialogueAmount[uiControl.Dial.DialogueNum] == 0)
+						{
+							uiControl.Dial.DialogueNum++;
+							qControl.SwitchToDialogue = false;
+							break;
+						}
+
+						uiControl.SetCanvas(UIState.DIALOGUE);
+						qControl.SwitchToDialogue = false;
+						mapObj.SetActive(false);
+					}
+					break;
+
+				case UIState.DIALOGUE:
+
+					if(uiControl.Dial.DialogueNum < qControl.CurQuest.dialogueAmount.Count ||
+						uiControl.Dial.ConvoNum < qControl.CurQuest.convo.Count)
+					{
+						uiControl.Dial.DialogueAmount = qControl.CurQuest.dialogueAmount[uiControl.Dial.DialogueNum];
+						uiControl.Dial.DialogueField.text = qControl.CurQuest.convo[uiControl.Dial.ConvoNum];
+					}
+
+					if(uiControl.Dial.SwitchToMap)
+					{
+						uiControl.SetCanvas(UIState.MAP);
+						uiControl.Dial.SwitchToMap = false;
+						mapObj.SetActive(true);
+
+						if(qControl.QuestShouldFinish)
+						{
+							qControl.CurQuest = null;
+							qControl.QuestShouldFinish = false;
+						}
+					}
+					break;
+
+				default:
+					break;
+			}
+        }
 	}
 
 	/*! \brief Gets the map data

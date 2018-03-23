@@ -18,13 +18,15 @@ public class Player : Mappable
 	 */
 	IEnumerator Start()
 	{
+		this.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
+
         //Setup the location info
         if (!Input.location.isEnabledByUser)
         {
             loc = new Vector2d(42.641787, 18.106856); //debug for testing markers on laptop
             yield break;
         }
-            
+
 
 		Input.location.Start();
 		int maxWait = 30;
@@ -44,7 +46,6 @@ public class Player : Mappable
         if (Input.location.status != LocationServiceStatus.Failed)
 		{
 			this.loc = new Vector2d(Input.location.lastData.latitude, Input.location.lastData.longitude);
-			this.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
 		}
 
 	}
@@ -56,7 +57,8 @@ public class Player : Mappable
 		if(Input.location.status != LocationServiceStatus.Failed && Input.location.isEnabledByUser)
 		{
 			this.loc = new Vector2d(Input.location.lastData.latitude, Input.location.lastData.longitude);
-			this.transform.localPosition = this.map.GeoToWorldPosition(this.loc);
 		}
+
+		this.transform.localPosition = this.map.GeoToWorldPosition(this.loc);
 	}
 }
