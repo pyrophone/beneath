@@ -6,6 +6,7 @@ using Mapbox.Unity.Map;
 using Mapbox.Unity.Utilities;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 /*! \class Player
  *	\brief Handles updating of the player object
@@ -27,7 +28,7 @@ public class Player : Mappable
             yield break;
         }
 
-
+        
 		Input.location.Start();
 		int maxWait = 30;
 
@@ -45,10 +46,9 @@ public class Player : Mappable
         //Instantiate the player
         if (Input.location.status != LocationServiceStatus.Failed)
 		{
-			this.loc = new Vector2d(Input.location.lastData.latitude, Input.location.lastData.longitude);
-		}
-
-	}
+			loc = new Vector2d(Input.location.lastData.latitude, Input.location.lastData.longitude);
+		}      
+    }
 
 	/*! \brief Updates the object
 	 */
@@ -57,8 +57,18 @@ public class Player : Mappable
 		if(Input.location.status != LocationServiceStatus.Failed && Input.location.isEnabledByUser)
 		{
 			this.loc = new Vector2d(Input.location.lastData.latitude, Input.location.lastData.longitude);
-		}
+        }
 
-		this.transform.localPosition = this.map.GeoToWorldPosition(this.loc);
+        //DEBUG
+        try
+        {
+            //DEBUG: show location on main screen
+            GameObject.Find("GeoCounter").GetComponent<Text>().text = "loc: " + loc;
+        }
+        catch { }
+        
+
+        this.transform.localPosition = this.map.GeoToWorldPosition(this.loc);
 	}
+
 }

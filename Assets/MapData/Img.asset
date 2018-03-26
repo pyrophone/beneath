@@ -14,10 +14,10 @@ MonoBehaviour:
   _mapIdType: 1
   _customStyle:
     Name: Vintage
-    Id: mapbox://styles/pyrophones/cjeeoe1l43y2f2rqt4tmddr6p
-    Modified: 
-    UserName: 
-  _mapId: mapbox://styles/pyrophones/cjeeoe1l43y2f2rqt4tmddr6p
+    Id: \mapbox://styles/pyrophones/cjeeoe1l43y2f2rqt4tmddr6p
+    Modified: 3/15/18
+    UserName: \
+  _mapId: \mapbox://styles/pyrophones/cjeeoe1l43y2f2rqt4tmddr6p
   _useCompression: 0
   _useMipMap: 1
   _useRetina: 0

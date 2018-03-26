@@ -62,7 +62,7 @@ namespace Mapbox.Unity.Map
 			{
 				return _root;
 			}
-		}
+        }
 
 		[SerializeField]
 		protected AbstractTileProvider _tileProvider;

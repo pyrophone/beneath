@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 
 using Mapbox.Unity.Map;
+using Mapbox.Examples;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /*! \class GameControl
  *	\brief Acts as a general game manager
@@ -14,10 +16,11 @@ public class GameControl : MonoBehaviour
 	[SerializeField]
 	private GameObject playerPrefab; //! The prefab for the player
 
-	[SerializeField]
+    [SerializeField]
+    private QuadTreeCameraMovement mapCam; //! The map camera control
+
+    [SerializeField]
 	private AbstractMap map; //! The map
-	[SerializeField]
-	private GameObject mapObj; //! The map as a game object
 	private QControl qControl;
 	private UIControl uiControl;
 	private GameObject player; //! The player object
@@ -26,28 +29,30 @@ public class GameControl : MonoBehaviour
 	 */
     private void Awake()
     {
-        qControl = GetComponent<QControl>();
-        uiControl = GetComponent<UIControl>();
-
-        DontDestroyOnLoad(this);
+		DontDestroyOnLoad(this);
 		player = (GameObject)Instantiate(playerPrefab);
 		player.GetComponent<Player>().Map = this.map;
 		player.name = "player";
-        player.GetComponentInChildren<RotateHand>().Quests = qControl;
 		DontDestroyOnLoad(player);
+
+		qControl = GetComponent<QControl>();
+		uiControl = GetComponent<UIControl>();
     }
 
     /*! \brief Called when the object is initialized
 	 */
     private void Start()
 	{
-        //TODO: something that needs to go here everytime the scene is loaded
-    }
+		//TODO: something that needs to go here everytime the scene is loaded
+	}
 
 	/*! \brief Updates the object
 	 */
 	private void Update()
 	{
+        //set player as map center
+        mapCam.CenterOnTarget(player.GetComponent<Player>().Loc);
+
         //for now, this will test vuforia by switching the scene on click or tap.
         if (Input.GetMouseButtonDown(0) && Input.touchCount > 2)
         {
@@ -57,29 +62,22 @@ public class GameControl : MonoBehaviour
                 SceneManager.LoadScene(0);
         }
 
-        //state machine
-        if(qControl.CurQuest != null)
+        //DEBUG
+        try
+        {
+            //DEBUG: show distance on main screen
+            GameObject.Find("GeoCenterCounter").GetComponent<Text>().text = "center: " + map.WorldToGeoPosition(GameObject.Find("Main Camera").transform.position);
+        }
+        catch { }
+
+        if (qControl.CurQuest != null)
         {
 			switch(uiControl.CurrentUIState)
 			{
-				case UIState.MAP:
-					if (qControl.SwitchToDialogue)
-					{
-						if(qControl.CurQuest.dialogueAmount[uiControl.Dial.DialogueNum] == 0)
-						{
-							uiControl.Dial.DialogueNum++;
-							qControl.SwitchToDialogue = false;
-							break;
-						}
-
-						uiControl.SetCanvas(UIState.DIALOGUE);
-						qControl.SwitchToDialogue = false;
-						mapObj.SetActive(false);
-					}
-					break;
+				//case UIState.MAP:
+				//	break;
 
 				case UIState.DIALOGUE:
-
 					if(uiControl.Dial.DialogueNum < qControl.CurQuest.dialogueAmount.Count ||
 						uiControl.Dial.ConvoNum < qControl.CurQuest.convo.Count)
 					{
@@ -87,17 +85,10 @@ public class GameControl : MonoBehaviour
 						uiControl.Dial.DialogueField.text = qControl.CurQuest.convo[uiControl.Dial.ConvoNum];
 					}
 
-					if(uiControl.Dial.SwitchToMap)
+					if(qControl.QuestShouldFinish)
 					{
-						uiControl.SetCanvas(UIState.MAP);
-						uiControl.Dial.SwitchToMap = false;
-						mapObj.SetActive(true);
-
-						if(qControl.QuestShouldFinish)
-						{
-							qControl.CurQuest = null;
-							qControl.QuestShouldFinish = false;
-						}
+						qControl.CurQuest = null;
+						qControl.QuestShouldFinish = false;
 					}
 					break;
 

@@ -8,6 +8,10 @@ using UnityEngine;
  */
 public class RotateHand : MonoBehaviour {
 
+    /// <summary>
+    /// TODO: REPLACE ALL THIS STUFF TO GYROSCOPE REFERENCES AND MAKE THE COMPASS POINT TO REAL WORLD TARGETS
+    /// </summary>
+
     [SerializeField]
     private bool isCompass; //! is this the compass?
 
@@ -52,7 +56,7 @@ public class RotateHand : MonoBehaviour {
         Vector3 mPos = target.transform.position;
         Debug.Log("Mpos: " + mPos);
         //marker is roughly at this position lol
-        float angle = Mathf.Atan2(mPos.z + 48, mPos.x + 25) * Mathf.Rad2Deg + 180;
+        float angle = Mathf.Atan2(mPos.z + 58, mPos.x + 30) * Mathf.Rad2Deg + 180;
         Debug.Log("Mangle: " + angle);
         transform.rotation = Quaternion.Euler(0, 0, angle);
 

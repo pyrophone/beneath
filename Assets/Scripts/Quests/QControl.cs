@@ -14,7 +14,7 @@ public class QControl : MonoBehaviour
     private GameObject marker; //! marker prefab
 	[SerializeField]
 	private Quest curQuest; //! The current quest
-	private bool switchToDialogue; //! Should the UI switch to the dialogue UI
+	private UIControl uiControl; //! The UI control component
     private bool questShouldFinish; //! If the quest should finish
 	Dictionary<Quest, bool> quests; //! Dictionary of quests and their completion status
 	private List<GameObject> markerList; //! The list of markers
@@ -26,6 +26,8 @@ public class QControl : MonoBehaviour
 	 */
 	private void Start()
 	{
+		uiControl = GetComponent<UIControl>();
+
 		markerList = new List<GameObject>();
 		quests = new Dictionary<Quest, bool>();
 
@@ -67,7 +69,7 @@ public class QControl : MonoBehaviour
 			m.GetComponent<Marker>().Loc = curQuest.markerGenList[i];
 			m.GetComponent<Marker>().Map = GetComponent<GameControl>().Map;
 			m.GetComponent<Marker>().Radius = 15;
-			m.name = "q" + curQuest.id + ".marker" + i;
+			m.name = "q" + curQuest.id + "." + "marker" + i;
 			if (i != 0)
 			{
 				m.SetActive(false);
@@ -85,7 +87,12 @@ public class QControl : MonoBehaviour
 		if (markerList[markerCurrent].GetComponent<Marker>().Triggered)
         {
 			markerList[markerCurrent].SetActive(false);
-			switchToDialogue = true;
+			if(curQuest.dialogueAmount[uiControl.Dial.DialogueNum] == 0)
+				uiControl.Dial.DialogueNum++;
+
+			else
+				uiControl.SetCanvas(UIState.DIALOGUE);
+
 			markerCurrent++;
 
 			if (markerCurrent >= markerList.Count)
@@ -142,12 +149,4 @@ public class QControl : MonoBehaviour
     {
         get { return markerCurrent; }
     }
-
-    /*! \brief Getter / Setter for switchToDialogue
-	 */
-    public bool SwitchToDialogue
-	{
-		get { return switchToDialogue; }
-		set { switchToDialogue = value; }
-	}
 }

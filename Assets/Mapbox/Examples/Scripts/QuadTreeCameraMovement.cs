@@ -18,7 +18,7 @@
 		[SerializeField]
 		public Camera _referenceCamera;
 
-		[SerializeField]
+        [SerializeField]
 		QuadTreeTileProvider _quadTreeTileProvider;
 
 		[SerializeField]
@@ -62,16 +62,6 @@
 			float scrollDelta = 0.0f;
 			scrollDelta = Input.GetAxis("Mouse ScrollWheel");
 			ZoomMapUsingTouchOrMouse(scrollDelta);
-
-			//pan keyboard
-			float xMove = Input.GetAxis("Horizontal");
-			float zMove = Input.GetAxis("Vertical");
-
-			PanMapUsingKeyBoard(xMove, zMove);
-
-
-			//pan mouse
-			PanMapUsingTouchOrMouse();
 		}
 
 		void HandleTouch()
@@ -80,11 +70,6 @@
 			//pinch to zoom. 
 			switch (Input.touchCount)
 			{
-				case 1:
-					{
-						PanMapUsingTouchOrMouse();
-					}
-					break;
 				case 2:
 					{
 						// Store both touches.
@@ -114,30 +99,12 @@
 			_quadTreeTileProvider.UpdateMapProperties(_dynamicZoomMap.CenterLatitudeLongitude, Mathf.Max(0.0f, Mathf.Min(_dynamicZoomMap.Zoom + zoomFactor * _zoomSpeed, 21.0f)));
 		}
 
-		void PanMapUsingKeyBoard(float xMove, float zMove)
-		{
-			if (Math.Abs(xMove) > 0.0f || Math.Abs(zMove) > 0.0f)
-			{
-				// Get the number of degrees in a tile at the current zoom level. 
-				// Divide it by the tile width in pixels ( 256 in our case) 
-				// to get degrees represented by each pixel.
-				// Keyboard offset is in pixels, therefore multiply the factor with the offset to move the center.
-				float factor = _panSpeed * (Conversions.GetTileScaleInDegrees((float)_dynamicZoomMap.CenterLatitudeLongitude.x, _dynamicZoomMap.AbsoluteZoom));
-				_quadTreeTileProvider.UpdateMapProperties(new Vector2d(_dynamicZoomMap.CenterLatitudeLongitude.x + zMove * factor * 2.0f, _dynamicZoomMap.CenterLatitudeLongitude.y + xMove * factor * 4.0f), _dynamicZoomMap.Zoom);
-			}
-		}
+        //edited: sets map location to always be on player
+        public void CenterOnTarget(Vector2d target)
+        {
+            _quadTreeTileProvider.UpdateMapProperties(target, _dynamicZoomMap.Zoom);
+        }
 
-		void PanMapUsingTouchOrMouse()
-		{
-			if (_useDegreeMethod)
-			{
-				UseDegreeConversion();
-			}
-			else
-			{
-				UseMeterConversion();
-			}
-		}
 
 		void UseMeterConversion()
 		{

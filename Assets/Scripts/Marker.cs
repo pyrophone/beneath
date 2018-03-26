@@ -6,6 +6,7 @@ using Mapbox.Unity.Map;
 using Mapbox.Unity.Utilities;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 /*! \class Marker
  *	\brief Acts as a marker on a map
@@ -77,11 +78,19 @@ public class Marker : Mappable
         double distance = earthRadiusM * c;
         #endregion
 
+        //DEBUG
+        try
+        {
+            //DEBUG: show distance on main screen
+            GameObject.Find("DistCounter").GetComponent<Text>().text = "Distance: " + distance.ToString("N2");
+        }
+        catch { }
+        
+
         if (distance < radius)
             return true;
 
         return false;
-        //TODO: make quest trigger be forced to a click, rather than distance.
     }
 
     /*! \brief The behavior triggered when player reaches the marker.
