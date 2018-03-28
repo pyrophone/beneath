@@ -36,10 +36,13 @@ public class RotateHand : MonoBehaviour {
 
     /*! \brief Updates the object
 	 */
-    private void Update() {
-        CheckMarkers();
+    private void Update()
+    {    
         if (isCompass)
+        {
+            CheckMarkers();
             RotateToObjectCompass();
+        }    
         else
             RotateToObject();
 	}
@@ -48,8 +51,24 @@ public class RotateHand : MonoBehaviour {
 	 */
     private void CheckMarkers()
     {
-        string markerName = "q" + quests.CurQuest.id + ".marker" + quests.MarkerCurrent;
-        target = GameObject.Find(markerName);
+        //wrap in try catch finally b/c otherwise this will crash with no active quest
+        try
+        {
+            string markerName = "q" + quests.CurQuest.id + ".marker" + quests.MarkerCurrent;
+            target = GameObject.Find(markerName);
+        }
+        catch
+        {
+            gameObject.SetActive(false);
+        }
+        finally
+        {
+            if (!target.activeSelf)
+            {
+                target = null;
+            }
+        }
+        
     }
 
     /*! \brief points object to another object

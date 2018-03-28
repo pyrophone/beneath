@@ -78,6 +78,8 @@ public class QControl : MonoBehaviour
 		}
 
 		markerCurrent = 0;
+
+        //enough info to set up compass
 	}
 
 	/*! \brief progresses the quest, advances one marker
