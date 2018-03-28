@@ -74,9 +74,6 @@ public class GameControl : MonoBehaviour
         {
 			switch(uiControl.CurrentUIState)
 			{
-				//case UIState.MAP:
-				//	break;
-
 				case UIState.DIALOGUE:
 					if(uiControl.Dial.DialogueNum < qControl.CurQuest.dialogueAmount.Count ||
 						uiControl.Dial.ConvoNum < qControl.CurQuest.convo.Count)

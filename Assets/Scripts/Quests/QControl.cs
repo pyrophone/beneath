@@ -43,7 +43,7 @@ public class QControl : MonoBehaviour
 			//This is temporary, since you can't choose quests
 			if(firstQuest)
 			{
-				curQuest = q;
+				SetCurrentQuest(q);
 				firstQuest = false;
 				LoadMarkers();
 				questAssetNum = 0;
@@ -66,7 +66,7 @@ public class QControl : MonoBehaviour
 		for (int i = 0; i < curQuest.markerGenList.Count; i++)
 		{
 			GameObject m = Instantiate(marker);
-			m.GetComponent<Marker>().Loc = curQuest.markerGenList[i];
+			m.GetComponent<Marker>().Loc = curQuest.markerGenList[i].markerLoc;
 			m.GetComponent<Marker>().Map = GetComponent<GameControl>().Map;
 			m.GetComponent<Marker>().Radius = 15;
 			m.name = "q" + curQuest.id + "." + "marker" + i;
@@ -78,6 +78,12 @@ public class QControl : MonoBehaviour
 		}
 
 		markerCurrent = 0;
+	}
+
+	private void SetCurrentQuest(Quest q)
+	{
+		curQuest = q;
+		uiControl.QLCanvas.SetActiveQuestText(curQuest.name);
 	}
 
 	/*! \brief progresses the quest, advances one marker
