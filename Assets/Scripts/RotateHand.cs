@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -40,8 +42,16 @@ public class RotateHand : MonoBehaviour {
     {    
         if (isCompass)
         {
-            CheckMarkers();
-            RotateToObjectCompass();
+            //wrap in try catch b/c otherwise this will crash with no active quest
+            try
+            {
+                CheckMarkers();
+                RotateToObjectCompass();
+            }
+            catch (NullReferenceException)
+            {
+                gameObject.SetActive(false);
+            }
         }    
         else
             RotateToObject();
@@ -51,24 +61,9 @@ public class RotateHand : MonoBehaviour {
 	 */
     private void CheckMarkers()
     {
-        //wrap in try catch finally b/c otherwise this will crash with no active quest
-        try
-        {
-            string markerName = "q" + quests.CurQuest.id + ".marker" + quests.MarkerCurrent;
-            target = GameObject.Find(markerName);
-        }
-        catch
-        {
-            gameObject.SetActive(false);
-        }
-        finally
-        {
-            if (!target.activeSelf)
-            {
-                target = null;
-            }
-        }
-        
+        string markerName = "q" + quests.CurQuest.id + ".marker" + quests.MarkerCurrent;
+        target = GameObject.Find(markerName);
+
     }
 
     /*! \brief points object to another object
