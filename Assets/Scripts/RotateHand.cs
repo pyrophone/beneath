@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /*! \class RotateHand
  *	\brief rotates object towards another one
@@ -26,7 +27,10 @@ public class RotateHand : MonoBehaviour {
     {
         if (!isCompass)
         {
-            player = GameObject.Find("player");
+            if (!CheckGyro())
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -55,8 +59,8 @@ public class RotateHand : MonoBehaviour {
         //get angle from world marker pos and then apply rotation based on that angle
         Vector3 mPos = target.transform.position;
         Debug.Log("Mpos: " + mPos);
-        //marker is roughly at this position lol
-        float angle = Mathf.Atan2(mPos.z + 58, mPos.x + 30) * Mathf.Rad2Deg + 180;
+        //marker is now at 0,0. so it's easy now
+        float angle = Mathf.Atan2(mPos.z, mPos.x) * Mathf.Rad2Deg;
         Debug.Log("Mangle: " + angle);
         transform.rotation = Quaternion.Euler(0, 0, angle);
 
@@ -64,16 +68,31 @@ public class RotateHand : MonoBehaviour {
 
     private void RotateToObject()
     {
-        //get player's position
-        Vector3 pPos = player.transform.position;
-        Debug.Log("Ppos: " + pPos);
+        //check if gyro is active
+        if (SystemInfo.supportsGyroscope)
+        {
+            //DEBUG
+            try
+            {
+                //DEBUG: show location on main screen
+                GameObject.Find("GeoAttitude").GetComponent<Text>().text = "gyro: " + Input.gyro.attitude;
+            }
+            catch { }
 
-        //get angle from world marker pos and then apply rotation based on that angle
-        Vector3 mPos = target.transform.position;       
-        float angle = Mathf.Atan2(mPos.z - pPos.z, mPos.x - pPos.x) * Mathf.Rad2Deg - 120;
-        Debug.Log("Pangle: " + angle);
-        transform.rotation = Quaternion.Euler(90, angle, 0);
+            //set arrow direction to gyro
+            Quaternion gyro = Input.gyro.attitude;
+            gyro.x = 0; gyro.y = 0;
+            transform.rotation = gyro;
 
+        }
+
+    }
+
+    private bool CheckGyro()
+    {
+        if (Input.gyro.enabled = SystemInfo.supportsGyroscope)
+            return true;
+        return false;
     }
 
     public QControl Quests
