@@ -2591,6 +2591,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   marker: {fileID: 1769190167227140, guid: cbb820b2735644cdeb1004e63accbf1f, type: 2}
+  compass: {fileID: 1541626503}
   curQuest:
     id: 0
     name: 
@@ -2944,7 +2945,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 11.014614}
+  m_AnchoredPosition: {x: 0, y: 0.08465231}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1234236689
@@ -3197,7 +3198,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1877126103}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -3319,7 +3320,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 977500677}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.88435954
+  m_Size: 0.9753103
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3710,7 +3711,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f958581c17ee8f847a16e65b8040e181, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2d9d5af531a404c4984f766a70011f11, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -4276,7 +4277,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1877126103}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -4672,11 +4673,11 @@ RectTransform:
   - {fileID: 2058009934}
   - {fileID: 538733083}
   - {fileID: 907245845}
-  - {fileID: 1057643834}
+  - {fileID: 1541626504}
   - {fileID: 1931219472}
   - {fileID: 1293502075}
   - {fileID: 1899818680}
-  - {fileID: 920272402}
+  - {fileID: 1744205655}
   m_Father: {fileID: 994545823}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

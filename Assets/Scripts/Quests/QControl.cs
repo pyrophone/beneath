@@ -12,6 +12,8 @@ public class QControl : MonoBehaviour
 {
 	[SerializeField]
     private GameObject marker; //! Marker prefab
+    [SerializeField]
+    private GameObject compass; //! Compass object
 	[SerializeField]
 	private Quest curQuest; //! The current quest
 	private UIControl uiControl; //! The UI control component
@@ -88,11 +90,15 @@ public class QControl : MonoBehaviour
 	{
 		ClearMarkers();
 		curQuest = q;
+		questShouldFinish = false;
 
-		if(q != null)
+		if(curQuest != null)
 		{
 			uiControl.QLCanvas.SetActiveQuestText(curQuest.name);
 			LoadMarkers();
+
+			//enough info to set up compass
+			compass.SetActive(true);
 		}
 
 		else
@@ -101,11 +107,8 @@ public class QControl : MonoBehaviour
 		}
 
 		uiControl.QLCanvas.RefreshQuestList(quests, curQuest);
-    
-		markerCurrent = 0;
 
-    //enough info to set up compass
-    GameObject.Find("Compass").SetActive(true);
+		markerCurrent = 0;
 	}
 
 	/*! \brief progresses the quest, advances one marker
