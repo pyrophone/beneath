@@ -46,7 +46,7 @@ public class DialogueCanvas : MonoBehaviour
 		}
 	}
 
-	/*! \brief Getter / setter for dialogueField
+	/*! \brief Getter / Setter for dialogueField
 	 */
 	public Text DialogueField
 	{
@@ -54,17 +54,23 @@ public class DialogueCanvas : MonoBehaviour
 		set { dialogueField = value; }
 	}
 
+	/*! \brief Getter / Setter for dialogueNum
+	 */
 	public int DialogueNum
 	{
 		get { return dialogueNum; }
 		set { dialogueNum = value; }
 	}
 
+	/*! \brief Getter for convoNum
+	 */
 	public int ConvoNum
 	{
 		get { return convoNum; }
 	}
 
+	/*! \brief Setter for dialogueAmount
+	 */
 	public int DialogueAmount
 	{
 		set { dialogueAmount = value; }

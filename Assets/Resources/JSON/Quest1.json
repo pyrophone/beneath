@@ -3,20 +3,32 @@
     "name": "Grim Beginnings",
     "markerGenList": [
 		{
-			"x": 42.641787,
-			"y": 18.106856
+			"markerLoc": {
+				"x": 42.641787,
+				"y": 18.106856
+			},
+			"prereqMarker": -1
 		},
 		{
-			"x": 42.641584,
-			"y": 18.107329
+			"markerLoc": {
+				"x": 42.641584,
+				"y": 18.107329
+			},
+			"prereqMarker": 0
 		},
 		{
-			"x": 42.641361,
-			"y": 18.108965
+			"markerLoc": {
+				"x": 42.641361,
+				"y": 18.108965
+			},
+			"prereqMarker": 1
 		},
 		{
-			"x": 42.640865,
-			"y": 18.110373
+			"markerLoc": {
+				"x": 42.640865,
+				"y": 18.110373
+			},
+			"prereqMarker": 2
 		}
     ],
     "isTutorial": true,

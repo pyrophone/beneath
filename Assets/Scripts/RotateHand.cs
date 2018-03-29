@@ -9,8 +9,8 @@ using UnityEngine.UI;
  *	\brief rotates object towards another one
  *	*Originally code from a simple Unity exercise*
  */
-public class RotateHand : MonoBehaviour {
-
+public class RotateHand : MonoBehaviour
+{
     /// <summary>
     /// TODO: REPLACE ALL THIS STUFF TO GYROSCOPE REFERENCES AND MAKE THE COMPASS POINT TO REAL WORLD TARGETS
     /// </summary>

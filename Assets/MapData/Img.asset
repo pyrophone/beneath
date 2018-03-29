@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _mapIdType: 1
   _customStyle:
-    Name: Beneath
+    Name: Mapbox
     Id: mapbox://styles/dentrick/cjf8swd4i5cjm2rnvbmy6bzde
     Modified: 3/27/18
     UserName: \
