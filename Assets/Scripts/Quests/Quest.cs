@@ -24,11 +24,23 @@ public class Quest
 	public List<string> convo; //! All the dialogue said by the charager
     public string filePath; //! Used for saving data
 
+    /*! \brief Gets quests from JSON
+     *
+     * \param (string) json - The string to get the JSON data
+     *
+     * \return (Quest) The quest extracted from the JSON
+     */
     public static Quest GetFromJson(string json)
     {
 		return JsonUtility.FromJson<Quest>(json);
     }
 
+    /*! \brief Saves quests to JSON
+     *
+     * \param (Quest) data - The quest data to save to JSON
+     *
+     * \return (string) The string of the saved JSON data
+     */
     public static string SaveToJson(Quest data)
     {
 		return JsonUtility.ToJson(data, true);

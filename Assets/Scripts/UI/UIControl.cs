@@ -41,7 +41,6 @@ public class UIControl : MonoBehaviour
 		SetCanvas(currentUIState);
 
 		dial = transform.Find("DialogCanvas").GetComponent<DialogueCanvas>();
-		//qlCanvas = transform.Find("QuestCanvas").GetComponent<QListCanvas>();
 	}
 
 	/*! \brief Updates the object
@@ -58,12 +57,6 @@ public class UIControl : MonoBehaviour
 		canvases[(int)currentUIState].SetActive(false);
 		currentUIState = newState;
 		canvases[(int)currentUIState].SetActive(true);
-
-		if(currentUIState == UIState.MAP)
-			mapObj.SetActive(true);
-
-		else
-			mapObj.SetActive(false);
 	}
 
 	/*! \brief Getter / Setter for the dialogue canvas

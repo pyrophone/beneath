@@ -6,8 +6,8 @@ using UnityEngine;
  *	\brief rotates object towards another one
  *	*Originally code from a simple Unity exercise*
  */
-public class RotateHand : MonoBehaviour {
-
+public class RotateHand : MonoBehaviour
+{
     /// <summary>
     /// TODO: REPLACE ALL THIS STUFF TO GYROSCOPE REFERENCES AND MAKE THE COMPASS POINT TO REAL WORLD TARGETS
     /// </summary>
@@ -32,12 +32,16 @@ public class RotateHand : MonoBehaviour {
 
     /*! \brief Updates the object
 	 */
-    private void Update() {
-        CheckMarkers();
-        if (isCompass)
-            RotateToObjectCompass();
-        else
-            RotateToObject();
+    private void Update()
+    {
+		if(quests.CurQuest != null)
+		{
+			CheckMarkers();
+			if (isCompass)
+				RotateToObjectCompass();
+			else
+				RotateToObject();
+		}
 	}
 
     /*! \brief Checks for changed marker
@@ -69,7 +73,7 @@ public class RotateHand : MonoBehaviour {
         Debug.Log("Ppos: " + pPos);
 
         //get angle from world marker pos and then apply rotation based on that angle
-        Vector3 mPos = target.transform.position;       
+        Vector3 mPos = target.transform.position;
         float angle = Mathf.Atan2(mPos.z - pPos.z, mPos.x - pPos.x) * Mathf.Rad2Deg - 120;
         Debug.Log("Pangle: " + angle);
         transform.rotation = Quaternion.Euler(90, angle, 0);

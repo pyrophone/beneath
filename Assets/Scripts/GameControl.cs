@@ -43,7 +43,7 @@ public class GameControl : MonoBehaviour
 	 */
     private void Start()
 	{
-		//TODO: something that needs to go here everytime the scene is loaded
+
 	}
 
 	/*! \brief Updates the object
