@@ -101,6 +101,11 @@ public class QControl : MonoBehaviour
 		}
 
 		uiControl.QLCanvas.RefreshQuestList(quests, curQuest);
+    
+		markerCurrent = 0;
+
+    //enough info to set up compass
+    GameObject.Find("Compass").SetActive(true);
 	}
 
 	/*! \brief progresses the quest, advances one marker
