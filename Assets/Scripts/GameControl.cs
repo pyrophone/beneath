@@ -62,6 +62,14 @@ public class GameControl : MonoBehaviour
                 SceneManager.LoadScene(0);
         }
 
+        //DEBUG
+        try
+        {
+            //DEBUG: show distance on main screen
+            GameObject.Find("GeoCenterCounter").GetComponent<Text>().text = "center: " + map.WorldToGeoPosition(GameObject.Find("Main Camera").transform.position);
+        }
+        catch { }
+
         if (qControl.CurQuest != null)
         {
 			switch(uiControl.CurrentUIState)

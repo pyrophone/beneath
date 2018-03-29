@@ -6,7 +6,7 @@ PlayerSettings:
   serializedVersion: 14
   productGUID: 725c4603ead484f43ba77082d643e98d
   AndroidProfiler: 0
-  AndroidFilterTouchesWhenObscured: 1
+  AndroidFilterTouchesWhenObscured: 0
   defaultScreenOrientation: 0
   targetDevice: 2
   useOnDemandResources: 0
@@ -126,7 +126,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.3
+  bundleVersion: 1.0
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -158,7 +158,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.Beneath.MagicSpellStudios
+    Android: com.MapTest.MagicSpellStudios
   buildNumber: {}
   AndroidBundleVersionCode: 1
   AndroidMinSdkVersion: 16

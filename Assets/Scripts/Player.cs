@@ -28,9 +28,8 @@ public class Player : Mappable
             yield break;
         }
 
-        //edit as needed for accuracy
-		Input.location.Start(5, 5);
-
+        
+		Input.location.Start();
 		int maxWait = 30;
 
 		while(Input.location.status == LocationServiceStatus.Initializing && maxWait > 0)

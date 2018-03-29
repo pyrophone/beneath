@@ -77,10 +77,14 @@ public class QControl : MonoBehaviour
 			markerList.Add(m);
 		}
 
+<<<<<<< HEAD
 		markerCurrent = 0;
 
         //enough info to set up compass
         GameObject.Find("Compass").SetActive(true);
+=======
+		uiControl.QLCanvas.RefreshQuestList(quests, curQuest);
+>>>>>>> parent of 8d116cf... Merge branch 'dev' into dev-map
 	}
 
 	/*! \brief progresses the quest, advances one marker
