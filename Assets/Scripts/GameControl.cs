@@ -43,7 +43,7 @@ public class GameControl : MonoBehaviour
 	 */
     private void Start()
 	{
-
+		//TODO: something that needs to go here everytime the scene is loaded
 	}
 
 	/*! \brief Updates the object
@@ -66,6 +66,9 @@ public class GameControl : MonoBehaviour
         {
 			switch(uiControl.CurrentUIState)
 			{
+				//case UIState.MAP:
+				//	break;
+
 				case UIState.DIALOGUE:
 					if(uiControl.Dial.DialogueNum < qControl.CurQuest.dialogueAmount.Count ||
 						uiControl.Dial.ConvoNum < qControl.CurQuest.convo.Count)

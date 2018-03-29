@@ -6,7 +6,6 @@ using Mapbox.Unity.Map;
 using Mapbox.Unity.Utilities;
 
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /*! \class Marker
@@ -52,6 +51,9 @@ public class Marker : Mappable
 		this.transform.localPosition = this.map.GeoToWorldPosition(this.loc);
         if (IsColliding())
             OnArrive();
+		//this.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
+
+		//if(Input.GetMouseButtonDown(0) && inRange)
 	}
 
     /*! \brief Checks if the player object and the marker are colliding
@@ -83,7 +85,7 @@ public class Marker : Mappable
             GameObject.Find("DistCounter").GetComponent<Text>().text = "Distance: " + distance.ToString("N2");
         }
         catch { }
-
+        
 
         if (distance < radius)
             return true;
@@ -102,11 +104,13 @@ public class Marker : Mappable
 			Handheld.Vibrate();
 			inRange = true;
         }
+
+        //TODO
     }
 
     public void OnMouseDown()
     {
-		if(inRange && !EventSystem.current.IsPointerOverGameObject())
+		if(inRange)
 			triggered = true; // ideally triggered should not be set true until player has completed all events at marker
     }
 

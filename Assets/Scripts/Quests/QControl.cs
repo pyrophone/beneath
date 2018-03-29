@@ -11,7 +11,7 @@ using UnityEngine;
 public class QControl : MonoBehaviour
 {
 	[SerializeField]
-    private GameObject marker; //! Marker prefab
+    private GameObject marker; //! marker prefab
 	[SerializeField]
 	private Quest curQuest; //! The current quest
 	private UIControl uiControl; //! The UI control component
@@ -31,15 +31,24 @@ public class QControl : MonoBehaviour
 		markerList = new List<GameObject>();
 		quests = new Dictionary<Quest, bool>();
 
+		bool firstQuest = true;
+
 		textAssets = Resources.LoadAll("JSON", typeof(TextAsset));
 
 		foreach(TextAsset txt in textAssets)
 		{
 			Quest q = Quest.GetFromJson(txt.ToString());
-			quests.Add(q, false);
-		}
+			quests.Add(q, q.completed);
 
-		SetCurrentQuest(null);
+			//This is temporary, since you can't choose quests
+			if(firstQuest)
+			{
+				curQuest = q;
+				firstQuest = false;
+				LoadMarkers();
+				questAssetNum = 0;
+			}
+		}
 	}
 
 	/*! \brief Updates the object
@@ -54,52 +63,24 @@ public class QControl : MonoBehaviour
 	 */
 	private void LoadMarkers()
 	{
-		if(curQuest != null)
+		for (int i = 0; i < curQuest.markerGenList.Count; i++)
 		{
-			for (int i = 0; i < curQuest.markerGenList.Count; i++)
+			GameObject m = Instantiate(marker);
+			m.GetComponent<Marker>().Loc = curQuest.markerGenList[i];
+			m.GetComponent<Marker>().Map = GetComponent<GameControl>().Map;
+			m.GetComponent<Marker>().Radius = 15;
+			m.name = "q" + curQuest.id + "." + "marker" + i;
+			if (i != 0)
 			{
-				GameObject m = Instantiate(marker);
-				m.GetComponent<Marker>().Loc = curQuest.markerGenList[i].markerLoc;
-				m.GetComponent<Marker>().Map = GetComponent<GameControl>().Map;
-				m.GetComponent<Marker>().Radius = 15;
-				m.name = "q" + curQuest.id + "." + "marker" + i;
-				if (i != 0)
-				{
-					m.SetActive(false);
-				}
-				markerList.Add(m);
+				m.SetActive(false);
 			}
-
-			markerCurrent = 0;
-		}
-	}
-
-	/*! Sets the current quest
-	 *
-	 * \param (Quest) q - The quest to set the current quest to
-	 */
-	public void SetCurrentQuest(Quest q)
-	{
-		ClearMarkers();
-		curQuest = q;
-
-		if(q != null)
-		{
-			uiControl.QLCanvas.SetActiveQuestText(curQuest.name);
-			LoadMarkers();
+			markerList.Add(m);
 		}
 
-		else
-		{
-			uiControl.QLCanvas.SetActiveQuestText("No Active Quest");
-		}
-
-		uiControl.QLCanvas.RefreshQuestList(quests, curQuest);
-    
 		markerCurrent = 0;
 
-    //enough info to set up compass
-    GameObject.Find("Compass").SetActive(true);
+        //enough info to set up compass
+        GameObject.Find("Compass").SetActive(true);
 	}
 
 	/*! \brief progresses the quest, advances one marker
@@ -125,18 +106,6 @@ public class QControl : MonoBehaviour
 		}
     }
 
-    /*! \brief Clears the quest markers
-     */
-	public void ClearMarkers()
-	{
-		//unload markers
-		for (int i = markerList.Count - 1; i >= 0; i--)
-		{
-			Destroy(markerList[i]);
-			markerList.RemoveAt(i);
-		}
-	}
-
     /*! \brief Runs upon quest completion, synonymous with reaching and completing all tasks at final marker
 	 */
 	public void OnComplete()
@@ -146,7 +115,12 @@ public class QControl : MonoBehaviour
 		quests[curQuest] = true;
 		questShouldFinish = true;
 
-		ClearMarkers();
+        //unload markers
+        for (int i = markerList.Count - 1; i >= 0; i--)
+        {
+            Destroy(markerList[i]);
+            markerList.RemoveAt(i);
+        }
 	}
 
 	/*! \brief Getter / Setter for the current quest
@@ -165,13 +139,6 @@ public class QControl : MonoBehaviour
 		set { questShouldFinish = value; }
 	}
 
-	/*! \brief Gettter for the quest dictionary
-	 */
-	 public Dictionary<Quest, bool> Quests
-	 {
-		get { return quests; }
-	 }
-
 	/*! \brief Getter / Setter for the marker list
 	 */
 	public List<GameObject> MarkerList
@@ -184,22 +151,5 @@ public class QControl : MonoBehaviour
     public int MarkerCurrent
     {
         get { return markerCurrent; }
-    }
-
-    /*! \brief Gets the quest with a certain ID
-	 *
-	 * \param (int) id - The id of the quest to look for
-	 *
-	 * \return (Quest) The quest with the corresponding id
-     */
-    public Quest GetQuest(int id)
-    {
-		foreach(var quest in quests)
-		{
-			if(quest.Key.id == id)
-				return quest.Key;
-		}
-
-		return null;
     }
 }

@@ -6,11 +6,10 @@ using UnityEngine.UI;
 
 public class SettingsCanvas : MonoBehaviour
 {
-	private UIControl uiControl; //! Reference to the UI controller
-	private Button backButton; //! Reference to the back button
+	private UIControl uiControl;
+	private Button backButton;
 
-	/*! \brief Called when the object is initialized
-	 */
+	// Use this for initialization
 	private void Start()
 	{
 		uiControl = transform.parent.GetComponent<UIControl>();
@@ -18,17 +17,14 @@ public class SettingsCanvas : MonoBehaviour
 		backButton.onClick.AddListener(OnBackButtonClick);
 	}
 
-	/*! \brief Updates the object
-	 */
+	// Update is called once per frame
 	private void Update()
 	{
 
 	}
 
-	/*! \brief Called when the back button is clicked
-	 */
 	private void OnBackButtonClick()
 	{
-		uiControl.SetCanvas(uiControl.SettingsSwitchTo);
+		uiControl.SetCanvas(UIState.MAP);
 	}
 }
