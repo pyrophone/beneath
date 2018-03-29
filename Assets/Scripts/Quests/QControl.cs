@@ -12,6 +12,8 @@ public class QControl : MonoBehaviour
 {
 	[SerializeField]
     private GameObject marker; //! Marker prefab
+    [SerializeField]
+    private GameObject compass; //! Compass object
 	[SerializeField]
 	private Quest curQuest; //! The current quest
 	private UIControl uiControl; //! The UI control component
@@ -22,11 +24,17 @@ public class QControl : MonoBehaviour
     private Object[] textAssets; //! The list of text assets
     private int questAssetNum; //! The quest number for the asset list
 
+    /*! \brief Called on startup
+     */
+    private void Awake()
+    {
+		uiControl = GetComponent<UIControl>();
+    }
+
 	/*! \brief Called when the object is initialized
 	 */
 	private void Start()
 	{
-		uiControl = GetComponent<UIControl>();
 
 		markerList = new List<GameObject>();
 		quests = new Dictionary<Quest, bool>();

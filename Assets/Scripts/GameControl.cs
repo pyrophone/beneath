@@ -26,7 +26,8 @@ public class GameControl : MonoBehaviour
 	private GameObject player; //! The player object
 
     // Settings
-    public bool Debug; //! Debug bool (on/off)
+    [SerializeField]
+    public bool Debug; //! Debug bool (on/off) currently used for distance
 
     /*! \brief Called when the game is initialized (ensures this code runs first no matter what)
 	 */
