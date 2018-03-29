@@ -65,6 +65,8 @@ public class QListCanvas : MonoBehaviour
 
 			popUpPanel.transform.Find("YesButton").Find("Text").GetComponent<Text>().text = "Yes";
 			popUpPanel.transform.Find("NoButton").Find("Text").GetComponent<Text>().text = "No";
+
+			uiControl.Dial.ResetDialogue();
 		}
 	}
 

@@ -17,7 +17,6 @@ public class UIControl : MonoBehaviour
 	private GameObject[] canvases; //! Canvases to switch between
 	[SerializeField]
 	private GameObject mapObj; //! Reference to the map
-	private int curDialogue; //! The current dialogue
 	private DialogueCanvas dial; //! The dialogue canvas script
 	private QListCanvas qlCanvas; //! The quest list canvas script
 	private UIState currentUIState; //! The current state of the UI
@@ -26,6 +25,7 @@ public class UIControl : MonoBehaviour
 	private void Awake()
 	{
 		qlCanvas = transform.Find("QuestCanvas").GetComponent<QListCanvas>();
+		dial = transform.Find("DialogCanvas").GetComponent<DialogueCanvas>();
 	}
 
 	/*! \brief Called when the object is initialized
@@ -39,8 +39,6 @@ public class UIControl : MonoBehaviour
 
 		currentUIState = UIState.INTRO;
 		SetCanvas(currentUIState);
-
-		dial = transform.Find("DialogCanvas").GetComponent<DialogueCanvas>();
 	}
 
 	/*! \brief Updates the object

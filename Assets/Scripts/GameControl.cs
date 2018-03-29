@@ -84,7 +84,8 @@ public class GameControl : MonoBehaviour
 
 					if(qControl.QuestShouldFinish)
 					{
-						qControl.CurQuest = null;
+						uiControl.Dial.LastDialogue = true;
+						qControl.SetCurrentQuest(null);
 						qControl.QuestShouldFinish = false;
 					}
 					break;

@@ -22,11 +22,17 @@ public class QControl : MonoBehaviour
     private Object[] textAssets; //! The list of text assets
     private int questAssetNum; //! The quest number for the asset list
 
+    /*! \brief Called on startup
+     */
+    private void Awake()
+    {
+		uiControl = GetComponent<UIControl>();
+    }
+
 	/*! \brief Called when the object is initialized
 	 */
 	private void Start()
 	{
-		uiControl = GetComponent<UIControl>();
 
 		markerList = new List<GameObject>();
 		quests = new Dictionary<Quest, bool>();
@@ -104,6 +110,7 @@ public class QControl : MonoBehaviour
 		if (markerList[markerCurrent].GetComponent<Marker>().Triggered)
         {
 			markerList[markerCurrent].SetActive(false);
+
 			if(curQuest.dialogueAmount[uiControl.Dial.DialogueNum] == 0)
 				uiControl.Dial.DialogueNum++;
 
@@ -124,7 +131,7 @@ public class QControl : MonoBehaviour
      */
 	public void ClearMarkers()
 	{
-		//unload markers
+		//Unload markers
 		for (int i = markerList.Count - 1; i >= 0; i--)
 		{
 			Destroy(markerList[i]);
