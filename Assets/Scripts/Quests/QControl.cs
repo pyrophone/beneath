@@ -14,8 +14,6 @@ public class QControl : MonoBehaviour
     private GameObject marker; //! Marker prefab
 	[SerializeField]
 	private Quest curQuest; //! The current quest
-    [SerializeField]
-    private GameObject compass; //! The Compass
 	private UIControl uiControl; //! The UI control component
     private bool questShouldFinish; //! If the quest should finish
 	Dictionary<Quest, bool> quests; //! Dictionary of quests and their completion status
@@ -84,11 +82,15 @@ public class QControl : MonoBehaviour
 	{
 		ClearMarkers();
 		curQuest = q;
+		questShouldFinish = false;
 
-		if(q != null)
+		if(curQuest != null)
 		{
 			uiControl.QLCanvas.SetActiveQuestText(curQuest.name);
 			LoadMarkers();
+
+			//enough info to set up compass
+			compass.SetActive(true);
 		}
 
 		else
@@ -97,11 +99,8 @@ public class QControl : MonoBehaviour
 		}
 
 		uiControl.QLCanvas.RefreshQuestList(quests, curQuest);
-    
-		markerCurrent = 0;
 
-    //enough info to set up compass
-    compass.SetActive(true);
+		markerCurrent = 0;
 	}
 
 	/*! \brief progresses the quest, advances one marker
@@ -111,6 +110,7 @@ public class QControl : MonoBehaviour
 		if (markerList[markerCurrent].GetComponent<Marker>().Triggered)
         {
 			markerList[markerCurrent].SetActive(false);
+
 			if(curQuest.dialogueAmount[uiControl.Dial.DialogueNum] == 0)
 				uiControl.Dial.DialogueNum++;
 
@@ -131,11 +131,11 @@ public class QControl : MonoBehaviour
      */
 	public void ClearMarkers()
 	{
-		//unload markers
+		//Unload markers
 		for (int i = markerList.Count - 1; i >= 0; i--)
 		{
 			Destroy(markerList[i]);
-            markerList.RemoveAt(i);
+			markerList.RemoveAt(i);
 		}
 	}
 

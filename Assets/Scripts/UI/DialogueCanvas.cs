@@ -14,6 +14,7 @@ public class DialogueCanvas : MonoBehaviour
 	private int convoNum; //! Progress in dialogue
 	private int dialogueAmount; //! The amount of dialogue in each part
 	private UIControl uiControl; //! The UI controller component
+	private bool lastDialogue; //! If the dialogue is the last one
 
 	/*! \brief Called when the object is initialized
 	 */
@@ -39,11 +40,24 @@ public class DialogueCanvas : MonoBehaviour
 	private void OnButtonClick()
 	{
 		convoNum++;
+
 		if(convoNum > dialogueAmount - 1)
 		{
 			dialogueNum++;
 			uiControl.SetCanvas(UIState.MAP);
 		}
+
+		if(lastDialogue)
+		{
+			ResetDialogue();
+			lastDialogue = false;
+		}
+	}
+
+	public void ResetDialogue()
+	{
+		dialogueNum = 0;
+		convoNum = 0;
 	}
 
 	/*! \brief Getter / Setter for dialogueField
@@ -74,5 +88,13 @@ public class DialogueCanvas : MonoBehaviour
 	public int DialogueAmount
 	{
 		set { dialogueAmount = value; }
+	}
+
+	/*! \brief Getter / Setter for the last dialogue bool
+	 */
+	public bool LastDialogue
+	{
+		get { return lastDialogue; }
+		set { lastDialogue = value; }
 	}
 }
