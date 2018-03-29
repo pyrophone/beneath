@@ -82,7 +82,12 @@ public class Marker : Mappable
         try
         {
             //DEBUG: show distance on main screen
-            GameObject.Find("DistCounter").GetComponent<Text>().text = "Distance: " + distance.ToString("N2");
+            if (GameObject.Find("GameManager").GetComponent<GameControl>().Debug)           
+                GameObject.Find("DistCounter").GetComponent<Text>().text = "Distance: " + distance.ToString("N2");
+            else
+            {
+                GameObject.Find("DistCounter").GetComponent<Text>().text = "";
+            }
         }
         catch { }
         

@@ -14,6 +14,8 @@ public class QControl : MonoBehaviour
     private GameObject marker; //! Marker prefab
 	[SerializeField]
 	private Quest curQuest; //! The current quest
+    [SerializeField]
+    private GameObject compass; //! The Compass
 	private UIControl uiControl; //! The UI control component
     private bool questShouldFinish; //! If the quest should finish
 	Dictionary<Quest, bool> quests; //! Dictionary of quests and their completion status
@@ -99,7 +101,7 @@ public class QControl : MonoBehaviour
 		markerCurrent = 0;
 
     //enough info to set up compass
-    GameObject.Find("Compass").SetActive(true);
+    compass.SetActive(true);
 	}
 
 	/*! \brief progresses the quest, advances one marker
@@ -133,7 +135,7 @@ public class QControl : MonoBehaviour
 		for (int i = markerList.Count - 1; i >= 0; i--)
 		{
 			Destroy(markerList[i]);
-			markerList.RemoveAt(i);
+            markerList.RemoveAt(i);
 		}
 	}
 

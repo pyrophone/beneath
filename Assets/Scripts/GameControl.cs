@@ -25,6 +25,9 @@ public class GameControl : MonoBehaviour
 	private UIControl uiControl;
 	private GameObject player; //! The player object
 
+    // Settings
+    public bool Debug; //! Debug bool (on/off)
+
     /*! \brief Called when the game is initialized (ensures this code runs first no matter what)
 	 */
     private void Awake()

@@ -61,12 +61,12 @@ public class Player : Mappable
         }
 
         //DEBUG
-        try
-        {
-            //DEBUG: show location on main screen
-            GameObject.Find("GeoCounter").GetComponent<Text>().text = "loc: " + loc;
-        }
-        catch { }
+        //try
+        //{
+        //    //DEBUG: show location on main screen
+        //    GameObject.Find("GeoCounter").GetComponent<Text>().text = "loc: " + loc;
+        //}
+        //catch { }
         
 
         this.transform.localPosition = this.map.GeoToWorldPosition(this.loc);
