@@ -33,7 +33,7 @@ public class GameControl : MonoBehaviour
 	 */
     private void Awake()
     {
-		DontDestroyOnLoad(this);
+        DontDestroyOnLoad(this);
 		player = (GameObject)Instantiate(playerPrefab);
 		player.GetComponent<Player>().Map = this.map;
 		player.name = "player";
@@ -81,7 +81,7 @@ public class GameControl : MonoBehaviour
 					if(qControl.QuestShouldFinish)
 					{
 						uiControl.Dial.LastDialogue = true;
-						qControl.SetCurrentQuest(null);
+						//current quest should not be set to null until dialogue is finished
 						qControl.QuestShouldFinish = false;
 					}
 					break;
@@ -90,6 +90,7 @@ public class GameControl : MonoBehaviour
 					break;
 			}
         }
+
 	}
 
 	/*! \brief Gets the map data

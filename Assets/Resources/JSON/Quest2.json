@@ -1,6 +1,6 @@
 {
     "id": 2,
-    "name": "Sharing The Wealth",
+    "name": "Sharing The Wealth (WIP)",
     "markerGenList": [
 		{
 			"markerLoc": {
@@ -30,11 +30,14 @@
     "prereqQuestID": 1,
     "completed": false,
     "dialogueAmount": [
-		0,
-		0,
-		1
+		1,
+		1,
+		2
     ],
     "convo": [
+		"Quest 2 Marker 1 Triggered!",
+		"Quest 2 Marker 2 Triggered!",
+		"Quest 2 Marker 3 Triggered!",
 		"Quest Complete!"
     ]
 }
