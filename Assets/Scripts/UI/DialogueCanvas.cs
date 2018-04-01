@@ -8,9 +8,9 @@ using UnityEngine.UI;
  */
 public class DialogueCanvas : MonoBehaviour
 {
+	private Text nameField; //! The name field of the canvas
 	private Text dialogueField; //! The text field of the canvas
 	private Button nextButton; //! The next button for the dialogue screen
-	private int dialogueNum; //! Num to keep track of indvidiual parts of dialogue
 	private int convoNum; //! Progress in dialogue
 	private int dialogueAmount; //! The amount of dialogue in each part
 	private UIControl uiControl; //! The UI controller component
@@ -21,11 +21,11 @@ public class DialogueCanvas : MonoBehaviour
 	private void Start()
 	{
 		uiControl = transform.parent.GetComponent<UIControl>();
+		nameField = transform.Find("Name").GetComponent<Text>();
 		dialogueField = transform.Find("Text").GetComponent<Text>();
 		nextButton = transform.Find("Button").GetComponent<Button>();
 		nextButton.onClick.AddListener(OnButtonClick);
-		dialogueNum = 0;
-		convoNum = 0;
+		ResetDialogue();
 	}
 
 	/*! \brief Updates the object
@@ -43,7 +43,7 @@ public class DialogueCanvas : MonoBehaviour
 
 		if(convoNum > dialogueAmount - 1)
 		{
-			dialogueNum++;
+			convoNum = 0;
 			uiControl.SetCanvas(UIState.MAP);
 		}
 
@@ -56,8 +56,15 @@ public class DialogueCanvas : MonoBehaviour
 
 	public void ResetDialogue()
 	{
-		dialogueNum = 0;
 		convoNum = 0;
+	}
+
+	/*! \brief Getter / Setter for nameField
+	 */
+	public Text NameField
+	{
+		get { return nameField; }
+		set { nameField = value; }
 	}
 
 	/*! \brief Getter / Setter for dialogueField
@@ -66,14 +73,6 @@ public class DialogueCanvas : MonoBehaviour
 	{
 		get { return dialogueField; }
 		set { dialogueField = value; }
-	}
-
-	/*! \brief Getter / Setter for dialogueNum
-	 */
-	public int DialogueNum
-	{
-		get { return dialogueNum; }
-		set { dialogueNum = value; }
 	}
 
 	/*! \brief Getter for convoNum

@@ -135,6 +135,7 @@ public class Marker : Mappable
     public bool Triggered
     {
         get { return triggered; }
+        set { triggered = value; }
     }
 
     /*! \brief The Marker's real Name

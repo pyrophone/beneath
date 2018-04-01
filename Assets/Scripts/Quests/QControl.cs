@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 using UnityEngine;
 
@@ -20,6 +21,7 @@ public class QControl : MonoBehaviour
     private bool questShouldFinish; //! If the quest should finish
 	Dictionary<Quest, bool> quests; //! Dictionary of quests and their completion status
 	private List<GameObject> markerList; //! The list of markers
+	private Dictionary<int, List<int>> markerDict; //! Dictionary to tell which markers rely on which
     private int markerCurrent; //! Current marker index in the list
     private Object[] textAssets; //! The list of text assets
     private int questAssetNum; //! The quest number for the asset list
@@ -35,9 +37,9 @@ public class QControl : MonoBehaviour
 	 */
 	private void Start()
 	{
-
 		markerList = new List<GameObject>();
 		quests = new Dictionary<Quest, bool>();
+		markerDict = new Dictionary<int, List<int>>();
 
 		textAssets = Resources.LoadAll("JSON", typeof(TextAsset));
 
@@ -71,11 +73,18 @@ public class QControl : MonoBehaviour
 				m.GetComponent<Marker>().Map = GetComponent<GameControl>().Map;
 				m.GetComponent<Marker>().Radius = 15;
 				m.name = "q" + curQuest.id + "." + "marker" + i;
+
 				if (i != 0)
 				{
 					m.SetActive(false);
 				}
+
 				markerList.Add(m);
+
+				markerDict.Add(i, new List<int>());
+
+				if(curQuest.markerGenList[i].prereqMarker > -1)
+					markerDict[curQuest.markerGenList[i].prereqMarker].Add(i);
 			}
 
 			markerCurrent = 0;
@@ -115,23 +124,30 @@ public class QControl : MonoBehaviour
 	 */
 	public void ProgressQuest()
 	{
-		if (markerList[markerCurrent].GetComponent<Marker>().Triggered)
-        {
-			markerList[markerCurrent].SetActive(false);
+		if(markerDict.Count != 0)
+		{
+			for(int i = 0; i < markerDict.Count; i++)
+			{
+				if(markerList[markerDict.ElementAt(i).Key].GetComponent<Marker>().Triggered)
+				{
+					markerCurrent = markerDict.ElementAt(i).Key;
+					markerList[markerDict.ElementAt(i).Key].SetActive(false);
 
-			if(curQuest.dialogueAmount[uiControl.Dial.DialogueNum] == 0)
-				uiControl.Dial.DialogueNum++;
+					if(curQuest.dialogueNum[markerCurrent] >= 0)
+						uiControl.SetCanvas(UIState.DIALOGUE);
 
-			else
-				uiControl.SetCanvas(UIState.DIALOGUE);
+					markerList[markerDict.ElementAt(i).Key].GetComponent<Marker>().Triggered = false;
 
-			markerCurrent++;
+					if(markerDict.ElementAt(i).Value.Count == 0)
+						OnComplete();
 
-			if (markerCurrent >= markerList.Count)
-				OnComplete();
-
-			else
-				markerList[markerCurrent].SetActive(true);
+					else
+					{
+						foreach(var nextMarker in markerDict.ElementAt(i).Value)
+							markerList[nextMarker].SetActive(true);
+					}
+				}
+			}
 		}
     }
 
@@ -145,6 +161,7 @@ public class QControl : MonoBehaviour
 			Destroy(markerList[i]);
 			markerList.RemoveAt(i);
 		}
+		markerDict.Clear();
 	}
 
     /*! \brief Runs upon quest completion, synonymous with reaching and completing all tasks at final marker

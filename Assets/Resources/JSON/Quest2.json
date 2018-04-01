@@ -29,12 +29,14 @@
     "reward": "Something",
     "prereqQuestID": 1,
     "completed": false,
-    "dialogueAmount": [
-		0,
-		0,
+    "dialogueNum": [
+		-1,
+		-1,
 		1
     ],
     "convo": [
-		"Quest Complete!"
+		{
+			"name": "Quest Complete!"
+		}
     ]
 }

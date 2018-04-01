@@ -67,19 +67,23 @@ public class GameControl : MonoBehaviour
 			switch(uiControl.CurrentUIState)
 			{
 				case UIState.DIALOGUE:
-					if(uiControl.Dial.DialogueNum < qControl.CurQuest.dialogueAmount.Count ||
-						uiControl.Dial.ConvoNum < qControl.CurQuest.convo.Count)
+					if(qControl.MarkerCurrent < qControl.CurQuest.dialogueNum.Count - 1)
 					{
-						uiControl.Dial.DialogueAmount = qControl.CurQuest.dialogueAmount[uiControl.Dial.DialogueNum];
-						uiControl.Dial.DialogueField.text = qControl.CurQuest.convo[uiControl.Dial.ConvoNum];
+						uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece.Count;
+						uiControl.Dial.NameField.text = qControl.CurQuest.convo[qControl.MarkerCurrent].name;
+						uiControl.Dial.DialogueField.text = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece[uiControl.Dial.ConvoNum];
 					}
 
 					if(qControl.QuestShouldFinish)
 					{
+						uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.CurQuest.convo.Count - 1].convoPiece.Count;
 						uiControl.Dial.LastDialogue = true;
+						uiControl.Dial.NameField.text = qControl.CurQuest.convo[qControl.CurQuest.convo.Count - 1].name;
+						uiControl.Dial.DialogueField.text = "Reward: " + qControl.CurQuest.reward;
 						qControl.SetCurrentQuest(null);
 						qControl.QuestShouldFinish = false;
 					}
+
 					break;
 
 				default:
