@@ -41,6 +41,7 @@ public class MapCanvas : MonoBehaviour
     {
         //solution from https://github.com/sanukin39/UniClipboard    
         UniClipboard.SetText(transform.Find("GeoCounter").GetComponent<Text>().text);
+        Handheld.Vibrate();
     }
 
     /*! \brief Called when the quest list button is clicked
