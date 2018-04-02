@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 
 using Mapbox.Utils;
 using Mapbox.Unity.Map;
@@ -82,7 +83,12 @@ public class Marker : Mappable
         try
         {
             //DEBUG: show distance on main screen
-            GameObject.Find("DistCounter").GetComponent<Text>().text = "Distance: " + distance.ToString("N2");
+            if (GameObject.Find("GameManager").GetComponent<GameControl>().Debug)           
+                GameObject.Find("DistCounter").GetComponent<Text>().text = "Distance: " + distance.ToString("N2") + "m";
+            else
+            {
+                GameObject.Find("DistCounter").GetComponent<Text>().text = "";
+            }
         }
         catch { }
         

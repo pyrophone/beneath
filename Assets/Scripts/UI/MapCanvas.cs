@@ -11,7 +11,8 @@ public class MapCanvas : MonoBehaviour
 	private Button playerButton; //! The next button for the player screen
 	private Button settingsButton; //! The next button for the settings screen
 
-	// Use this for initialization
+	/*! \brief Called when the object is initialized
+	 */
 	private void Start()
 	{
 		uiControl = transform.parent.GetComponent<UIControl>();
@@ -24,24 +25,32 @@ public class MapCanvas : MonoBehaviour
 		settingsButton.onClick.AddListener(OnSettingsButtonClick);
 	}
 
-	// Update is called once per frame
+	/*! \brief Updates the object
+	 */
 	private void Update()
 	{
 
 	}
 
+	/*! \brief Called when the quest list button is clicked
+	 */
 	private void OnQListButtonClick()
 	{
 		uiControl.SetCanvas(UIState.QLIST);
 	}
 
+	/*! \brief Called when the player button is clicked
+	 */
 	private void OnPlayerButtonClick()
 	{
 		uiControl.SetCanvas(UIState.PLAYER);
 	}
 
+	/*! \brief Called when the settings button is clicked
+	 */
 	private void OnSettingsButtonClick()
 	{
 		uiControl.SetCanvas(UIState.SETTINGS);
+		uiControl.SettingsSwitchTo = UIState.MAP;
 	}
 }

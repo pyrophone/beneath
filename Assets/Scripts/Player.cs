@@ -28,8 +28,9 @@ public class Player : Mappable
             yield break;
         }
 
-        
-		Input.location.Start();
+        //edit as needed for accuracy
+		Input.location.Start(5, 5);
+
 		int maxWait = 30;
 
 		while(Input.location.status == LocationServiceStatus.Initializing && maxWait > 0)
@@ -60,12 +61,12 @@ public class Player : Mappable
         }
 
         //DEBUG
-        try
-        {
-            //DEBUG: show location on main screen
-            GameObject.Find("GeoCounter").GetComponent<Text>().text = "loc: " + loc;
-        }
-        catch { }
+        //try
+        //{
+        //    //DEBUG: show location on main screen
+        //    GameObject.Find("GeoCounter").GetComponent<Text>().text = "loc: " + loc;
+        //}
+        //catch { }
         
 
         this.transform.localPosition = this.map.GeoToWorldPosition(this.loc);

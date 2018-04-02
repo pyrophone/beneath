@@ -6,25 +6,52 @@ using UnityEngine.UI;
 
 public class SettingsCanvas : MonoBehaviour
 {
-	private UIControl uiControl;
-	private Button backButton;
+	private UIControl uiControl; //! Reference to the UI controller
+	private Button backButton; //! Reference to the back button
 
-	// Use this for initialization
+    // Settings Button
+    [SerializeField]
+    private Button debugButton; //! Button to control Debug Level
+
+
+	/*! \brief Called when the object is initialized
+	 */
 	private void Start()
 	{
 		uiControl = transform.parent.GetComponent<UIControl>();
 		backButton = transform.Find("BackButton").GetComponent<Button>();
 		backButton.onClick.AddListener(OnBackButtonClick);
+        debugButton.onClick.AddListener(OnDebugButtonClick);
 	}
 
-	// Update is called once per frame
+	/*! \brief Updates the object
+	 */
 	private void Update()
 	{
 
 	}
 
+	/*! \brief Called when the back button is clicked
+	 */
 	private void OnBackButtonClick()
 	{
-		uiControl.SetCanvas(UIState.MAP);
+		uiControl.SetCanvas(uiControl.SettingsSwitchTo);
 	}
+
+    /*! \brief Called when the debug setting is toggled
+	 */
+    private void OnDebugButtonClick()
+    {
+        GameControl g = GameObject.Find("GameManager").GetComponent<GameControl>();
+
+        g.Debug = !g.Debug;
+        if (g.Debug)
+        {
+            debugButton.GetComponent<Image>().color = new Color(.2f, 1, .2f);
+        }
+        else
+        {
+            debugButton.GetComponent<Image>().color = new Color(1, .2f, .2f);
+        }
+    }
 }

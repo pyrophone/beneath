@@ -25,11 +25,15 @@ public class GameControl : MonoBehaviour
 	private UIControl uiControl;
 	private GameObject player; //! The player object
 
+    // Settings
+    [SerializeField]
+    public bool Debug; //! Debug bool (on/off) currently used for distance
+
     /*! \brief Called when the game is initialized (ensures this code runs first no matter what)
 	 */
     private void Awake()
     {
-		DontDestroyOnLoad(this);
+        DontDestroyOnLoad(this);
 		player = (GameObject)Instantiate(playerPrefab);
 		player.GetComponent<Player>().Map = this.map;
 		player.name = "player";
@@ -43,7 +47,7 @@ public class GameControl : MonoBehaviour
 	 */
     private void Start()
 	{
-		//TODO: something that needs to go here everytime the scene is loaded
+
 	}
 
 	/*! \brief Updates the object
@@ -62,21 +66,10 @@ public class GameControl : MonoBehaviour
                 SceneManager.LoadScene(0);
         }
 
-        //DEBUG
-        try
-        {
-            //DEBUG: show distance on main screen
-            GameObject.Find("GeoCenterCounter").GetComponent<Text>().text = "center: " + map.WorldToGeoPosition(GameObject.Find("Main Camera").transform.position);
-        }
-        catch { }
-
         if (qControl.CurQuest != null)
         {
 			switch(uiControl.CurrentUIState)
 			{
-				//case UIState.MAP:
-				//	break;
-
 				case UIState.DIALOGUE:
 					if(uiControl.Dial.DialogueNum < qControl.CurQuest.dialogueAmount.Count ||
 						uiControl.Dial.ConvoNum < qControl.CurQuest.convo.Count)
@@ -87,7 +80,8 @@ public class GameControl : MonoBehaviour
 
 					if(qControl.QuestShouldFinish)
 					{
-						qControl.CurQuest = null;
+						uiControl.Dial.LastDialogue = true;
+						//current quest should not be set to null until dialogue is finished
 						qControl.QuestShouldFinish = false;
 					}
 					break;
@@ -96,6 +90,7 @@ public class GameControl : MonoBehaviour
 					break;
 			}
         }
+
 	}
 
 	/*! \brief Gets the map data
