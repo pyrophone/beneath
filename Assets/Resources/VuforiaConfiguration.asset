@@ -45,11 +45,8 @@ MonoBehaviour:
   databaseLoad:
     dataSetsToLoad:
     - Golem-test
-    - VuforiaMars_Images
-    - VuforiaMars_VuMark
     dataSetsToActivate:
-    - VuforiaMars_Images
-    - VuforiaMars_VuMark
+    - Golem-test
   videoBackground:
     clippingMode: 0
     numDivisions: 2
