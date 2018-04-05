@@ -13,11 +13,17 @@ using UnityEngine.UI;
  */
 public class Player : Mappable
 {
-	private int xp; //! The players experience
 
-	/*! \brief Called when the object is initialized
+    [SerializeField]
+    public static string name; //! The player's in-game name
+    [SerializeField]
+    public static int lvl;  //! the player's level
+    [SerializeField]
+    public static int exp;   //! The players experience
+
+    /*! \brief Called when the object is initialized
 	 */
-	IEnumerator Start()
+    IEnumerator Start()
 	{
 		this.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
 
@@ -75,5 +81,19 @@ public class Player : Mappable
 
         this.transform.localPosition = this.map.GeoToWorldPosition(this.loc);
 	}
+    
+    public string GetName()
+    {
+        return name;
+    }
 
+    public int GetExp()
+    {
+        return exp;
+    }
+
+    public int GetLvl()
+    {
+        return lvl;
+    }
 }

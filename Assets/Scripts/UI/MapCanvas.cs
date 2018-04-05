@@ -12,9 +12,15 @@ public class MapCanvas : MonoBehaviour
 	private Button settingsButton; //! The next button for the settings screen
     private Button locButton; //! the button to copy the current location
 
-	/*! \brief Called when the object is initialized
+    private Text nameText;  //! The Text component related to the player's name
+    private Text lvlText;   //! The Text component related to the player's level
+    private Text expText;   //! The Text component related to the player's experience
+
+    private Player player; //! The instantiated prefab of Player
+
+    /*! \brief Called when the object is initialized
 	 */
-	private void Start()
+    private void Start()
 	{
 		uiControl = transform.parent.GetComponent<UIControl>();
 
@@ -26,14 +32,29 @@ public class MapCanvas : MonoBehaviour
 		settingsButton.onClick.AddListener(OnSettingsButtonClick);
         locButton = transform.Find("GeoButton").GetComponent<Button>();
         locButton.onClick.AddListener(OnGeoClick);
+
+        if(playerButton != null)
+        {
+            nameText =  playerButton.transform.Find("PlayerName").GetComponent<Text>();
+            lvlText =   playerButton.transform.Find("PlayerLevel").GetComponent<Text>();
+            expText =   playerButton.transform.Find("PlayerXP").GetComponent<Text>();
+        }
+
+        GameObject gObj = GameObject.Find("GameManager");
+        GameControl gc = gObj.GetComponent<GameControl>();
+        gObj = gc.playerPrefab;
+        player = gObj.GetComponent<Player>();
+
     }
 
 	/*! \brief Updates the object
 	 */
 	private void Update()
 	{
-
-	}
+        nameText.text = player.GetName();
+        lvlText.text = "LVL:" + player.GetLvl();
+        expText.text = "EXP: " + player.GetExp();
+    }
 
     /*! \brief Called when the location text is clicked
 	 */

@@ -14,7 +14,7 @@ using UnityEngine.UI;
 public class GameControl : MonoBehaviour
 {
 	[SerializeField]
-	private GameObject playerPrefab; //! The prefab for the player
+	public GameObject playerPrefab; //! The prefab for the player
 
     [SerializeField]
     private QuadTreeCameraMovement mapCam; //! The map camera control
