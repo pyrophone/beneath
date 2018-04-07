@@ -6,7 +6,7 @@ using Mapbox.Unity.Map;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum UIState { INTRO, MAP, DIALOGUE, QLIST, PLAYER, SETTINGS};
+public enum UIState { INTRO, MAP, DIALOGUE, QLIST, PLAYER, SETTINGS, TUTORIAL };
 
 /*! \class UIControl
  *	\brief Manages UI
@@ -21,6 +21,9 @@ public class UIControl : MonoBehaviour
 	private QListCanvas qlCanvas; //! The quest list canvas script
 	private UIState currentUIState; //! The current state of the UI
 	private UIState settingsSwitchTo; //! The UIState tha the settings menu should switch to
+	private bool doTutOverlay;
+	private bool tutorialActive;
+	private string pName; //! The name of the player
 
 	private void Awake()
 	{
@@ -52,9 +55,17 @@ public class UIControl : MonoBehaviour
 	 */
 	public void SetCanvas(UIState newState)
 	{
+		UpdateTutorial();
+
 		canvases[(int)currentUIState].SetActive(false);
 		currentUIState = newState;
 		canvases[(int)currentUIState].SetActive(true);
+	}
+
+	public void UpdateTutorial()
+	{
+		for(int i = 0; i < canvases.Length; i++)
+			canvases[i].GetComponent<AbstractCanvas>().UpdateTutorialUI();
 	}
 
 	/*! \brief Getter / Setter for the dialogue canvas
@@ -87,5 +98,29 @@ public class UIControl : MonoBehaviour
 	{
 		get { return settingsSwitchTo; }
 		set { settingsSwitchTo = value; }
+	}
+
+	/*! \brief Getter / Setter for doTutOverlay
+	 */
+	public bool DoTutOverlay
+	{
+		get { return doTutOverlay; }
+		set { doTutOverlay = value; }
+	}
+
+	/*! \brief Getter / Setter for doTutOverlay
+	 */
+	public bool TutorialActive
+	{
+		get { return tutorialActive; }
+		set { tutorialActive = value; }
+	}
+
+	/*! \brief Getter for the player name
+	 */
+	public string PName
+	{
+		get { return pName; }
+		set { pName = value; }
 	}
 }

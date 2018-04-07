@@ -6,21 +6,21 @@ using UnityEngine.UI;
 /*! \class Dialogue
  *	\brief Handles dialogue display
  */
-public class DialogueCanvas : MonoBehaviour
+public class DialogueCanvas : AbstractCanvas
 {
 	private Text nameField; //! The name field of the canvas
 	private Text dialogueField; //! The text field of the canvas
 	private Button nextButton; //! The next button for the dialogue screen
 	private int convoNum; //! Progress in dialogue
 	private int dialogueAmount; //! The amount of dialogue in each part
-	private UIControl uiControl; //! The UI controller component
 	private bool lastDialogue; //! If the dialogue is the last one
 
-	/*! \brief Called when the object is initialized
+	/*! \brief Called on startup
 	 */
-	private void Start()
+	protected override void Awake()
 	{
-		uiControl = transform.parent.GetComponent<UIControl>();
+		base.Awake();
+
 		nameField = transform.Find("Name").GetComponent<Text>();
 		dialogueField = transform.Find("Text").GetComponent<Text>();
 		nextButton = transform.Find("Button").GetComponent<Button>();
@@ -28,9 +28,16 @@ public class DialogueCanvas : MonoBehaviour
 		ResetDialogue();
 	}
 
+	/*! \brief Called when the object is initialized
+	 */
+	private void Start()
+	{
+
+	}
+
 	/*! \brief Updates the object
 	 */
-	private void Update()
+	protected override void Update()
 	{
 
 	}

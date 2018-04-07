@@ -4,20 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MapCanvas : MonoBehaviour
+public class MapCanvas : AbstractCanvas
 {
-	private UIControl uiControl; //! The UIControl component
 	private Button qListButton; //! The button for the quest list screen
 	private Button playerButton; //! The next button for the player screen
 	private Button settingsButton; //! The next button for the settings screen
 
-	/*! \brief Called when the object is initialized
+	/*! \brief Called on startup
 	 */
-	private void Start()
+	protected override void Awake()
 	{
-		uiControl = transform.parent.GetComponent<UIControl>();
+		base.Awake();
 
-		qListButton = transform.Find("QuestListButton").GetComponent<Button>();
+	 	qListButton = transform.Find("QuestListButton").GetComponent<Button>();
 		qListButton.onClick.AddListener(OnQListButtonClick);
 		playerButton = transform.Find("PlayerButton").GetComponent<Button>();
 		playerButton.onClick.AddListener(OnPlayerButtonClick);
@@ -25,18 +24,53 @@ public class MapCanvas : MonoBehaviour
 		settingsButton.onClick.AddListener(OnSettingsButtonClick);
 	}
 
-	/*! \brief Updates the object
+	/*! \brief Called when the object is initialized
 	 */
-	private void Update()
+	private void Start()
 	{
 
+	}
+
+	/*! \brief Updates the object
+	 */
+	protected override void Update()
+	{
+
+	}
+
+	/*! \brief Updates the ui for the tutorial
+	 */
+	public override void UpdateTutorialUI()
+	{
+		if(uiControl.TutorialActive)
+		{
+			playerButton.interactable = false;
+			settingsButton.interactable = false;
+		}
+
+		else
+		{
+			playerButton.interactable = true;
+			settingsButton.interactable = true;
+		}
 	}
 
 	/*! \brief Called when the quest list button is clicked
 	 */
 	private void OnQListButtonClick()
 	{
-		uiControl.SetCanvas(UIState.QLIST);
+		if(uiControl.TutorialActive)
+		{
+			TutorialOverlay to = transform.Find("../TutorialOverlay").GetComponent<TutorialOverlay>();
+			if(to.TutorialProgress == 2)
+			{
+				to.SpecialClick();
+				uiControl.SetCanvas(UIState.QLIST);
+			}
+		}
+
+		else
+			uiControl.SetCanvas(UIState.QLIST);
 	}
 
 	/*! \brief Called when the player button is clicked

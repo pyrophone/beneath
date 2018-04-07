@@ -41,7 +41,7 @@ public class QControl : MonoBehaviour
 		quests = new Dictionary<Quest, bool>();
 		markerDict = new Dictionary<int, List<int>>();
 
-		textAssets = Resources.LoadAll("JSON", typeof(TextAsset));
+		textAssets = Resources.LoadAll("JSON/Quests", typeof(TextAsset));
 
 		foreach(TextAsset txt in textAssets)
 		{
