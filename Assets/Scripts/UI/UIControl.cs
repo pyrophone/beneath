@@ -21,14 +21,18 @@ public class UIControl : MonoBehaviour
 	private QListCanvas qlCanvas; //! The quest list canvas script
 	private UIState currentUIState; //! The current state of the UI
 	private UIState settingsSwitchTo; //! The UIState tha the settings menu should switch to
-	private bool doTutOverlay;
-	private bool tutorialActive;
+	private bool doTutOverlay; //! If the tutorial overlay
+	private bool tutorialActive; //! Is the tutorial active
 	private string pName; //! The name of the player
 
+	/*! \brief Called on startup
+	 */
 	private void Awake()
 	{
 		qlCanvas = transform.Find("QuestCanvas").GetComponent<QListCanvas>();
 		dial = transform.Find("DialogCanvas").GetComponent<DialogueCanvas>();
+		tutorialActive = true;
+		DoTutOverlay = false;
 	}
 
 	/*! \brief Called when the object is initialized
@@ -62,10 +66,14 @@ public class UIControl : MonoBehaviour
 		canvases[(int)currentUIState].SetActive(true);
 	}
 
+	/*! \brief Updates the tutorial info
+	 */
 	public void UpdateTutorial()
 	{
 		for(int i = 0; i < canvases.Length; i++)
 			canvases[i].GetComponent<AbstractCanvas>().UpdateTutorialUI();
+
+		transform.Find("TutorialOverlay").GetComponent<TutorialOverlay>().UpdateTutorialUI();
 	}
 
 	/*! \brief Getter / Setter for the dialogue canvas

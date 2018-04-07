@@ -4,16 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*! \class TutorialOverlay
+ *	\brief Handles the tutorial overlay
+ */
 public class TutorialOverlay : AbstractCanvas
 {
-	private int tutorialProgress;
-	private bool backPressed;
-	private GameObject panel;
-	private Text textBox;
-	private Button backButton;
-	private Button nextButton;
-	private List<string> tutorialDialogue;
-	private List<Vector2> panelPos;
+	private int tutorialProgress; //! The progress in the tutorial
+	private bool backPressed; //! If the back button was pressed
+	private GameObject panel; //! The panel for displaying tutorial dialogue
+	private Text textBox; //! The textbox of the panel
+	private Button backButton; //! The back button
+	private Button nextButton; //! The next button
+	private List<string> tutorialDialogue; //! The tutorial dialogue list
+	private List<Vector2> panelPos; //! The panel position
 
 	/*! \brief Called on startup
 	 */
@@ -81,7 +84,7 @@ public class TutorialOverlay : AbstractCanvas
 		{
 			gameObject.SetActive(true);
 			panel.SetActive(true);
-			GetComponent<Canvas>().sortingOrder = 10;
+			GetComponent<Canvas>().sortingOrder = 15;
 		}
 
 		else
@@ -131,16 +134,10 @@ public class TutorialOverlay : AbstractCanvas
 		}
 	}
 
+	/*! \brief changes the properties for the canvas
+	 */
 	private void CanvasSwitch()
 	{
-
-
-		//else if(tutorialProgress == 2)
-
-		//else if(tutorialProgress == 11)
-
-
-
 		switch(tutorialProgress)
 		{
 			//This case is used by states that set the next button to inactive
@@ -198,67 +195,17 @@ public class TutorialOverlay : AbstractCanvas
 				nextButton.gameObject.SetActive(true);
 				break;
 		}
-
-		//if(tutorialProgress <= 2 || tutorialProgress == tutorialDialogue.Count)
-		//{
-		//	switch(tutorialProgress)
-		//	{
-		//		case 2:
-		//			panel.transform.localPosition = new Vector3(0, -250, 0);
-		//			nextButton.gameObject.SetActive(false);
-		//			break;
-		//		case 1:
-		//			panel.transform.localPosition = new Vector3(0, 350, 0);
-		//		default:
-		//			nextButton.gameObject.SetActive(true);
-		//			break;
-		//	}
-
-		//	uiControl.SetCanvas(UIState.MAP);
-		//}
-
-		//else if(tutorialProgress == 3 || tutorialProgress == 10)
-		//	panel.transform.localPosition = new Vector3(0, -500, 0);
-
-		//else if(tutorialProgress == 6 || tutorialProgress == 8 || tutorialProgress == 11)
-		//{
-		//	nextButton.gameObject.SetActive(false);
-
-		//	switch(tutorialProgress)
-		//	{
-		//		case 6:
-		//			transform.Find("../QuestCanvas").GetComponent<QListCanvas>().ActivateGrimBeginnings();
-		//			break;
-		//		case 8:
-		//			transform.parent.GetComponent<QControl>().SetCurrentQuest(null);
-		//			transform.Find("../QuestCanvas").GetComponent<QListCanvas>().ActivateQuestAccept();
-
-		//			if(backPressed)
-		//				tutorialProgress = 6;
-		//			break;
-		//		case 11:
-		//			panel.transform.localPosition = new Vector3(0, 400, 0);
-		//			if(backPressed)
-		//				uiControl.SetCanvas(UIState.QLIST);
-		//			transform.Find("../QuestCanvas").GetComponent<QListCanvas>().ActivateBackButton();
-		//			break;
-		//		default:
-		//			break;
-		//	}
-		//}
-
-		//else if(tutorialProgress == 12)
-		//	panel.transform.localPosition = new Vector3();
-
-		//else
-		//	nextButton.gameObject.SetActive(true);
 	}
 
+	/*! \brief Used to progress dialogue from other places
+	 */
 	public void SpecialClick()
 	{
 		OnNextButtonClick();
 	}
 
+	/*! \brief Gets the tutorial progress
+	 */
 	public int TutorialProgress
 	{
 		get { return tutorialProgress; }

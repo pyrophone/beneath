@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6b8e3ec5304a048cba07bb9310d751e3
+guid: f8aeaed92b2b34d7bab46fbd21f462c0
 timeCreated: 1521638780
 licenseType: Free
 TrueTypeFontImporter:
@@ -13,8 +13,7 @@ TrueTypeFontImporter:
   fontName: Chantelli Antiqua
   fontNames:
   - Chantelli Antiqua
-  fallbackFontReferences:
-  - {fileID: 12800000, guid: f8aeaed92b2b34d7bab46fbd21f462c0, type: 3}
+  fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

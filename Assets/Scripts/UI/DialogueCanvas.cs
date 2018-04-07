@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-/*! \class Dialogue
+/*! \class DialogueCanvas
  *	\brief Handles dialogue display
  */
 public class DialogueCanvas : AbstractCanvas
@@ -61,6 +61,8 @@ public class DialogueCanvas : AbstractCanvas
 		}
 	}
 
+	/*! \brief Resets the dialogue progress
+	 */
 	public void ResetDialogue()
 	{
 		convoNum = 0;

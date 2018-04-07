@@ -4,13 +4,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*! \class MapCanvas
+ *	\brief Handles the map canvas
+ */
 public class MapCanvas : AbstractCanvas
 {
 	private Button qListButton; //! The button for the quest list screen
 	private Button playerButton; //! The next button for the player screen
 	private Button settingsButton; //! The next button for the settings screen
+    private Button locButton; //! the button to copy the current location
 
-	/*! \brief Called on startup
+    private Text nameText;  //! The Text component related to the player's name
+    private Text lvlText;   //! The Text component related to the player's level
+    private Text expText;   //! The Text component related to the player's experience
+
+    private Player player; //! The instantiated prefab of Player
+
+    /*! \brief Called when the object is initialized
 	 */
 	protected override void Awake()
 	{
@@ -22,7 +32,22 @@ public class MapCanvas : AbstractCanvas
 		playerButton.onClick.AddListener(OnPlayerButtonClick);
 		settingsButton = transform.Find("SettingsButton").GetComponent<Button>();
 		settingsButton.onClick.AddListener(OnSettingsButtonClick);
-	}
+        locButton = transform.Find("GeoButton").GetComponent<Button>();
+        locButton.onClick.AddListener(OnGeoClick);
+
+        if(playerButton != null)
+        {
+            nameText =  playerButton.transform.Find("PlayerName").GetComponent<Text>();
+            lvlText =   playerButton.transform.Find("PlayerLevel").GetComponent<Text>();
+            expText =   playerButton.transform.Find("PlayerXP").GetComponent<Text>();
+        }
+
+        GameObject gObj = GameObject.Find("GameManager");
+        GameControl gc = gObj.GetComponent<GameControl>();
+        gObj = gc.PlayerPrefab;
+        player = gObj.GetComponent<Player>();
+
+    }
 
 	/*! \brief Called when the object is initialized
 	 */
@@ -35,8 +60,19 @@ public class MapCanvas : AbstractCanvas
 	 */
 	protected override void Update()
 	{
+        nameText.text = player.GetName();
+        lvlText.text = "LVL:" + player.GetLvl();
+        expText.text = "EXP: " + player.GetExp();
+    }
 
-	}
+    /*! \brief Called when the location text is clicked
+	 */
+    private void OnGeoClick()
+    {
+        //solution from https://github.com/sanukin39/UniClipboard
+        UniClipboard.SetText(transform.Find("GeoCounter").GetComponent<Text>().text);
+        Handheld.Vibrate();
+    }
 
 	/*! \brief Updates the ui for the tutorial
 	 */
@@ -57,7 +93,7 @@ public class MapCanvas : AbstractCanvas
 
 	/*! \brief Called when the quest list button is clicked
 	 */
-	private void OnQListButtonClick()
+    private void OnQListButtonClick()
 	{
 		if(uiControl.TutorialActive)
 		{

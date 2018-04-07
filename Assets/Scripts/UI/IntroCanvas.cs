@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*! \class IntroCanvas
+ *	\brief Handles the intro canvas
+ */
 public class IntroCanvas : AbstractCanvas
 {
 	private Button settingsButton; //! Reference to the settings button

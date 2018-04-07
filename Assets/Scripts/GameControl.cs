@@ -21,22 +21,25 @@ public class GameControl : MonoBehaviour
 
     [SerializeField]
 	private AbstractMap map; //! The map
-	private QControl qControl;
-	private UIControl uiControl;
+	private QControl qControl; //! Reference to the character controller
+	private UIControl uiControl; //! Reference to the UI controller
 	private GameObject player; //! The player object
 	private bool doTutorial; //! If the player should run through the tutorial
-	private bool updatePData; //! If the player data should update
-	private PlayerData pData; //! The player data
+	private bool updatePlayer; //! If the player data should update
+
+    // Settings
+    [SerializeField]
+    public bool Debug; //! Debug bool (on/off) currently used for distance
 
     /*! \brief Called when the game is initialized (ensures this code runs first no matter what)
 	 */
     private void Awake()
     {
-		pData = new PlayerData();
 		DontDestroyOnLoad(this);
 		player = (GameObject)Instantiate(playerPrefab);
-		player.GetComponent<Player>().Map = this.map;
 		player.name = "player";
+		player.GetComponent<Player>().Map = this.map;
+		Player.pName = "player";
 		DontDestroyOnLoad(player);
 
 		qControl = GetComponent<QControl>();
@@ -69,10 +72,10 @@ public class GameControl : MonoBehaviour
                 SceneManager.LoadScene(0);
         }
 
-        if(updatePData)
+        if(updatePlayer)
         {
 			UpdatePlayerInfo();
-			updatePData = false;
+			updatePlayer = false;
         }
 
         if (qControl.CurQuest != null)
@@ -84,7 +87,7 @@ public class GameControl : MonoBehaviour
 					{
 						uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece.Count;
 						uiControl.Dial.NameField.text = qControl.CurQuest.convo[qControl.MarkerCurrent].name;
-						string text = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece[uiControl.Dial.ConvoNum].Replace("-----", pData.name);
+						string text = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece[uiControl.Dial.ConvoNum].Replace("-----", Player.pName);
 						uiControl.Dial.DialogueField.text = text;
 					}
 
@@ -104,15 +107,14 @@ public class GameControl : MonoBehaviour
 					break;
 			}
         }
+
 	}
 
 	/*! \brief Updates the player info on other screens
 	 */
 	public void UpdatePlayerInfo()
 	{
-		pData.name = uiControl.PName;
-		transform.Find("MapCanvas").Find("PlayerButton").Find("PlayerName").GetComponent<Text>().text = uiControl.PName;
-		transform.Find("PlayerCanvas").Find("PlayerName").GetComponent<Text>().text = uiControl.PName;
+		Player.pName = uiControl.PName;
 	}
 
 	/*! \brief Gets the map data
@@ -126,17 +128,16 @@ public class GameControl : MonoBehaviour
 
 	/*! \brief Getter / Setter for updatePData bool
 	 */
-	public bool UpdatePData
+	public bool UpdatePlayer
 	{
-		get { return updatePData; }
-		set { updatePData = value; }
+		get { return updatePlayer; }
+		set { updatePlayer = value; }
 	}
 
-	/*! \brief Getter / Setter for the player data
+	/*! \brief Gets the player prefab
 	 */
-	public PlayerData PData
+	public GameObject PlayerPrefab
 	{
-		get { return pData; }
-		set { pData = value; }
+		get { return playerPrefab; }
 	}
 }

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+/*! \class AbstractCanvas
+ *	\brief Abstract class for canvases
+ */
 public abstract class AbstractCanvas : MonoBehaviour
 {
 	protected static UIControl uiControl; //! The UI Controller

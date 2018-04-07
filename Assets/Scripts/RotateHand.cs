@@ -9,8 +9,8 @@ using UnityEngine.UI;
  *	\brief rotates object towards another one
  *	*Originally code from a simple Unity exercise*
  */
-public class RotateHand : MonoBehaviour
-{
+public class RotateHand : MonoBehaviour {
+
     /// <summary>
     /// TODO: REPLACE ALL THIS STUFF TO GYROSCOPE REFERENCES AND MAKE THE COMPASS POINT TO REAL WORLD TARGETS
     /// </summary>
@@ -66,7 +66,7 @@ public class RotateHand : MonoBehaviour
 
     }
 
-    /*! \brief points object to another object
+    /*! \brief rotates compass to marker
 	 */
     private void RotateToObjectCompass()
     {
@@ -80,18 +80,20 @@ public class RotateHand : MonoBehaviour
 
     }
 
+    /*! \brief rotates to player direction
+	 */
     private void RotateToObject()
     {
         //check if gyro is active
         if (SystemInfo.supportsGyroscope)
         {
             //DEBUG
-            try
-            {
-                //DEBUG: show location on main screen
-                GameObject.Find("GeoAttitude").GetComponent<Text>().text = "gyro: " + Input.gyro.attitude;
-            }
-            catch { }
+            //try
+            //{
+            //    //DEBUG: show location on main screen
+            //    GameObject.Find("GeoAttitude").GetComponent<Text>().text = "gyro: " + Input.gyro.attitude;
+            //}
+            //catch { }
 
             //set arrow direction to gyro
             Quaternion gyro = Input.gyro.attitude;
@@ -102,6 +104,8 @@ public class RotateHand : MonoBehaviour
 
     }
 
+    /*! \brief checks if Gyro is supported
+	 */
     private bool CheckGyro()
     {
         if (Input.gyro.enabled = SystemInfo.supportsGyroscope)

@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*! \class QListCanvas
+ *	\brief Handles the Quest List canvas interaction
+ */
 public class QListCanvas : AbstractCanvas
 {
 	private QControl qControl; //! Reference to the Quest controller

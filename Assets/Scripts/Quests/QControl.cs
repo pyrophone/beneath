@@ -56,8 +56,14 @@ public class QControl : MonoBehaviour
 	 */
 	private void Update()
 	{
-		if(!questShouldFinish && curQuest != null)
-			ProgressQuest();
+        //wrap in try catch because this thing screams at the dumbest things that don't matter
+        try
+        {
+            if (!questShouldFinish && curQuest != null)
+                ProgressQuest();
+        }
+        catch { }
+		
 	}
 
 	/*! \brief Loads the markers into the map

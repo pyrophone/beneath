@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*! \class TutorialCanvas
+ *	\brief Handles the tutorial canvas interaction
+ */
 public class TutorialCanvas : AbstractCanvas
 {
-	private int dialCount;
-	private Text dialogueBox;
-	private InputField nameField;
-	private Button nextButton;
+	private int dialCount; //! The count for the tutorial dialogue
+	private Text dialogueBox; //! The textbox for the dialogue
+	private InputField nameField; //! The field for the character name
+	private Button nextButton; //! The button to progess dialogue
 	private List<string> dialogue; //! This is temporary. Keeps dialogue for tutorial
 
 	/*! \brief Called on startup
@@ -53,6 +56,8 @@ public class TutorialCanvas : AbstractCanvas
 		dialogueBox.text = dialogue[dialCount];
 	}
 
+	/*! \brief Called when the next button is pressed
+	 */
 	private void OnNextButtonClick()
 	{
 		if(dialCount == 4) {
@@ -61,7 +66,7 @@ public class TutorialCanvas : AbstractCanvas
 			else {
 				uiControl.PName = nameField.text;
 				nameField.gameObject.SetActive(false);
-				transform.parent.GetComponent<GameControl>().UpdatePData = true;
+				transform.parent.GetComponent<GameControl>().UpdatePlayer = true;
 			}
 		}
 
