@@ -3,40 +3,41 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-/*! \class Dialogue
+/*! \class DialogueCanvas
  *	\brief Handles dialogue display
  */
-public class DialogueCanvas : MonoBehaviour
+public class DialogueCanvas : AbstractCanvas
 {
-    [SerializeField]
-    private QControl qControl; //! Reference to quest control
+	private Text nameField; //! The name field of the canvas
 	private Text dialogueField; //! The text field of the canvas
 	private Button nextButton; //! The next button for the dialogue screen
-    [SerializeField] //for debug
-    private int dialogueNum; //! Num to keep track of indvidiual parts of dialogue
-    [SerializeField] //for debug
 	private int convoNum; //! Progress in dialogue
 	private int dialogueAmount; //! The amount of dialogue in each part
-	private UIControl uiControl; //! The UI controller component
 	private bool lastDialogue; //! If the dialogue is the last one
-    private int lastConvoDropoff; //! the index to add to dialogue amount to get the correct starting point in the dialogue
+
+	/*! \brief Called on startup
+	 */
+	protected override void Awake()
+	{
+		base.Awake();
+
+		nameField = transform.Find("Name").GetComponent<Text>();
+		dialogueField = transform.Find("Text").GetComponent<Text>();
+		nextButton = transform.Find("Button").GetComponent<Button>();
+		nextButton.onClick.AddListener(OnButtonClick);
+		ResetDialogue();
+	}
 
 	/*! \brief Called when the object is initialized
 	 */
 	private void Start()
 	{
-		uiControl = transform.parent.GetComponent<UIControl>();
-		dialogueField = transform.Find("Text").GetComponent<Text>();
-		nextButton = transform.Find("Button").GetComponent<Button>();
-		nextButton.onClick.AddListener(OnButtonClick);
-		dialogueNum = 0;
-		convoNum = 0;
-        lastConvoDropoff = 0;
+
 	}
 
 	/*! \brief Updates the object
 	 */
-	private void Update()
+	protected override void Update()
 	{
 
 	}
@@ -47,28 +48,33 @@ public class DialogueCanvas : MonoBehaviour
 	{
 		convoNum++;
 
-		if(convoNum > dialogueAmount - 1 + lastConvoDropoff)
+		if(convoNum > dialogueAmount - 1)
 		{
-			dialogueNum++;
-            lastConvoDropoff = convoNum;
+			convoNum = 0;
 			uiControl.SetCanvas(UIState.MAP);
+		}
 
-            if (lastDialogue)
-            {
-                ResetDialogue();
-                lastDialogue = false;
-                qControl.SetCurrentQuest(null);
-                GameObject.Find("DistCounter").GetComponent<Text>().text = "";
-            }
-        }       
-    }
+		if(lastDialogue)
+		{
+			ResetDialogue();
+			lastDialogue = false;
+		}
+	}
 
+	/*! \brief Resets the dialogue progress
+	 */
 	public void ResetDialogue()
 	{
-		dialogueNum = 0;
 		convoNum = 0;
-        lastConvoDropoff = 0;
-    }
+	}
+
+	/*! \brief Getter / Setter for nameField
+	 */
+	public Text NameField
+	{
+		get { return nameField; }
+		set { nameField = value; }
+	}
 
 	/*! \brief Getter / Setter for dialogueField
 	 */
@@ -76,14 +82,6 @@ public class DialogueCanvas : MonoBehaviour
 	{
 		get { return dialogueField; }
 		set { dialogueField = value; }
-	}
-
-	/*! \brief Getter / Setter for dialogueNum
-	 */
-	public int DialogueNum
-	{
-		get { return dialogueNum; }
-		set { dialogueNum = value; }
 	}
 
 	/*! \brief Getter for convoNum

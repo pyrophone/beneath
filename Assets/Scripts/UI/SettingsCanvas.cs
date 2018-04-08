@@ -4,29 +4,38 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SettingsCanvas : MonoBehaviour
+/*! \class Settings
+ *	\brief Handles settings canvas
+ */
+public class SettingsCanvas : AbstractCanvas
 {
-	private UIControl uiControl; //! Reference to the UI controller
 	private Button backButton; //! Reference to the back button
 
     // Settings Button
     [SerializeField]
     private Button debugButton; //! Button to control Debug Level
 
-
 	/*! \brief Called when the object is initialized
 	 */
-	private void Start()
+	protected override void Awake()
 	{
-		uiControl = transform.parent.GetComponent<UIControl>();
+		base.Awake();
+
 		backButton = transform.Find("BackButton").GetComponent<Button>();
 		backButton.onClick.AddListener(OnBackButtonClick);
         debugButton.onClick.AddListener(OnDebugButtonClick);
 	}
 
+	/*! \brief Called when the object is initialized
+	 */
+	private void Start()
+	{
+
+	}
+
 	/*! \brief Updates the object
 	 */
-	private void Update()
+	protected override void Update()
 	{
 
 	}

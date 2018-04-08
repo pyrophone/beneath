@@ -20,8 +20,8 @@ public class Quest
 	public string reward; //! The quest reward
 	public int prereqQuestID; //! The prerequisite quest ID, if 0, ignored
 	public bool completed; //! If the quest is completed
-	public List<int> dialogueAmount; //! The amount of dialogue for each section
-	public List<string> convo; //! All the dialogue said by the charager
+	public List<int> dialogueNum; //! The amount of dialogue for each section
+	public List<ConvoData> convo; //! All the dialogue said by the charager
     public string filePath; //! Used for saving data
 
     /*! \brief Gets quests from JSON

@@ -83,7 +83,7 @@ public class Marker : Mappable
         try
         {
             //DEBUG: show distance on main screen
-            if (GameObject.Find("GameManager").GetComponent<GameControl>().Debug)           
+            if (GameObject.Find("GameManager").GetComponent<GameControl>().Debug)
                 GameObject.Find("DistCounter").GetComponent<Text>().text = "Distance: " + distance.ToString("N2") + "m";
             else
             {
@@ -91,7 +91,7 @@ public class Marker : Mappable
             }
         }
         catch { }
-        
+
 
         if (distance < radius)
             return true;
@@ -145,6 +145,7 @@ public class Marker : Mappable
     public bool Triggered
     {
         get { return triggered; }
+        set { triggered = value; }
     }
 
     /*! \brief The Marker's real Name
