@@ -6,17 +6,24 @@ using Mapbox.Unity.Map;
 using Mapbox.Unity.Utilities;
 
 using UnityEngine;
+using UnityEngine.UI;
 
 /*! \class Player
  *	\brief Handles updating of the player object
  */
 public class Player : Mappable
 {
-	private int xp; //! The players experience
 
-	/*! \brief Called when the object is initialized
+    [SerializeField]
+    public static string name; //! The player's in-game name
+    [SerializeField]
+    public static int lvl;  //! the player's level
+    [SerializeField]
+    public static int exp;   //! The players experience
+
+    /*! \brief Called when the object is initialized
 	 */
-	IEnumerator Start()
+    IEnumerator Start()
 	{
 		this.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
 
@@ -27,8 +34,9 @@ public class Player : Mappable
             yield break;
         }
 
+        //edit as needed for accuracy
+		Input.location.Start(5, 5);
 
-		Input.location.Start();
 		int maxWait = 30;
 
 		while(Input.location.status == LocationServiceStatus.Initializing && maxWait > 0)
@@ -45,10 +53,9 @@ public class Player : Mappable
         //Instantiate the player
         if (Input.location.status != LocationServiceStatus.Failed)
 		{
-			this.loc = new Vector2d(Input.location.lastData.latitude, Input.location.lastData.longitude);
-		}
-
-	}
+			loc = new Vector2d(Input.location.lastData.latitude, Input.location.lastData.longitude);
+		}      
+    }
 
 	/*! \brief Updates the object
 	 */
@@ -57,8 +64,36 @@ public class Player : Mappable
 		if(Input.location.status != LocationServiceStatus.Failed && Input.location.isEnabledByUser)
 		{
 			this.loc = new Vector2d(Input.location.lastData.latitude, Input.location.lastData.longitude);
-		}
+        }
 
-		this.transform.localPosition = this.map.GeoToWorldPosition(this.loc);
+        //DEBUG
+        try
+        {
+            //DEBUG: show location on main screen
+            if (GameObject.Find("GameManager").GetComponent<GameControl>().Debug)
+                GameObject.Find("GeoCounter").GetComponent<Text>().text = "loc: " + loc;
+            else
+            {
+                GameObject.Find("GeoCounter").GetComponent<Text>().text = "";
+            }
+        }
+        catch { }
+
+        this.transform.localPosition = this.map.GeoToWorldPosition(this.loc);
 	}
+    
+    public string GetName()
+    {
+        return name;
+    }
+
+    public int GetExp()
+    {
+        return exp;
+    }
+
+    public int GetLvl()
+    {
+        return lvl;
+    }
 }

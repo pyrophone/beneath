@@ -1,12 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
+
 using UnityEngine;
+using UnityEngine.UI;
 
 /*! \class RotateHand
  *	\brief rotates object towards another one
  *	*Originally code from a simple Unity exercise*
  */
 public class RotateHand : MonoBehaviour {
+
+    /// <summary>
+    /// TODO: REPLACE ALL THIS STUFF TO GYROSCOPE REFERENCES AND MAKE THE COMPASS POINT TO REAL WORLD TARGETS
+    /// </summary>
 
     [SerializeField]
     private bool isCompass; //! is this the compass?
@@ -22,16 +29,30 @@ public class RotateHand : MonoBehaviour {
     {
         if (!isCompass)
         {
-            player = GameObject.Find("player");
+            if (!CheckGyro())
+            {
+                Destroy(gameObject);
+            }
         }
     }
 
     /*! \brief Updates the object
 	 */
-    private void Update() {
-        CheckMarkers();
+    private void Update()
+    {    
         if (isCompass)
-            RotateToObjectCompass();
+        {
+            //wrap in try catch b/c otherwise this will crash with no active quest
+            try
+            {
+                CheckMarkers();
+                RotateToObjectCompass();
+            }
+            catch (NullReferenceException)
+            {
+                gameObject.SetActive(false);
+            }
+        }    
         else
             RotateToObject();
 	}
@@ -42,34 +63,54 @@ public class RotateHand : MonoBehaviour {
     {
         string markerName = "q" + quests.CurQuest.id + ".marker" + quests.MarkerCurrent;
         target = GameObject.Find(markerName);
+
     }
 
-    /*! \brief points object to another object
+    /*! \brief rotates compass to marker
 	 */
     private void RotateToObjectCompass()
     {
         //get angle from world marker pos and then apply rotation based on that angle
         Vector3 mPos = target.transform.position;
         Debug.Log("Mpos: " + mPos);
-        //marker is roughly at this position lol
-        float angle = Mathf.Atan2(mPos.z + 48, mPos.x + 25) * Mathf.Rad2Deg + 180;
+        //marker is now at 0,0. so it's easy now
+        float angle = Mathf.Atan2(mPos.z, mPos.x) * Mathf.Rad2Deg;
         Debug.Log("Mangle: " + angle);
         transform.rotation = Quaternion.Euler(0, 0, angle);
 
     }
 
+    /*! \brief rotates to player direction
+	 */
     private void RotateToObject()
     {
-        //get player's position
-        Vector3 pPos = player.transform.position;
-        Debug.Log("Ppos: " + pPos);
+        //check if gyro is active
+        if (SystemInfo.supportsGyroscope)
+        {
+            //DEBUG
+            //try
+            //{
+            //    //DEBUG: show location on main screen
+            //    GameObject.Find("GeoAttitude").GetComponent<Text>().text = "gyro: " + Input.gyro.attitude;
+            //}
+            //catch { }
 
-        //get angle from world marker pos and then apply rotation based on that angle
-        Vector3 mPos = target.transform.position;       
-        float angle = Mathf.Atan2(mPos.z - pPos.z, mPos.x - pPos.x) * Mathf.Rad2Deg - 120;
-        Debug.Log("Pangle: " + angle);
-        transform.rotation = Quaternion.Euler(90, angle, 0);
+            //set arrow direction to gyro
+            Quaternion gyro = Input.gyro.attitude;
+            gyro.x = 0; gyro.y = 0;
+            transform.rotation = gyro;
 
+        }
+
+    }
+
+    /*! \brief checks if Gyro is supported
+	 */
+    private bool CheckGyro()
+    {
+        if (Input.gyro.enabled = SystemInfo.supportsGyroscope)
+            return true;
+        return false;
     }
 
     public QControl Quests

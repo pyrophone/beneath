@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 
 using Mapbox.Unity.Map;
+using Mapbox.Examples;
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 /*! \class GameControl
  *	\brief Acts as a general game manager
@@ -12,58 +14,65 @@ using UnityEngine.SceneManagement;
 public class GameControl : MonoBehaviour
 {
 	[SerializeField]
-	private GameObject playerPrefab; //! The prefab for the player
+	public GameObject playerPrefab; //! The prefab for the player
 
-	[SerializeField]
+    [SerializeField]
+    private QuadTreeCameraMovement mapCam; //! The map camera control
+
+    [SerializeField]
 	private AbstractMap map; //! The map
-	[SerializeField]
-	private GameObject mapObj; //! The map as a game object
+
     [SerializeField]
     private Camera[] cams = new Camera[2];
+
 	private QControl qControl;
 	private UIControl uiControl;
 	private GameObject player; //! The player object
+
+    // Settings
+    [SerializeField]
+    public bool Debug; //! Debug bool (on/off) currently used for distance
 
     /*! \brief Called when the game is initialized (ensures this code runs first no matter what)
 	 */
     private void Awake()
     {
-        qControl = GetComponent<QControl>();
-        uiControl = GetComponent<UIControl>();
-
         DontDestroyOnLoad(this);
 		player = (GameObject)Instantiate(playerPrefab);
 		player.GetComponent<Player>().Map = this.map;
 		player.name = "player";
-        player.GetComponentInChildren<RotateHand>().Quests = qControl;
 		DontDestroyOnLoad(player);
+
+		qControl = GetComponent<QControl>();
+		uiControl = GetComponent<UIControl>();
     }
 
     /*! \brief Called when the object is initialized
 	 */
     private void Start()
 	{
-        //TODO: something that needs to go here everytime the scene is loaded
-        cams[1].enabled = false;
-    }
+        cams[1].enabled = false; // makes sure the AR camera is not active when the application is started
+	}
 
 	/*! \brief Updates the object
 	 */
 	private void Update()
 	{
+        //set player as map center
+        mapCam.CenterOnTarget(player.GetComponent<Player>().Loc);
+
         //for now, this will test vuforia by switching the scene on click or tap.
         if (Input.GetMouseButtonDown(0) && Input.touchCount > 2)
         {
-            if(cams[0].enabled == true) // main camera active
+            if (cams[0].enabled == true)
             {
-                cams[0].enabled = false; // main camera is now not active
-                cams[1].enabled = true; // vuforia camera is now active
-
+                cams[0].enabled = false;
+                cams[1].enabled = true;
             }
             else
             {
-                cams[0].enabled = true; // main camera is now active
-                cams[1].enabled = false; // vuforia camera is now not active
+                cams[0].enabled = true;
+                cams[1].enabled = false;
             }
             /*
             if (SceneManager.GetActiveScene().buildIndex == 0)
@@ -73,29 +82,11 @@ public class GameControl : MonoBehaviour
                 */
         }
 
-        //state machine
-        if(qControl.CurQuest != null)
+        if (qControl.CurQuest != null)
         {
 			switch(uiControl.CurrentUIState)
 			{
-				case UIState.MAP:
-					if (qControl.SwitchToDialogue)
-					{
-						if(qControl.CurQuest.dialogueAmount[uiControl.Dial.DialogueNum] == 0)
-						{
-							uiControl.Dial.DialogueNum++;
-							qControl.SwitchToDialogue = false;
-							break;
-						}
-
-						uiControl.SetCanvas(UIState.DIALOGUE);
-						qControl.SwitchToDialogue = false;
-						mapObj.SetActive(false);
-					}
-					break;
-
 				case UIState.DIALOGUE:
-
 					if(uiControl.Dial.DialogueNum < qControl.CurQuest.dialogueAmount.Count ||
 						uiControl.Dial.ConvoNum < qControl.CurQuest.convo.Count)
 					{
@@ -103,17 +94,11 @@ public class GameControl : MonoBehaviour
 						uiControl.Dial.DialogueField.text = qControl.CurQuest.convo[uiControl.Dial.ConvoNum];
 					}
 
-					if(uiControl.Dial.SwitchToMap)
+					if(qControl.QuestShouldFinish)
 					{
-						uiControl.SetCanvas(UIState.MAP);
-						uiControl.Dial.SwitchToMap = false;
-						mapObj.SetActive(true);
-
-						if(qControl.QuestShouldFinish)
-						{
-							qControl.CurQuest = null;
-							qControl.QuestShouldFinish = false;
-						}
+						uiControl.Dial.LastDialogue = true;
+						//current quest should not be set to null until dialogue is finished
+						qControl.QuestShouldFinish = false;
 					}
 					break;
 
@@ -121,6 +106,7 @@ public class GameControl : MonoBehaviour
 					break;
 			}
         }
+
 	}
 
 	/*! \brief Gets the map data

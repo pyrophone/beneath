@@ -11,10 +11,12 @@ using UnityEngine;
 public class QControl : MonoBehaviour
 {
 	[SerializeField]
-    private GameObject marker; //! marker prefab
+    private GameObject marker; //! Marker prefab
+    [SerializeField]
+    private GameObject compass; //! Compass object
 	[SerializeField]
 	private Quest curQuest; //! The current quest
-	private bool switchToDialogue; //! Should the UI switch to the dialogue UI
+	private UIControl uiControl; //! The UI control component
     private bool questShouldFinish; //! If the quest should finish
 	Dictionary<Quest, bool> quests; //! Dictionary of quests and their completion status
 	private List<GameObject> markerList; //! The list of markers
@@ -22,58 +24,95 @@ public class QControl : MonoBehaviour
     private Object[] textAssets; //! The list of text assets
     private int questAssetNum; //! The quest number for the asset list
 
+    /*! \brief Called on startup
+     */
+    private void Awake()
+    {
+		uiControl = GetComponent<UIControl>();
+    }
+
 	/*! \brief Called when the object is initialized
 	 */
 	private void Start()
 	{
+
 		markerList = new List<GameObject>();
 		quests = new Dictionary<Quest, bool>();
-
-		bool firstQuest = true;
 
 		textAssets = Resources.LoadAll("JSON", typeof(TextAsset));
 
 		foreach(TextAsset txt in textAssets)
 		{
 			Quest q = Quest.GetFromJson(txt.ToString());
-			quests.Add(q, q.completed);
-
-			//This is temporary, since you can't choose quests
-			if(firstQuest)
-			{
-				curQuest = q;
-				firstQuest = false;
-				LoadMarkers();
-				questAssetNum = 0;
-			}
+			quests.Add(q, false);
 		}
+
+		SetCurrentQuest(null);
 	}
 
 	/*! \brief Updates the object
 	 */
 	private void Update()
 	{
-		if(!questShouldFinish && curQuest != null)
-			ProgressQuest();
+        //wrap in try catch because this thing screams at the dumbest things that don't matter
+        try
+        {
+            if (!questShouldFinish && curQuest != null)
+                ProgressQuest();
+        }
+        catch { }
+		
 	}
 
 	/*! \brief Loads the markers into the map
 	 */
 	private void LoadMarkers()
 	{
-		for (int i = 0; i < curQuest.markerGenList.Count; i++)
+		if(curQuest != null)
 		{
-			GameObject m = Instantiate(marker);
-			m.GetComponent<Marker>().Loc = curQuest.markerGenList[i];
-			m.GetComponent<Marker>().Map = GetComponent<GameControl>().Map;
-			m.GetComponent<Marker>().Radius = 15;
-			m.name = "q" + curQuest.id + ".marker" + i;
-			if (i != 0)
+			for (int i = 0; i < curQuest.markerGenList.Count; i++)
 			{
-				m.SetActive(false);
+				GameObject m = Instantiate(marker);
+				m.GetComponent<Marker>().Loc = curQuest.markerGenList[i].markerLoc;
+				m.GetComponent<Marker>().Map = GetComponent<GameControl>().Map;
+				m.GetComponent<Marker>().Radius = 15;
+				m.name = "q" + curQuest.id + "." + "marker" + i;
+				if (i != 0)
+				{
+					m.SetActive(false);
+				}
+				markerList.Add(m);
 			}
-			markerList.Add(m);
+
+			markerCurrent = 0;
 		}
+	}
+
+	/*! Sets the current quest
+	 *
+	 * \param (Quest) q - The quest to set the current quest to
+	 */
+	public void SetCurrentQuest(Quest q)
+	{
+		ClearMarkers();
+		curQuest = q;
+		questShouldFinish = false;
+
+		if(curQuest != null)
+		{
+			uiControl.QLCanvas.SetActiveQuestText(curQuest.name);
+			LoadMarkers();
+
+			//enough info to set up compass
+			compass.SetActive(true);
+		}
+
+		else
+		{
+			uiControl.QLCanvas.SetActiveQuestText("No Active Quest");
+		}
+
+		uiControl.QLCanvas.RefreshQuestList(quests, curQuest);
 
 		markerCurrent = 0;
 	}
@@ -85,7 +124,13 @@ public class QControl : MonoBehaviour
 		if (markerList[markerCurrent].GetComponent<Marker>().Triggered)
         {
 			markerList[markerCurrent].SetActive(false);
-			switchToDialogue = true;
+
+			if(curQuest.dialogueAmount[uiControl.Dial.DialogueNum] == 0)
+				uiControl.Dial.DialogueNum++;
+
+			else
+				uiControl.SetCanvas(UIState.DIALOGUE);
+
 			markerCurrent++;
 
 			if (markerCurrent >= markerList.Count)
@@ -96,6 +141,18 @@ public class QControl : MonoBehaviour
 		}
     }
 
+    /*! \brief Clears the quest markers
+     */
+	public void ClearMarkers()
+	{
+		//Unload markers
+		for (int i = markerList.Count - 1; i >= 0; i--)
+		{
+			Destroy(markerList[i]);
+			markerList.RemoveAt(i);
+		}
+	}
+
     /*! \brief Runs upon quest completion, synonymous with reaching and completing all tasks at final marker
 	 */
 	public void OnComplete()
@@ -104,13 +161,8 @@ public class QControl : MonoBehaviour
 		curQuest.completed = true;
 		quests[curQuest] = true;
 		questShouldFinish = true;
-
-        //unload markers
-        for (int i = markerList.Count - 1; i >= 0; i--)
-        {
-            Destroy(markerList[i]);
-            markerList.RemoveAt(i);
-        }
+        
+        ClearMarkers();
 	}
 
 	/*! \brief Getter / Setter for the current quest
@@ -129,6 +181,13 @@ public class QControl : MonoBehaviour
 		set { questShouldFinish = value; }
 	}
 
+	/*! \brief Gettter for the quest dictionary
+	 */
+	 public Dictionary<Quest, bool> Quests
+	 {
+		get { return quests; }
+	 }
+
 	/*! \brief Getter / Setter for the marker list
 	 */
 	public List<GameObject> MarkerList
@@ -143,11 +202,20 @@ public class QControl : MonoBehaviour
         get { return markerCurrent; }
     }
 
-    /*! \brief Getter / Setter for switchToDialogue
-	 */
-    public bool SwitchToDialogue
-	{
-		get { return switchToDialogue; }
-		set { switchToDialogue = value; }
-	}
+    /*! \brief Gets the quest with a certain ID
+	 *
+	 * \param (int) id - The id of the quest to look for
+	 *
+	 * \return (Quest) The quest with the corresponding id
+     */
+    public Quest GetQuest(int id)
+    {
+		foreach(var quest in quests)
+		{
+			if(quest.Key.id == id)
+				return quest.Key;
+		}
+
+		return null;
+    }
 }

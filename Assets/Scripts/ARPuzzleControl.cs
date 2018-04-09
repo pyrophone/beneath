@@ -23,7 +23,9 @@ public class ARPuzzleControl : MonoBehaviour
 
     private void OnMouseDown()
     {
-        Destroy(gameObject); // destroys the coin for from the image target
+        gameObject.SetActive(false); // deactivates the coin item when tapped
+
+        // Destroy(gameObject); // destroys the coin for from the image target
 
         Debug.Log("200 xp");
 
