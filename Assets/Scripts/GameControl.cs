@@ -18,6 +18,8 @@ public class GameControl : MonoBehaviour
 	private AbstractMap map; //! The map
 	[SerializeField]
 	private GameObject mapObj; //! The map as a game object
+    [SerializeField]
+    private Camera[] cams = new Camera[2];
 	private QControl qControl;
 	private UIControl uiControl;
 	private GameObject player; //! The player object
@@ -42,6 +44,7 @@ public class GameControl : MonoBehaviour
     private void Start()
 	{
         //TODO: something that needs to go here everytime the scene is loaded
+        cams[1].enabled = false;
     }
 
 	/*! \brief Updates the object
@@ -51,10 +54,23 @@ public class GameControl : MonoBehaviour
         //for now, this will test vuforia by switching the scene on click or tap.
         if (Input.GetMouseButtonDown(0) && Input.touchCount > 2)
         {
+            if(cams[0].enabled == true) // main camera active
+            {
+                cams[0].enabled = false; // main camera is now not active
+                cams[1].enabled = true; // vuforia camera is now active
+
+            }
+            else
+            {
+                cams[0].enabled = true; // main camera is now active
+                cams[1].enabled = false; // vuforia camera is now not active
+            }
+            /*
             if (SceneManager.GetActiveScene().buildIndex == 0)
                 SceneManager.LoadScene(1);
             else
                 SceneManager.LoadScene(0);
+                */
         }
 
         //state machine

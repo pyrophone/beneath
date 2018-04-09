@@ -5,14 +5,14 @@ using UnityEngine;
 
 public class ARPuzzleControl : MonoBehaviour
 {
-
+    /*
     public GameObject canvas;
     public Button bttn;
-
+    */
     // Use this for initialization
     void Start ()
     {
-        canvas.SetActive(false); // makes sure that the canvas is deactivated when the camera is opened
+        // canvas.SetActive(false); // makes sure that the canvas is deactivated when the camera is opened
         
     }
 	
@@ -24,8 +24,10 @@ public class ARPuzzleControl : MonoBehaviour
     private void OnMouseDown()
     {
         Destroy(gameObject); // destroys the coin for from the image target
-        
-        canvas.SetActive(true); // reactivates the canvas
+
+        Debug.Log("200 xp");
+
+        // canvas.SetActive(true); // reactivates the canvas
 
         /*
         Button btn = bttn.GetComponent<Button>();
