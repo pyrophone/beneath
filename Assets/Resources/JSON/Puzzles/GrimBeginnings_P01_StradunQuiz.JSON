@@ -1,0 +1,14 @@
+{
+	"puzzleType": "multipleChoice",
+	"location": {
+				"x": 42.641470,
+				"y": 18.108330
+	},
+	"puzzleQuestion": "What type of stone is the Stradun carved from?",
+	"puzzleAnswers": [
+		"Granite",
+		"Limestone",
+		"Slate"
+	],
+	"correctAnswer": 1
+}

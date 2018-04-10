@@ -1,0 +1,14 @@
+{
+	"puzzleType": "multipleChoice",
+	"location": {
+				"x": 42.641130,
+				"y": 18.110060
+	},
+	"puzzleQuestion": "St. Blaise is always depicted a certain way in Dubrovnik. What does he always hold in his hand?",
+	"puzzleAnswers": [
+		"A staff",
+		"The cross",
+		"The city"
+	],
+	"correctAnswer": 2
+}
