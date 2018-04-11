@@ -189,8 +189,8 @@ public class TutorialOverlay : AbstractCanvas
 
 			case 12:
 				panel.transform.localPosition = new Vector3();
-                nextButton.gameObject.SetActive(true);
-                break;
+				goto default;
+
 			//This case is used by states that set the next button in active
 			default:
 				nextButton.gameObject.SetActive(true);

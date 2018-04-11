@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public enum UIState { INTRO, MAP, DIALOGUE, QLIST, PLAYER, SETTINGS, TUTORIAL, PUZZLE, VUFORIA };
-    
+
 /*! \class UIControl
  *	\brief Manages UI
  */
@@ -33,7 +33,7 @@ public class UIControl : MonoBehaviour
 		qlCanvas = transform.Find("QuestCanvas").GetComponent<QListCanvas>();
 		dial = transform.Find("DialogCanvas").GetComponent<DialogueCanvas>();
 		tutorialActive = true;
-		DoTutOverlay = false;
+		doTutOverlay = false;
 
 	}
 
@@ -62,7 +62,7 @@ public class UIControl : MonoBehaviour
 	public void SetCanvas(UIState newState)
 	{
 		UpdateTutorial();
-        Debug.Log("scene switch triggered");
+
 		canvases[(int)currentUIState].SetActive(false);
 		currentUIState = newState;
 		canvases[(int)currentUIState].SetActive(true);

@@ -24,6 +24,7 @@ public class GameControl : MonoBehaviour
 	private QControl qControl; //! Reference to the quest controller
 	private UIControl uiControl; //! Reference to the UI controller
 	private GameObject player; //! The player object
+	private bool doTutorial; //! If the player should run through the tutorial
 	private bool updatePlayer; //! If the player data should update
 
     // Settings
