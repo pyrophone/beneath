@@ -11,7 +11,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a6523094c07d4ee683da5d826fce510, type: 3}
   m_Name: Flat
   m_EditorClassIdentifier: 
-  _baseMaterial: {fileID: 0}
+  _baseMaterial: {fileID: 2100000, guid: a89ace43bfcfd49c290d1cdca30e0b40, type: 2}
   _createSideWalls: 0
   _sideWallHeight: 10
   _sideWallMaterial: {fileID: 0}

@@ -189,6 +189,7 @@ public class TutorialOverlay : AbstractCanvas
 
 			case 12:
 				panel.transform.localPosition = new Vector3();
+				goto default;
 
 			//This case is used by states that set the next button in active
 			default:

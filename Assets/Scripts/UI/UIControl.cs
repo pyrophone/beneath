@@ -6,7 +6,7 @@ using Mapbox.Unity.Map;
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum UIState { INTRO, MAP, DIALOGUE, QLIST, PLAYER, SETTINGS, TUTORIAL };
+public enum UIState { INTRO, MAP, DIALOGUE, QLIST, PLAYER, SETTINGS, TUTORIAL, PUZZLE, VUFORIA };
 
 /*! \class UIControl
  *	\brief Manages UI
@@ -22,6 +22,7 @@ public class UIControl : MonoBehaviour
 	private UIState currentUIState; //! The current state of the UI
 	private UIState settingsSwitchTo; //! The UIState tha the settings menu should switch to
 	private bool doTutOverlay; //! If the tutorial overlay
+    [SerializeField]
 	private bool tutorialActive; //! Is the tutorial active
 	private string pName; //! The name of the player
 
@@ -32,7 +33,8 @@ public class UIControl : MonoBehaviour
 		qlCanvas = transform.Find("QuestCanvas").GetComponent<QListCanvas>();
 		dial = transform.Find("DialogCanvas").GetComponent<DialogueCanvas>();
 		tutorialActive = true;
-		DoTutOverlay = false;
+		doTutOverlay = false;
+
 	}
 
 	/*! \brief Called when the object is initialized

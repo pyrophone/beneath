@@ -1,0 +1,14 @@
+{
+	"puzzleType": "multipleChoice",
+	"location": {
+				"x": 42.64206,
+				"y": 18.10279
+	},
+	"puzzleQuestion": "Test Question.",
+	"puzzleAnswers": [
+		"correct answer",
+		"incorrect answer",
+		"incorrect answer"
+	],
+	"correctAnswer": 0
+}
