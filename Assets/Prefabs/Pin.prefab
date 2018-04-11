@@ -103,7 +103,15 @@ MonoBehaviour:
   isPuzzle: 0
   triggered: 0
   mName: 
-  puzzle: {fileID: 0}
+  puzzle:
+    puzzleType: 
+    location:
+      x: 0
+      y: 0
+    puzzleQuestion: 
+    puzzleAnswers: []
+    correctAnswer: 0
+    filePath: 
   DialogueFile: 
   player: {fileID: 0}
   radius: 0

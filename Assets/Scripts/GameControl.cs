@@ -21,10 +21,9 @@ public class GameControl : MonoBehaviour
 
     [SerializeField]
 	private AbstractMap map; //! The map
-	private QControl qControl; //! Reference to the character controller
+	private QControl qControl; //! Reference to the quest controller
 	private UIControl uiControl; //! Reference to the UI controller
 	private GameObject player; //! The player object
-	private bool doTutorial; //! If the player should run through the tutorial
 	private bool updatePlayer; //! If the player data should update
 
     // Settings

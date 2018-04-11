@@ -5,7 +5,6 @@ using System.Linq;
 
 using UnityEngine;
 
-
 /*! \class QControl
  *	\brief Manages quests
  */
@@ -77,7 +76,7 @@ public class QControl : MonoBehaviour
 				GameObject m = Instantiate(marker);
 				m.GetComponent<Marker>().Loc = curQuest.markerGenList[i].markerLoc;
 				m.GetComponent<Marker>().Map = GetComponent<GameControl>().Map;
-				m.GetComponent<Marker>().Radius = 15;
+				m.GetComponent<Marker>().Radius = 20;
 				m.name = "q" + curQuest.id + "." + "marker" + i;
 
 				if (i != 0)

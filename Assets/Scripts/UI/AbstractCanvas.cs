@@ -8,7 +8,7 @@ using UnityEngine;
  */
 public abstract class AbstractCanvas : MonoBehaviour
 {
-	protected static UIControl uiControl; //! The UI Controller
+	protected static UIControl uiControl; //! The UI Controller  
 
 	/*! \brief Called on startup
 	 */
