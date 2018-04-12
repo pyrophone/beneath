@@ -12,6 +12,8 @@ public class TutorialOverlay : AbstractCanvas
 	private int tutorialProgress; //! The progress in the tutorial
 	private bool backPressed; //! If the back button was pressed
 	private GameObject panel; //! The panel for displaying tutorial dialogue
+	[SerializeField]
+	private GameObject qPopPanel; //! The questlist popup panel
 	private Text textBox; //! The textbox of the panel
 	private Button backButton; //! The back button
 	private Button nextButton; //! The next button
@@ -101,8 +103,7 @@ public class TutorialOverlay : AbstractCanvas
 		backPressed = true;
 		tutorialProgress--;
 
-		textBox.text = tutorialDialogue[tutorialProgress];
-		CanvasSwitch();
+		SetText();
 
 		if(tutorialProgress <= 0)
 		{
@@ -125,13 +126,18 @@ public class TutorialOverlay : AbstractCanvas
 			return;
 		}
 
-		textBox.text = tutorialDialogue[tutorialProgress];
-		CanvasSwitch();
+		SetText();
 
 		if(tutorialProgress > 0)
 		{
 			backButton.gameObject.SetActive(true);
 		}
+	}
+
+	private void SetText()
+	{
+		textBox.text = tutorialDialogue[tutorialProgress];
+		CanvasSwitch();
 	}
 
 	/*! \brief changes the properties for the canvas
@@ -164,8 +170,13 @@ public class TutorialOverlay : AbstractCanvas
 				panel.transform.localPosition = new Vector3(0, -500, 0);
 				goto default;
 
+			case 5:
+				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().SetGrimBeginnings(false);
+				goto default;
+
 			case 6:
-				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().ActivateGrimBeginnings();
+				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().SetGrimBeginnings(true);
+				qPopPanel.SetActive(false);
 				goto case -1;
 
 			case 8:
@@ -174,8 +185,8 @@ public class TutorialOverlay : AbstractCanvas
 
 				if(backPressed)
 				{
-					tutorialProgress = 7;
-					OnBackButtonClick();
+					tutorialProgress = 6;
+					SetText();
 					break;
 				}
 				goto case -1;
