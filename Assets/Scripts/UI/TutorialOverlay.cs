@@ -149,6 +149,7 @@ public class TutorialOverlay : AbstractCanvas
 			//This case is used by states that set the next button to inactive
 			case -1:
 				nextButton.gameObject.SetActive(false);
+				//panel.GetComponent<CanvasGroup>().blocksRaycasts = false;
 				break;
 
 			case 0:
@@ -168,6 +169,7 @@ public class TutorialOverlay : AbstractCanvas
 			case 3:
 			case 10:
 				panel.transform.localPosition = new Vector3(0, -500, 0);
+				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().SetBackButton(false);
 				goto default;
 
 			case 5:
@@ -195,7 +197,7 @@ public class TutorialOverlay : AbstractCanvas
 				panel.transform.localPosition = new Vector3(0, 400, 0);
 				if(backPressed)
 					uiControl.SetCanvas(UIState.QLIST);
-				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().ActivateBackButton();
+				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().SetBackButton(true);
 				goto case -1;
 
 			case 12:
@@ -205,6 +207,7 @@ public class TutorialOverlay : AbstractCanvas
 			//This case is used by states that set the next button in active
 			default:
 				nextButton.gameObject.SetActive(true);
+				//panel.GetComponent<CanvasGroup>().blocksRaycasts = true;
 				break;
 		}
 	}
