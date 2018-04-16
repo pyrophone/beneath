@@ -54,13 +54,12 @@ public class QListCanvas : AbstractCanvas
 	public override void UpdateTutorialUI()
 	{
 		if(uiControl.TutorialActive)
-		{
 			backButton.interactable = false;
-		}
 
 		else
 		{
 			backButton.interactable = true;
+			popUpPanel.transform.Find("NoButton").GetComponent<Button>().interactable = true;
 		}
 	}
 

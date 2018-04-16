@@ -11,7 +11,6 @@ public class TutorialCanvas : AbstractCanvas
 {
 	private int dialCount; //! The count for the tutorial dialogue
 	private Text dialogueBox; //! The textbox for the dialogue
-	private InputField nameField; //! The field for the character name
 	private Button nextButton; //! The button to progess dialogue
 	private List<string> dialogue; //! This is temporary. Keeps dialogue for tutorial
 
@@ -22,8 +21,6 @@ public class TutorialCanvas : AbstractCanvas
 		base.Awake();
 
 		dialogueBox = transform.Find("Dialogue").GetComponent<Text>();
-		nameField = transform.Find("InputField").GetComponent<InputField>();
-		nameField.gameObject.SetActive(false);
 		nextButton = transform.Find("Button").GetComponent<Button>();
 		nextButton.onClick.AddListener(OnNextButtonClick);
 	}
@@ -40,6 +37,7 @@ public class TutorialCanvas : AbstractCanvas
 		dialogue.Add("The krsnik are local shamans, allied with the church here.");
 		dialogue.Add("We work with the church to seek and destroy monsters, wherever they hide.");
 		dialogue.Add("You are the new agent, sent from the Vatican, yes? What is your name?");
+		dialogue.Add("");
 		dialogue.Add("Ah, I see! A lovely name. Well, -----, let me explain what is going on.");
 		dialogue.Add("Dubrovnik, you see, has been infested with an especially vile monster...");
 		dialogue.Add("The vampire! The vile bloodsucking fiends have taken up residence in this beautiful city.");
@@ -60,22 +58,12 @@ public class TutorialCanvas : AbstractCanvas
 	 */
 	private void OnNextButtonClick()
 	{
-		if(dialCount == 4) {
-			if(nameField.text == "")
-				return;
-			else {
-				uiControl.PName = nameField.text;
-				nameField.gameObject.SetActive(false);
-				transform.parent.GetComponent<GameControl>().UpdatePlayer = true;
-			}
-		}
-
 		dialCount++;
 
-		if(dialCount == 4)
-			nameField.gameObject.SetActive(true);
+		if(dialCount == 5)
+			transform.parent.Find("NameEnterCanvas").gameObject.SetActive(true);
 
-		else if(dialCount == 5)
+		else if(dialCount == 6)
 			dialogue[dialCount] = dialogue[dialCount].Replace("-----", uiControl.PName);
 
 		else if(dialCount >= dialogue.Count)
@@ -83,5 +71,11 @@ public class TutorialCanvas : AbstractCanvas
 			uiControl.DoTutOverlay = true;
 			uiControl.SetCanvas(UIState.MAP);
 		}
+	}
+
+	public void SpecialClick()
+	{
+		if(uiControl.TutorialActive)
+			OnNextButtonClick();
 	}
 }

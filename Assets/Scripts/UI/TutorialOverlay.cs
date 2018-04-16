@@ -134,6 +134,8 @@ public class TutorialOverlay : AbstractCanvas
 		}
 	}
 
+	/*! \brief Sets the text of the tutorial dialogue
+	 */
 	private void SetText()
 	{
 		textBox.text = tutorialDialogue[tutorialProgress];
@@ -207,7 +209,6 @@ public class TutorialOverlay : AbstractCanvas
 			//This case is used by states that set the next button in active
 			default:
 				nextButton.gameObject.SetActive(true);
-				//panel.GetComponent<CanvasGroup>().blocksRaycasts = true;
 				break;
 		}
 	}
