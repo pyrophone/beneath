@@ -45,8 +45,10 @@ public class NameCanvas : AbstractCanvas
 		{
 			uiControl.PName = nameField.text;
 			gameObject.SetActive(false);
-			transform.parent.GetComponent<GameControl>().UpdatePlayer = true;
-			transform.parent.Find("TutorialCanvas").GetComponent<TutorialCanvas>().SpecialClick();
+			transform.parent.GetComponent<GameControl>().UpdatePlayerInfo();
+
+			if(uiControl.TutorialActive)
+				transform.parent.Find("TutorialCanvas").GetComponent<TutorialCanvas>().SpecialClick();
 		}
 	}
 }

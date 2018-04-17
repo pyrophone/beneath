@@ -10,6 +10,7 @@ using UnityEngine.UI;
 public class PlayerCanvas : AbstractCanvas
 {
 	private Button backButton; //! Reference to the back button
+	private Button playerButton; //! Button for the player to change their name
 
     private Text nameText;  //! The Text component related to the player's name
     private Text lvlText;   //! The Text component related to the player's level
@@ -26,30 +27,28 @@ public class PlayerCanvas : AbstractCanvas
 		backButton = transform.Find("BackButton").GetComponent<Button>();
 		backButton.onClick.AddListener(OnBackButtonClick);
 
-        nameText = transform.Find("PlayerName").GetComponent<Text>();
+		playerButton = transform.Find("PlayerName").GetComponent<Button>();
+		playerButton.onClick.AddListener(OnPlayerButtonClick);
+
+        nameText = transform.Find("PlayerName").Find("Text").GetComponent<Text>();
         lvlText = transform.Find("PlayerLevel").GetComponent<Text>();
         expText = transform.Find("PlayerXP").GetComponent<Text>();
-
-        GameObject gObj = GameObject.Find("GameManager");
-        GameControl gc = gObj.GetComponent<GameControl>();
-        gObj = gc.PlayerPrefab;
-        player = gObj.GetComponent<Player>();
     }
 
 	/*! \brief Called when the object is initialized
 	 */
 	private void Start()
 	{
-
+        player = GameObject.Find("player").GetComponent<Player>();
 	}
 
 	/*! \brief Updates the object
 	 */
 	protected override void Update()
 	{
-        nameText.text = player.GetName();
-        lvlText.text = "LVL:" + player.GetLvl();
-        expText.text = "EXP: " + player.GetExp();
+        nameText.text = player.PName;
+        lvlText.text = "LVL:" + player.Lvl;
+        expText.text = "EXP: " + player.Exp;
     }
 
 	/*! \brief Called when the back button is clicked
@@ -57,5 +56,12 @@ public class PlayerCanvas : AbstractCanvas
 	private void OnBackButtonClick()
 	{
 		uiControl.SetCanvas(UIState.MAP);
+	}
+
+	/*! \brief called when the player clicks on their name
+	 */
+	private void OnPlayerButtonClick()
+	{
+		transform.parent.Find("NameEnterCanvas").gameObject.SetActive(true);
 	}
 }

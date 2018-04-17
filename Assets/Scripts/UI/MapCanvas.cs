@@ -41,28 +41,22 @@ public class MapCanvas : AbstractCanvas
             lvlText =   playerButton.transform.Find("PlayerLevel").GetComponent<Text>();
             expText =   playerButton.transform.Find("PlayerXP").GetComponent<Text>();
         }
-
-        GameObject gObj = GameObject.Find("GameManager");
-        GameControl gc = gObj.GetComponent<GameControl>();
-        gObj = gc.PlayerPrefab;
-        player = gObj.GetComponent<Player>();
-
     }
 
 	/*! \brief Called when the object is initialized
 	 */
 	private void Start()
 	{
-
+        player = GameObject.Find("player").GetComponent<Player>();
 	}
 
 	/*! \brief Updates the object
 	 */
 	protected override void Update()
 	{
-        nameText.text = player.GetName();
-        lvlText.text = "LVL:" + player.GetLvl();
-        expText.text = "EXP: " + player.GetExp();
+        nameText.text = player.PName;
+        lvlText.text = "LVL:" + player.Lvl;
+        expText.text = "EXP: " + player.Exp;
     }
 
     /*! \brief Called when the location text is clicked

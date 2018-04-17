@@ -24,8 +24,6 @@ public class GameControl : MonoBehaviour
 	private QControl qControl; //! Reference to the quest controller
 	private UIControl uiControl; //! Reference to the UI controller
 	private GameObject player; //! The player object
-	private bool doTutorial; //! If the player should run through the tutorial
-	private bool updatePlayer; //! If the player data should update
 
     // Settings
     [SerializeField]
@@ -39,13 +37,12 @@ public class GameControl : MonoBehaviour
 		player = (GameObject)Instantiate(playerPrefab);
 		player.name = "player";
 		player.GetComponent<Player>().Map = this.map;
-		Player.pName = "player";
+		player.GetComponent<Player>().PName = "player";
 		DontDestroyOnLoad(player);
 
 		qControl = GetComponent<QControl>();
 		uiControl = GetComponent<UIControl>();
 
-		//doTutorial = true;
 		uiControl.TutorialActive = true;
     }
 
@@ -72,12 +69,6 @@ public class GameControl : MonoBehaviour
                 SceneManager.LoadScene(0);
         }
 
-        if(updatePlayer)
-        {
-			UpdatePlayerInfo();
-			updatePlayer = false;
-        }
-
         if (qControl.CurQuest != null)
         {
 			switch(uiControl.CurrentUIState)
@@ -87,7 +78,7 @@ public class GameControl : MonoBehaviour
 					{
 						uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece.Count;
 						uiControl.Dial.NameField.text = qControl.CurQuest.convo[qControl.MarkerCurrent].name;
-						string text = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece[uiControl.Dial.ConvoNum].Replace("-----", Player.pName);
+						string text = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece[uiControl.Dial.ConvoNum].Replace("-----", player.GetComponent<Player>().PName);
 						uiControl.Dial.DialogueField.text = text;
 					}
 
@@ -107,14 +98,13 @@ public class GameControl : MonoBehaviour
 					break;
 			}
         }
-
 	}
 
 	/*! \brief Updates the player info on other screens
 	 */
 	public void UpdatePlayerInfo()
 	{
-		Player.pName = uiControl.PName;
+		player.GetComponent<Player>().PName = uiControl.PName;
 	}
 
 	/*! \brief Gets the map data
@@ -124,14 +114,6 @@ public class GameControl : MonoBehaviour
 	public AbstractMap Map
 	{
 		get { return this.map; }
-	}
-
-	/*! \brief Getter / Setter for updatePData bool
-	 */
-	public bool UpdatePlayer
-	{
-		get { return updatePlayer; }
-		set { updatePlayer = value; }
 	}
 
 	/*! \brief Gets the player prefab
