@@ -25,6 +25,8 @@ public class NameCanvas : AbstractCanvas
 		enterBtn = panel.transform.Find("CloseButton").GetComponent<Button>();
 		enterBtn.onClick.AddListener(OnCloseClick);
 		nameField = panel.transform.Find("InputField").GetComponent<InputField>();
+
+		gameObject.SetActive(false);
 	}
 
 	/*! \brief Updates the object
@@ -46,6 +48,7 @@ public class NameCanvas : AbstractCanvas
 			uiControl.PName = nameField.text;
 			gameObject.SetActive(false);
 			transform.parent.GetComponent<GameControl>().UpdatePlayerInfo();
+			errorText.SetActive(false);
 
 			if(uiControl.TutorialActive)
 				transform.parent.Find("TutorialCanvas").GetComponent<TutorialCanvas>().SpecialClick();
