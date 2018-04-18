@@ -13,9 +13,9 @@ public enum UIState { INTRO, MAP, DIALOGUE, QLIST, PLAYER, SETTINGS};
  */
 public class UIControl : MonoBehaviour
 {
-	[SerializeField]
-	private GameObject[] canvases; //! Canvases to switch between
-	[SerializeField]
+	public GameObject[] canvases; //! Canvases to switch between
+
+    [SerializeField]
 	private GameObject mapObj; //! Reference to the map
 	private int curDialogue; //! The current dialogue
 	private DialogueCanvas dial; //! The dialogue canvas script

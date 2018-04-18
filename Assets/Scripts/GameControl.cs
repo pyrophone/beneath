@@ -25,6 +25,9 @@ public class GameControl : MonoBehaviour
     [SerializeField]
     private Camera[] cams = new Camera[2];
 
+    [SerializeField]
+    private List<GameObject> items;
+
 	private QControl qControl;
 	private UIControl uiControl;
 	private GameObject player; //! The player object
@@ -62,17 +65,25 @@ public class GameControl : MonoBehaviour
         mapCam.CenterOnTarget(player.GetComponent<Player>().Loc);
 
         //for now, this will test vuforia by switching the scene on click or tap.
-        if (Input.GetMouseButtonDown(0) && Input.touchCount > 2)
+        if (Input.GetMouseButtonDown(0) && Input.touchCount > 2 || Input.GetKeyDown(KeyCode.T))
         {
             if (cams[0].enabled == true)
             {
-                cams[0].enabled = false;
-                cams[1].enabled = true;
+                cams[0].enabled = false; // disables the main camera view
+                cams[1].enabled = true; // enables the AR camera view
+
+                uiControl.canvases[1].SetActive(false); // turns off the map canvas content when using the AR camera
+
+                for (int i = 0; i < items.Count; i++)
+                {
+                    items[i].SetActive(true); // makes sure that all items are active when switching to AR camera view
+                }
             }
             else
             {
-                cams[0].enabled = true;
-                cams[1].enabled = false;
+                cams[0].enabled = true; // enables the main camera view
+                cams[1].enabled = false; // disables the AR camera view
+                uiControl.canvases[1].SetActive(true); // turns the map canvas back on
             }
             /*
             if (SceneManager.GetActiveScene().buildIndex == 0)

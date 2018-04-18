@@ -18,6 +18,8 @@ public class MapCanvas : MonoBehaviour
 
     private Player player; //! The instantiated prefab of Player
 
+    private ARPuzzleControl arPCon;
+
     /*! \brief Called when the object is initialized
 	 */
     private void Start()
@@ -45,6 +47,8 @@ public class MapCanvas : MonoBehaviour
         gObj = gc.playerPrefab;
         player = gObj.GetComponent<Player>();
 
+        GameObject temp = GameObject.Find("coin_05");
+        arPCon = temp.GetComponent<ARPuzzleControl>();
     }
 
 	/*! \brief Updates the object
@@ -52,8 +56,19 @@ public class MapCanvas : MonoBehaviour
 	private void Update()
 	{
         nameText.text = player.GetName();
-        lvlText.text = "LVL:" + player.GetLvl();
+        lvlText.text = "LVL: " + player.GetLvl();
         expText.text = "EXP: " + player.GetExp();
+        
+        /*
+        if (player.GetExp() == 0)
+        {
+            expText.text = "EXP: " + 0;
+        }
+        else
+        {
+            expText.text = "EXP: " + (player.GetExp() + arPCon.GainXp());
+        }
+        */
     }
 
     /*! \brief Called when the location text is clicked
@@ -86,4 +101,11 @@ public class MapCanvas : MonoBehaviour
 		uiControl.SetCanvas(UIState.SETTINGS);
 		uiControl.SettingsSwitchTo = UIState.MAP;
 	}
+
+    /*
+    public void AddXP()
+    {
+        expText.text = "EXP: " + (player.GetExp() + arPCon.GainXp());
+    }
+    */
 }
