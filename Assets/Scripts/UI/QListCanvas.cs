@@ -54,13 +54,12 @@ public class QListCanvas : AbstractCanvas
 	public override void UpdateTutorialUI()
 	{
 		if(uiControl.TutorialActive)
-		{
 			backButton.interactable = false;
-		}
 
 		else
 		{
 			backButton.interactable = true;
+			popUpPanel.transform.Find("NoButton").GetComponent<Button>().interactable = true;
 		}
 	}
 
@@ -109,9 +108,9 @@ public class QListCanvas : AbstractCanvas
 	{
 		Vector3 offset = new Vector3(0.0f, 75.0f, 0.0f);
 
-		for(int i = 0; i < scrollContent.transform.childCount; i++)
+		for(int i = scrollContent.transform.childCount - 1; i >= 0; i--)
 		{
-			Destroy(scrollContent.transform.GetChild(i).gameObject);
+			DestroyImmediate(scrollContent.transform.GetChild(i).gameObject);
 		}
 
 		foreach(var quest in quests)
@@ -132,7 +131,6 @@ public class QListCanvas : AbstractCanvas
 		for(int i = 0; i < scrollContent.transform.childCount; i++)
 		{
 			Transform child = scrollContent.transform.GetChild(i);
-
 			if(uiControl.TutorialActive)
 				child.GetComponent<Button>().interactable = false;
 		}
@@ -188,11 +186,13 @@ public class QListCanvas : AbstractCanvas
 	}
 
 	/*! \brief Activates grim beginnings for the tutorial
+	 *
+	 * \param (bool) state - If the button should be set
 	 */
-	public void ActivateGrimBeginnings()
+	public void SetGrimBeginnings(bool state)
 	{
 		if(uiControl.TutorialActive)
-			scrollContent.transform.GetChild(0).GetComponent<Button>().interactable = true;
+			scrollContent.transform.GetChild(0).GetComponent<Button>().interactable = state;
 	}
 
 	/*! \brief Activates the quest accept button for the tutorial
@@ -204,10 +204,12 @@ public class QListCanvas : AbstractCanvas
 	}
 
 	/*! \brief Activates the back button for the tutorial
+	 *
+	 * \param (bool) state - If the button should be set
 	 */
-	public void ActivateBackButton()
+	public void SetBackButton(bool state)
 	{
 		if(uiControl.TutorialActive)
-			backButton.interactable = true;
+			backButton.interactable = state;
 	}
 }

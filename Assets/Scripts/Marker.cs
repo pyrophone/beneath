@@ -109,16 +109,10 @@ public class Marker : Mappable
         double distance = earthRadiusM * c;
         #endregion
 
-        //DEBUG
-        try
+        try //wrap this in try catch to get rid of some dumb exceptions
         {
-            //DEBUG: show distance on main screen
-            if (GameObject.Find("GameManager").GetComponent<GameControl>().Debug)
-                GameObject.Find("DistCounter").GetComponent<Text>().text = "Distance: " + distance.ToString("N2") + "m";
-            else
-            {
-                GameObject.Find("DistCounter").GetComponent<Text>().text = "";
-            }
+            //display distance on Map Canvas
+            GameObject.Find("DistCounter").GetComponent<Text>().text = "Distance: " + distance.ToString("N2") + "m";
         }
         catch { }
 

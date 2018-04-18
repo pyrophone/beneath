@@ -62,7 +62,7 @@ public class QControl : MonoBehaviour
                 ProgressQuest();
         }
         catch { }
-		
+
 	}
 
 	/*! \brief Loads the markers into the map

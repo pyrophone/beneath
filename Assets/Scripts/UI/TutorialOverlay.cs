@@ -12,6 +12,8 @@ public class TutorialOverlay : AbstractCanvas
 	private int tutorialProgress; //! The progress in the tutorial
 	private bool backPressed; //! If the back button was pressed
 	private GameObject panel; //! The panel for displaying tutorial dialogue
+	[SerializeField]
+	private GameObject qPopPanel; //! The questlist popup panel
 	private Text textBox; //! The textbox of the panel
 	private Button backButton; //! The back button
 	private Button nextButton; //! The next button
@@ -101,8 +103,7 @@ public class TutorialOverlay : AbstractCanvas
 		backPressed = true;
 		tutorialProgress--;
 
-		textBox.text = tutorialDialogue[tutorialProgress];
-		CanvasSwitch();
+		SetText();
 
 		if(tutorialProgress <= 0)
 		{
@@ -125,13 +126,20 @@ public class TutorialOverlay : AbstractCanvas
 			return;
 		}
 
-		textBox.text = tutorialDialogue[tutorialProgress];
-		CanvasSwitch();
+		SetText();
 
 		if(tutorialProgress > 0)
 		{
 			backButton.gameObject.SetActive(true);
 		}
+	}
+
+	/*! \brief Sets the text of the tutorial dialogue
+	 */
+	private void SetText()
+	{
+		textBox.text = tutorialDialogue[tutorialProgress];
+		CanvasSwitch();
 	}
 
 	/*! \brief changes the properties for the canvas
@@ -143,6 +151,7 @@ public class TutorialOverlay : AbstractCanvas
 			//This case is used by states that set the next button to inactive
 			case -1:
 				nextButton.gameObject.SetActive(false);
+				//panel.GetComponent<CanvasGroup>().blocksRaycasts = false;
 				break;
 
 			case 0:
@@ -162,10 +171,16 @@ public class TutorialOverlay : AbstractCanvas
 			case 3:
 			case 10:
 				panel.transform.localPosition = new Vector3(0, -500, 0);
+				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().SetBackButton(false);
+				goto default;
+
+			case 5:
+				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().SetGrimBeginnings(false);
 				goto default;
 
 			case 6:
-				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().ActivateGrimBeginnings();
+				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().SetGrimBeginnings(true);
+				qPopPanel.SetActive(false);
 				goto case -1;
 
 			case 8:
@@ -174,8 +189,8 @@ public class TutorialOverlay : AbstractCanvas
 
 				if(backPressed)
 				{
-					tutorialProgress = 7;
-					OnBackButtonClick();
+					tutorialProgress = 6;
+					SetText();
 					break;
 				}
 				goto case -1;
@@ -184,7 +199,7 @@ public class TutorialOverlay : AbstractCanvas
 				panel.transform.localPosition = new Vector3(0, 400, 0);
 				if(backPressed)
 					uiControl.SetCanvas(UIState.QLIST);
-				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().ActivateBackButton();
+				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().SetBackButton(true);
 				goto case -1;
 
 			case 12:

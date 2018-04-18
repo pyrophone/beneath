@@ -13,13 +13,9 @@ using UnityEngine.UI;
  */
 public class Player : Mappable
 {
-
-    [SerializeField]
-    public static string pName; //! The player's in-game name
-    [SerializeField]
-    public static int lvl;  //! the player's level
-    [SerializeField]
-    public static int exp;   //! The players experience
+    private string pName; //! The player's in-game name
+    private int lvl;  //! The player's level
+    private int exp;   //! The players experience
 
     /*! \brief Called when the object is initialized
 	 */
@@ -82,18 +78,21 @@ public class Player : Mappable
         this.transform.localPosition = this.map.GeoToWorldPosition(this.loc);
 	}
 
-    public string GetName()
+    public string PName
     {
-        return pName;
+        get { return pName; }
+        set { pName = value; }
     }
 
-    public int GetExp()
+    public int Exp
     {
-        return exp;
+        get { return exp; }
+        set { exp = value; }
     }
 
-    public int GetLvl()
+    public int Lvl
     {
-        return lvl;
+        get { return lvl; }
+        set { lvl = value; }
     }
 }
