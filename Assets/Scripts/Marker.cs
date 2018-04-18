@@ -38,6 +38,7 @@ public class Marker : Mappable
 	 */
     private void Start()
 	{
+
 		this.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
 
         //get player object
@@ -55,7 +56,7 @@ public class Marker : Mappable
 		//this.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
 
 		//if triggered & has puzzle
-        if (puzzle != null)
+        if (isPuzzle)
         {
             //code adapted from solution at: https://stackoverflow.com/questions/365826/calculate-distance-between-2-gps-coordinates
             #region distance
