@@ -7,6 +7,7 @@ using Mapbox.Unity.Map;
 using Mapbox.Unity.Utilities;
 
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 /*! \class Marker
@@ -25,7 +26,7 @@ public class Marker : Mappable
     [SerializeField]
     protected Puzzle puzzle; //! puzzle
     [SerializeField]
-    protected string DialogueFile; //! directory of dialogue 
+    protected string DialogueFile; //! directory of dialogue
     protected string dialogue;
     [SerializeField]
     protected GameObject player; //! reference to player object
@@ -83,7 +84,7 @@ public class Marker : Mappable
                 GameObject.Find("GameManager").GetComponent<UIControl>().SetCanvas(UIState.PUZZLE);
                 GameObject.Find("PuzzleCanvas").GetComponent<PuzzleCanvas>().SetPuzzle(puzzle);
                 triggered = false;
-            }         
+            }
         }
 	}
 
@@ -140,7 +141,7 @@ public class Marker : Mappable
 
     public void OnMouseDown()
     {
-		if(inRange)
+		if(inRange && !EventSystem.current.IsPointerOverGameObject())
 			triggered = true; // ideally triggered should not be set true until player has completed all events at marker
     }
 
