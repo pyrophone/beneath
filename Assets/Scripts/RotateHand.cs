@@ -61,8 +61,7 @@ public class RotateHand : MonoBehaviour {
 	 */
     private void CheckMarkers()
     {
-        string markerName = "q" + quests.CurQuest.id + ".marker" + quests.MarkerCurrent;
-        target = GameObject.Find(markerName);
+        target = GameObject.Find(quests.NextMarkerString());
 
     }
 
