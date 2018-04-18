@@ -156,9 +156,23 @@ public class QControl : MonoBehaviour
 		}
     }
 
+    /*! \brief finds the next active marker in quest
+	 */
+    public string NextMarkerString()
+    {
+        GameObject marker = null;
+        string mark = null;
+        for (int i = 0; marker == null && i < 100; i++)
+        {
+            mark = "q" + curQuest.id + ".marker" + i;
+            marker = GameObject.Find(mark);
+        }
+        return mark;
+    }
+
     /*! \brief Clears the quest markers
      */
-	public void ClearMarkers()
+    public void ClearMarkers()
 	{
 		//Unload markers
 		for (int i = markerList.Count - 1; i >= 0; i--)
@@ -216,6 +230,7 @@ public class QControl : MonoBehaviour
     public int MarkerCurrent
     {
         get { return markerCurrent; }
+        set { MarkerCurrent = value; }
     }
 
     /*! \brief Gets the quest with a certain ID

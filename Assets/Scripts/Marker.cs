@@ -38,6 +38,7 @@ public class Marker : Mappable
 	 */
     private void Start()
 	{
+
 		this.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
 
         //get player object
@@ -55,7 +56,7 @@ public class Marker : Mappable
 		//this.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
 
 		//if triggered & has puzzle
-        if (puzzle != null)
+        if (isPuzzle)
         {
             //code adapted from solution at: https://stackoverflow.com/questions/365826/calculate-distance-between-2-gps-coordinates
             #region distance
@@ -108,16 +109,10 @@ public class Marker : Mappable
         double distance = earthRadiusM * c;
         #endregion
 
-        //DEBUG
-        try
+        try //wrap this in try catch to get rid of some dumb exceptions
         {
-            //DEBUG: show distance on main screen
-            if (GameObject.Find("GameManager").GetComponent<GameControl>().Debug)
-                GameObject.Find("DistCounter").GetComponent<Text>().text = "Distance: " + distance.ToString("N2") + "m";
-            else
-            {
-                GameObject.Find("DistCounter").GetComponent<Text>().text = "";
-            }
+            //display distance on Map Canvas
+            GameObject.Find("DistCounter").GetComponent<Text>().text = "Distance: " + distance.ToString("N2") + "m";
         }
         catch { }
 
