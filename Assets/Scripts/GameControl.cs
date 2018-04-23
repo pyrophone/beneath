@@ -23,10 +23,10 @@ public class GameControl : MonoBehaviour
 	private AbstractMap map; //! The map
 
     [SerializeField]
-    private Camera[] cams = new Camera[2];
+    private Camera[] cams = new Camera[2]; // Array that holds the two cameras, "0" is the map camera view, "1" is the AR Puzzle camera view
 
     [SerializeField]
-    private List<GameObject> items;
+    private List<GameObject> items; // List that contains references to all of the coin prefabs that are children to the image targets
 
 	private QControl qControl;
 	private UIControl uiControl;
@@ -64,7 +64,7 @@ public class GameControl : MonoBehaviour
         //set player as map center
         mapCam.CenterOnTarget(player.GetComponent<Player>().Loc);
 
-        //for now, this will test vuforia by switching the scene on click or tap.
+        //for now, this will test vuforia by switching the scene on click, tap, or keypress.
         if (Input.GetMouseButtonDown(0) && Input.touchCount > 2 || Input.GetKeyDown(KeyCode.T))
         {
             if (cams[0].enabled == true)
@@ -73,6 +73,7 @@ public class GameControl : MonoBehaviour
                 cams[1].enabled = true; // enables the AR camera view
 
                 uiControl.canvases[1].SetActive(false); // turns off the map canvas content when using the AR camera
+                // set the AR Puzzle canvas to be enabled when switching to the AR Puzzle view
 
                 for (int i = 0; i < items.Count; i++)
                 {
@@ -84,6 +85,7 @@ public class GameControl : MonoBehaviour
                 cams[0].enabled = true; // enables the main camera view
                 cams[1].enabled = false; // disables the AR camera view
                 uiControl.canvases[1].SetActive(true); // turns the map canvas back on
+                // set the AR Puzzle canvas to be disabled when switching back to the map view
             }
             /*
             if (SceneManager.GetActiveScene().buildIndex == 0)

@@ -13,10 +13,13 @@ public class ARPuzzleControl : MonoBehaviour
 
     [SerializeField]
     private int xpGain;
+
+    private Player player; //! The instantiated prefab of Player
+
     /*
     private bool getSomeXP;
 
-    private Player player; //! The instantiated prefab of Player
+    
 
     private UIControl uiCont;
 
@@ -50,25 +53,6 @@ public class ARPuzzleControl : MonoBehaviour
     private void OnMouseDown()
     {
         gameObject.SetActive(false); // deactivates the coin item when tapped
+        player.EXP += 200; // increments and sets the player's exp variable to 200
     }
-    /*
-    public int GainXp()
-    {
-
-        Debug.Log("t");
-        if (getSomeXP == true)
-        {
-            int finalXP = 0;
-            
-            finalXP = player.GetExp() + xpGain;
-
-            return finalXP;
-        }
-        else
-        {
-            return player.GetExp();
-        }
-        
-    }
-    */
 }

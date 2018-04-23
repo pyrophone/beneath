@@ -17,9 +17,7 @@ public class MapCanvas : MonoBehaviour
     private Text expText;   //! The Text component related to the player's experience
 
     private Player player; //! The instantiated prefab of Player
-
-    private ARPuzzleControl arPCon;
-
+    
     /*! \brief Called when the object is initialized
 	 */
     private void Start()
@@ -46,29 +44,15 @@ public class MapCanvas : MonoBehaviour
         GameControl gc = gObj.GetComponent<GameControl>();
         gObj = gc.playerPrefab;
         player = gObj.GetComponent<Player>();
-
-        GameObject temp = GameObject.Find("coin_05");
-        arPCon = temp.GetComponent<ARPuzzleControl>();
     }
 
 	/*! \brief Updates the object
 	 */
 	private void Update()
 	{
-        nameText.text = player.GetName();
-        lvlText.text = "LVL: " + player.GetLvl();
-        expText.text = "EXP: " + player.GetExp();
-        
-        /*
-        if (player.GetExp() == 0)
-        {
-            expText.text = "EXP: " + 0;
-        }
-        else
-        {
-            expText.text = "EXP: " + (player.GetExp() + arPCon.GainXp());
-        }
-        */
+        nameText.text = player.NAME; // get the player name
+        lvlText.text = "LVL: " + player.LVL; // get the player level
+        expText.text = "EXP: " + player.EXP; // get the player exp
     }
 
     /*! \brief Called when the location text is clicked

@@ -15,8 +15,6 @@ public class PlayerCanvas : MonoBehaviour
 
     private Player player; //! The instantiated prefab of Player
 
-    private ARPuzzleControl arPCon;
-
     /*! \brief Called when the object is initialized
 	 */
     private void Start()
@@ -33,30 +31,15 @@ public class PlayerCanvas : MonoBehaviour
         GameControl gc = gObj.GetComponent<GameControl>();
         gObj = gc.playerPrefab;
         player = gObj.GetComponent<Player>();
-
-        GameObject temp = GameObject.Find("coin_05");
-        arPCon = temp.GetComponent<ARPuzzleControl>();
-        
     }
 
 	/*! \brief Updates the object
 	 */
 	private void Update()
 	{
-        nameText.text = player.GetName();
-        lvlText.text = "LVL:" + player.GetLvl();
-        expText.text = "EXP: " + player.GetExp();
-        // expText.text = "EXP: " + (player.GetExp() + arPCon.GainXp());
-        /*
-        if (player.GetExp() == 0)
-        {
-            expText.text = "EXP: " + 0;
-        }
-        else
-        {
-            
-        }
-        */
+        nameText.text = player.NAME; // get the player name
+        lvlText.text = "LVL:" + player.LVL; // get the player level
+        expText.text = "EXP: " + player.EXP; // get the player exp
     }
 
 	/*! \brief Called when the back button is clicked

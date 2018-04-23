@@ -82,18 +82,25 @@ public class Player : Mappable
         this.transform.localPosition = this.map.GeoToWorldPosition(this.loc);
 	}
     
-    public string GetName()
+    // Getter for the player name
+    public string NAME
     {
-        return name;
+        get { return name; }
     }
 
-    public int GetExp()
+    // Getter and Setter for player exp
+    public int EXP
     {
-        return exp;
+        get { return exp; }
+        set { exp = value; }
     }
 
-    public int GetLvl()
+    // Getter and Setter for player lvl
+    public int LVL
     {
-        return lvl;
+        get{ return lvl; }
+        set { lvl = value; }
     }
+
+
 }
