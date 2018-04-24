@@ -23,9 +23,9 @@ public class Marker : Mappable
     [SerializeField]
     protected string mName; //! name of the marker
     [SerializeField]
-    protected Puzzle puzzle; //! puzzle type NOT IMPLEMENTED YET
+    protected Puzzle puzzle; //! puzzle
     [SerializeField]
-    protected string DialogueFile; //! directory of dialogue NOT IMPLEMENTED YET
+    protected string DialogueFile; //! directory of dialogue 
     protected string dialogue;
     [SerializeField]
     protected GameObject player; //! reference to player object
@@ -38,6 +38,7 @@ public class Marker : Mappable
 	 */
     private void Start()
 	{
+
 		this.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
 
         //get player object
@@ -54,7 +55,36 @@ public class Marker : Mappable
             OnArrive();
 		//this.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
 
-		//if(Input.GetMouseButtonDown(0) && inRange)
+		//if triggered & has puzzle
+        if (isPuzzle)
+        {
+            //code adapted from solution at: https://stackoverflow.com/questions/365826/calculate-distance-between-2-gps-coordinates
+            #region distance
+            int earthRadiusM = 6371000;
+
+            float dLat = Mathf.Deg2Rad * (float)(loc.x - player.GetComponent<Player>().Loc.x);
+            float dLon = Mathf.Deg2Rad * (float)(loc.y - player.GetComponent<Player>().Loc.y);
+
+            float lat1 = Mathf.Deg2Rad * (float)(loc.x);
+            float lat2 = Mathf.Deg2Rad * (float)(player.GetComponent<Player>().Loc.x);
+
+            var a = Mathf.Sin(dLat / 2) * Mathf.Sin(dLat / 2) +
+                    Mathf.Sin(dLon / 2) * Mathf.Sin(dLon / 2) * Mathf.Cos(lat1) * Mathf.Cos(lat2);
+            var c = 2 * Mathf.Atan2(Mathf.Sqrt(a), Mathf.Sqrt(1 - a)); //optimize this part or limit frequency of calculation
+            double distance = earthRadiusM * c;
+            #endregion
+            if (distance < 30)
+                transform.GetComponent<MeshRenderer>().enabled = true;
+            else
+                transform.GetComponent<MeshRenderer>().enabled = false;
+
+            if (triggered)
+            {
+                GameObject.Find("GameManager").GetComponent<UIControl>().SetCanvas(UIState.PUZZLE);
+                GameObject.Find("PuzzleCanvas").GetComponent<PuzzleCanvas>().SetPuzzle(puzzle);
+                triggered = false;
+            }         
+        }
 	}
 
     /*! \brief Checks if the player object and the marker are colliding
@@ -79,19 +109,13 @@ public class Marker : Mappable
         double distance = earthRadiusM * c;
         #endregion
 
-        //DEBUG
-        try
+        try //wrap this in try catch to get rid of some dumb exceptions
         {
-            //DEBUG: show distance on main screen
-            if (GameObject.Find("GameManager").GetComponent<GameControl>().Debug)           
-                GameObject.Find("DistCounter").GetComponent<Text>().text = "Distance: " + distance.ToString("N2") + "m";
-            else
-            {
-                GameObject.Find("DistCounter").GetComponent<Text>().text = "";
-            }
+            //display distance on Map Canvas
+            GameObject.Find("DistCounter").GetComponent<Text>().text = "Distance: " + distance.ToString("N2") + "m";
         }
         catch { }
-        
+
 
         if (distance < radius)
             return true;
@@ -136,6 +160,7 @@ public class Marker : Mappable
     public bool IsPuzzle
     {
         get { return isPuzzle; }
+        set { isPuzzle = value; }
     }
 
     /*! \brief Gets the bool for if current marker is triggered
@@ -145,6 +170,7 @@ public class Marker : Mappable
     public bool Triggered
     {
         get { return triggered; }
+        set { triggered = value; }
     }
 
     /*! \brief The Marker's real Name
@@ -171,4 +197,10 @@ public class Marker : Mappable
 		get { return dialogue; }
 		set { dialogue = value; }
 	}
+
+    public Puzzle Puzzle
+    {
+        get { return puzzle; }
+        set { puzzle = value; }
+    }
 }

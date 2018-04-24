@@ -1,9 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 using UnityEngine;
-
 
 /*! \class QControl
  *	\brief Manages quests
@@ -20,6 +20,7 @@ public class QControl : MonoBehaviour
     private bool questShouldFinish; //! If the quest should finish
 	Dictionary<Quest, bool> quests; //! Dictionary of quests and their completion status
 	private List<GameObject> markerList; //! The list of markers
+	private Dictionary<int, List<int>> markerDict; //! Dictionary to tell which markers rely on which
     private int markerCurrent; //! Current marker index in the list
     private Object[] textAssets; //! The list of text assets
     private int questAssetNum; //! The quest number for the asset list
@@ -35,11 +36,11 @@ public class QControl : MonoBehaviour
 	 */
 	private void Start()
 	{
-
 		markerList = new List<GameObject>();
 		quests = new Dictionary<Quest, bool>();
+		markerDict = new Dictionary<int, List<int>>();
 
-		textAssets = Resources.LoadAll("JSON", typeof(TextAsset));
+		textAssets = Resources.LoadAll("JSON/Quests", typeof(TextAsset));
 
 		foreach(TextAsset txt in textAssets)
 		{
@@ -61,7 +62,7 @@ public class QControl : MonoBehaviour
                 ProgressQuest();
         }
         catch { }
-		
+
 	}
 
 	/*! \brief Loads the markers into the map
@@ -75,13 +76,20 @@ public class QControl : MonoBehaviour
 				GameObject m = Instantiate(marker);
 				m.GetComponent<Marker>().Loc = curQuest.markerGenList[i].markerLoc;
 				m.GetComponent<Marker>().Map = GetComponent<GameControl>().Map;
-				m.GetComponent<Marker>().Radius = 15;
+				m.GetComponent<Marker>().Radius = 20;
 				m.name = "q" + curQuest.id + "." + "marker" + i;
+
 				if (i != 0)
 				{
 					m.SetActive(false);
 				}
+
 				markerList.Add(m);
+
+				markerDict.Add(i, new List<int>());
+
+				if(curQuest.markerGenList[i].prereqMarker > -1)
+					markerDict[curQuest.markerGenList[i].prereqMarker].Add(i);
 			}
 
 			markerCurrent = 0;
@@ -121,29 +129,50 @@ public class QControl : MonoBehaviour
 	 */
 	public void ProgressQuest()
 	{
-		if (markerList[markerCurrent].GetComponent<Marker>().Triggered)
-        {
-			markerList[markerCurrent].SetActive(false);
+		if(markerDict.Count != 0)
+		{
+			for(int i = 0; i < markerDict.Count; i++)
+			{
+				if(markerList[markerDict.ElementAt(i).Key].GetComponent<Marker>().Triggered)
+				{
+					markerCurrent = markerDict.ElementAt(i).Key;
+					markerList[markerDict.ElementAt(i).Key].SetActive(false);
 
-			if(curQuest.dialogueAmount[uiControl.Dial.DialogueNum] == 0)
-				uiControl.Dial.DialogueNum++;
+					if(curQuest.dialogueNum[markerCurrent] >= 0)
+						uiControl.SetCanvas(UIState.DIALOGUE);
 
-			else
-				uiControl.SetCanvas(UIState.DIALOGUE);
+					markerList[markerDict.ElementAt(i).Key].GetComponent<Marker>().Triggered = false;
 
-			markerCurrent++;
+					if(markerDict.ElementAt(i).Value.Count == 0)
+						OnComplete();
 
-			if (markerCurrent >= markerList.Count)
-				OnComplete();
-
-			else
-				markerList[markerCurrent].SetActive(true);
+					else
+					{
+						foreach(var nextMarker in markerDict.ElementAt(i).Value)
+							markerList[nextMarker].SetActive(true);
+					}
+				}
+			}
 		}
+    }
+
+    /*! \brief finds the next active marker in quest
+	 */
+    public string NextMarkerString()
+    {
+        GameObject marker = null;
+        string mark = null;
+        for (int i = 0; marker == null && i < 100; i++)
+        {
+            mark = "q" + curQuest.id + ".marker" + i;
+            marker = GameObject.Find(mark);
+        }
+        return mark;
     }
 
     /*! \brief Clears the quest markers
      */
-	public void ClearMarkers()
+    public void ClearMarkers()
 	{
 		//Unload markers
 		for (int i = markerList.Count - 1; i >= 0; i--)
@@ -151,6 +180,7 @@ public class QControl : MonoBehaviour
 			Destroy(markerList[i]);
 			markerList.RemoveAt(i);
 		}
+		markerDict.Clear();
 	}
 
     /*! \brief Runs upon quest completion, synonymous with reaching and completing all tasks at final marker
@@ -161,8 +191,8 @@ public class QControl : MonoBehaviour
 		curQuest.completed = true;
 		quests[curQuest] = true;
 		questShouldFinish = true;
-        
-        ClearMarkers();
+
+		ClearMarkers();
 	}
 
 	/*! \brief Getter / Setter for the current quest
@@ -200,6 +230,7 @@ public class QControl : MonoBehaviour
     public int MarkerCurrent
     {
         get { return markerCurrent; }
+        set { MarkerCurrent = value; }
     }
 
     /*! \brief Gets the quest with a certain ID

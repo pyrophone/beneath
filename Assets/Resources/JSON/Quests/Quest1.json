@@ -1,0 +1,80 @@
+{
+    "id": 1,
+    "name": "Grim Beginnings",
+    "markerGenList": [
+		{
+			"markerLoc": {
+				"x": 42.641787,
+				"y": 18.106856
+			},
+			"prereqMarker": -1
+		},
+		{
+			"markerLoc": {
+				"x": 42.641584,
+				"y": 18.107329
+			},
+			"prereqMarker": 0
+		},
+		{
+			"markerLoc": {
+				"x": 42.641361,
+				"y": 18.108965
+			},
+			"prereqMarker": 1
+		},
+		{
+			"markerLoc": {
+				"x": 42.640865,
+				"y": 18.110373
+			},
+			"prereqMarker": 2
+		}
+    ],
+    "isTutorial": true,
+    "timeToCompleteMin": 1,
+    "reward": "Hunter's License",
+    "prereqQuestID": 0,
+    "completed": false,
+    "dialogueNum": [
+		0,
+		0,
+		0,
+		1
+    ],
+    "convo": [
+		{
+			"name": "Aleksander",
+			"convoPiece": [
+				"Hello again, --------! I’m glad you found your way to the Pile Gate.",
+				"Just through here is the Stradun, the main street of Dubrovnik.It’s usually busy, as fitting a trade town, so keep your eyes up!",
+				"You wouldn’t want to walk into a stranger!",
+				"We’re going to walk down the Stradun to the Church of St. Blaise. The Archbishop will be waiting there for us."
+			]
+		},
+		{
+			"name": "Aleksander",
+			"convoPiece": [
+				"Hello world.",
+				"I like Tacos.",
+				"Don't You?",
+				"Tacos are my favorite type of sandwich."
+			]
+		},
+		{
+			"name": "Aleksander",
+			"convoPiece": [
+				"Have you heard of the tale of Darth Taco the delicious?",
+				"It's not a story the Salsarita employees would tell you. It's a Chipotle legend.",
+				"Darth Taco had such a knowledge of the TexMex that he could keep the ones he cared about from being eaten.",
+				"Ironic, he could save others from being savored and enjoyed, but not himself."
+			]
+		},
+		{
+			"name": "Grim Beginnings",
+			"convoPiece": [
+				"QUEST COMPLETE /nReward: Hunter's License"
+			]
+		}
+    ]
+}

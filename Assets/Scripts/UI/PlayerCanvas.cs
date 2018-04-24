@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerCanvas : MonoBehaviour
-{
-	private UIControl uiControl; //! Reference to the UI Controller
+public class PlayerCanvas : AbstractCanvas
+{ 
 	private Button backButton; //! Reference to the back button
 
     private Text nameText;  //! The Text component related to the player's name
@@ -15,29 +14,30 @@ public class PlayerCanvas : MonoBehaviour
 
     private Player player; //! The instantiated prefab of Player
 
-    /*! \brief Called when the object is initialized
-	 */
-    private void Start()
-	{
-		uiControl = transform.parent.GetComponent<UIControl>();
-		backButton = transform.Find("BackButton").GetComponent<Button>();
+    protected override void Awake()
+    {
+        base.Awake();
+
+        backButton = transform.Find("BackButton").GetComponent<Button>();
 		backButton.onClick.AddListener(OnBackButtonClick);
 
         nameText = transform.Find("PlayerName").GetComponent<Text>();
         lvlText = transform.Find("PlayerLevel").GetComponent<Text>();
         expText = transform.Find("PlayerXP").GetComponent<Text>();
-
-        GameObject gObj = GameObject.Find("GameManager");
-        GameControl gc = gObj.GetComponent<GameControl>();
-        gObj = gc.playerPrefab;
-        player = gObj.GetComponent<Player>();
     }
 
-	/*! \brief Updates the object
+    /*! \brief Called when the object is initialized
 	 */
-	private void Update()
+    private void Start()
 	{
-        nameText.text = player.NAME; // get the player name
+        player = GameObject.Find("player").GetComponent<Player>();
+    }
+
+    /*! \brief Updates the object
+	 */
+    protected override void Update()
+	{
+        nameText.text = player.PName; // get the player name
         lvlText.text = "LVL:" + player.LVL; // get the player level
         expText.text = "EXP: " + player.EXP; // get the player exp
     }

@@ -4,17 +4,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class IntroCanvas : MonoBehaviour
+/*! \class IntroCanvas
+ *	\brief Handles the intro canvas
+ */
+public class IntroCanvas : AbstractCanvas
 {
-	private UIControl uiControl; //! Reference to the UI control
 	private Button settingsButton; //! Reference to the settings button
 	private Button playButton; //! Reference to the play button
 
-	/*! \brief Called when the object is initialized
+	/*! \brief Called on startup
 	 */
-	private void Start()
+	protected override void Awake()
 	{
-		uiControl = transform.parent.GetComponent<UIControl>();
+		base.Awake();
 
 		playButton = transform.Find("PlayButton").GetComponent<Button>();
 		playButton.onClick.AddListener(OnPlayButtonClick);
@@ -23,9 +25,16 @@ public class IntroCanvas : MonoBehaviour
 		settingsButton.onClick.AddListener(OnSettingsButtonClick);
 	}
 
+	/*! \brief Called when the object is initialized
+	 */
+	private void Start()
+	{
+
+	}
+
 	/*! \brief Updates the object
 	 */
-	private void Update()
+	protected override void Update()
 	{
 
 	}
@@ -34,7 +43,7 @@ public class IntroCanvas : MonoBehaviour
 	 */
 	private void OnPlayButtonClick()
 	{
-		uiControl.SetCanvas(UIState.MAP);
+		uiControl.SetCanvas(UIState.TUTORIAL);
 	}
 
 	/*! \brief Called when the settings button is clicked

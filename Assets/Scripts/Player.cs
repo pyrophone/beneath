@@ -15,11 +15,11 @@ public class Player : Mappable
 {
 
     [SerializeField]
-    public static string name; //! The player's in-game name
+    private string pName; //! The player's in-game name
     [SerializeField]
-    public static int lvl;  //! the player's level
+    private int lvl;  //! the player's level
     [SerializeField]
-    public static int exp;   //! The players experience
+    private int exp;   //! The players experience
 
     /*! \brief Called when the object is initialized
 	 */
@@ -83,9 +83,10 @@ public class Player : Mappable
 	}
     
     // Getter for the player name
-    public string NAME
+    public string PName
     {
-        get { return name; }
+        get { return pName; }
+        set { pName = value; }
     }
 
     // Getter and Setter for player exp
@@ -101,6 +102,4 @@ public class Player : Mappable
         get{ return lvl; }
         set { lvl = value; }
     }
-
-
 }

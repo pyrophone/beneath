@@ -14,7 +14,7 @@ using UnityEngine.UI;
 public class GameControl : MonoBehaviour
 {
 	[SerializeField]
-	public GameObject playerPrefab; //! The prefab for the player
+	private GameObject playerPrefab; //! The prefab for the player
 
     [SerializeField]
     private QuadTreeCameraMovement mapCam; //! The map camera control
@@ -72,8 +72,7 @@ public class GameControl : MonoBehaviour
                 cams[0].enabled = false; // disables the main camera view
                 cams[1].enabled = true; // enables the AR camera view
 
-                uiControl.canvases[1].SetActive(false); // turns off the map canvas content when using the AR camera
-                // set the AR Puzzle canvas to be enabled when switching to the AR Puzzle view
+                uiControl.SetCanvas(UIState.VUFORIA); // sets the canvas to the vuforia canvas
 
                 for (int i = 0; i < items.Count; i++)
                 {
@@ -84,8 +83,8 @@ public class GameControl : MonoBehaviour
             {
                 cams[0].enabled = true; // enables the main camera view
                 cams[1].enabled = false; // disables the AR camera view
-                uiControl.canvases[1].SetActive(true); // turns the map canvas back on
-                // set the AR Puzzle canvas to be disabled when switching back to the map view
+
+                uiControl.SetCanvas(UIState.MAP); // sets the canvas to the map canvas
             }
             /*
             if (SceneManager.GetActiveScene().buildIndex == 0)
@@ -100,20 +99,24 @@ public class GameControl : MonoBehaviour
 			switch(uiControl.CurrentUIState)
 			{
 				case UIState.DIALOGUE:
-					if(uiControl.Dial.DialogueNum < qControl.CurQuest.dialogueAmount.Count ||
-						uiControl.Dial.ConvoNum < qControl.CurQuest.convo.Count)
-					{
-						uiControl.Dial.DialogueAmount = qControl.CurQuest.dialogueAmount[uiControl.Dial.DialogueNum];
-						uiControl.Dial.DialogueField.text = qControl.CurQuest.convo[uiControl.Dial.ConvoNum];
-					}
+                    if (qControl.MarkerCurrent < qControl.CurQuest.dialogueNum.Count - 1)
+                    {
+                        uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece.Count;
+                        uiControl.Dial.NameField.text = qControl.CurQuest.convo[qControl.MarkerCurrent].name;
+                        string text = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece[uiControl.Dial.ConvoNum].Replace("-----", player.GetComponent<Player>().PName);
+                        uiControl.Dial.DialogueField.text = text;
+                    }
 
-					if(qControl.QuestShouldFinish)
-					{
-						uiControl.Dial.LastDialogue = true;
-						//current quest should not be set to null until dialogue is finished
-						qControl.QuestShouldFinish = false;
-					}
-					break;
+                    if (qControl.QuestShouldFinish)
+                    {
+                        uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.CurQuest.convo.Count - 1].convoPiece.Count;
+                        uiControl.Dial.LastDialogue = true;
+                        uiControl.Dial.NameField.text = qControl.CurQuest.convo[qControl.CurQuest.convo.Count - 1].name;
+                        uiControl.Dial.DialogueField.text = "Reward: " + qControl.CurQuest.reward;
+                        qControl.SetCurrentQuest(null);
+                        qControl.QuestShouldFinish = false;
+                    }
+                    break;
 
 				default:
 					break;
@@ -121,6 +124,11 @@ public class GameControl : MonoBehaviour
         }
 
 	}
+
+    public void UpdatePlayerInfo()
+    {
+        player.GetComponent<Player>().PName = uiControl.PName;
+    }
 
 	/*! \brief Gets the map data
 	 *
@@ -130,4 +138,10 @@ public class GameControl : MonoBehaviour
 	{
 		get { return this.map; }
 	}
+
+    // getter / setter for playerprefab
+    public GameObject PlayerPrefab
+    {
+        get { return playerPrefab; }
+    }
 }

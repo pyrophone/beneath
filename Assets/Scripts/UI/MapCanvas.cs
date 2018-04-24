@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MapCanvas : MonoBehaviour
+public class MapCanvas : AbstractCanvas
 {
-	private UIControl uiControl; //! The UIControl component
+	// private UIControl uiControl; //! The UIControl component
 	private Button qListButton; //! The button for the quest list screen
 	private Button playerButton; //! The next button for the player screen
 	private Button settingsButton; //! The next button for the settings screen
@@ -17,40 +17,55 @@ public class MapCanvas : MonoBehaviour
     private Text expText;   //! The Text component related to the player's experience
 
     private Player player; //! The instantiated prefab of Player
-    
+
     /*! \brief Called when the object is initialized
 	 */
-    private void Start()
-	{
-		uiControl = transform.parent.GetComponent<UIControl>();
 
-		qListButton = transform.Find("QuestListButton").GetComponent<Button>();
-		qListButton.onClick.AddListener(OnQListButtonClick);
-		playerButton = transform.Find("PlayerButton").GetComponent<Button>();
-		playerButton.onClick.AddListener(OnPlayerButtonClick);
-		settingsButton = transform.Find("SettingsButton").GetComponent<Button>();
-		settingsButton.onClick.AddListener(OnSettingsButtonClick);
+    protected override void Awake()
+    {
+        base.Awake();
+
+        qListButton = transform.Find("QuestListButton").GetComponent<Button>();
+        qListButton.onClick.AddListener(OnQListButtonClick);
+        playerButton = transform.Find("PlayerButton").GetComponent<Button>();
+        playerButton.onClick.AddListener(OnPlayerButtonClick);
+        settingsButton = transform.Find("SettingsButton").GetComponent<Button>();
+        settingsButton.onClick.AddListener(OnSettingsButtonClick);
         locButton = transform.Find("GeoButton").GetComponent<Button>();
         locButton.onClick.AddListener(OnGeoClick);
 
+        nameText = playerButton.transform.Find("PlayerName").GetComponent<Text>();
+        lvlText = playerButton.transform.Find("PlayerLevel").GetComponent<Text>();
+        expText = playerButton.transform.Find("PlayerXP").GetComponent<Text>();
+
+        /*
+        nameText = transform.Find("PlayerName").GetComponent<Text>();
+        lvlText = transform.Find("PlayerLevel").GetComponent<Text>();
+        expText = transform.Find("PlayerXP").GetComponent<Text>();
+        */
+    }
+
+    private void Start()
+	{
+        /*
+		// uiControl = transform.parent.GetComponent<UIControl>();
+        
         if(playerButton != null)
         {
             nameText =  playerButton.transform.Find("PlayerName").GetComponent<Text>();
             lvlText =   playerButton.transform.Find("PlayerLevel").GetComponent<Text>();
             expText =   playerButton.transform.Find("PlayerXP").GetComponent<Text>();
         }
-
-        GameObject gObj = GameObject.Find("GameManager");
-        GameControl gc = gObj.GetComponent<GameControl>();
-        gObj = gc.playerPrefab;
-        player = gObj.GetComponent<Player>();
+        */
+        player = GameObject.Find("player").GetComponent<Player>();
+        
     }
 
 	/*! \brief Updates the object
 	 */
-	private void Update()
+	protected override void Update()
 	{
-        nameText.text = player.NAME; // get the player name
+        nameText.text = player.PName; // get the player name
         lvlText.text = "LVL: " + player.LVL; // get the player level
         expText.text = "EXP: " + player.EXP; // get the player exp
     }
@@ -85,11 +100,4 @@ public class MapCanvas : MonoBehaviour
 		uiControl.SetCanvas(UIState.SETTINGS);
 		uiControl.SettingsSwitchTo = UIState.MAP;
 	}
-
-    /*
-    public void AddXP()
-    {
-        expText.text = "EXP: " + (player.GetExp() + arPCon.GainXp());
-    }
-    */
 }

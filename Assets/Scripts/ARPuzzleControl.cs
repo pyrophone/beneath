@@ -6,12 +6,6 @@ using UnityEngine;
 public class ARPuzzleControl : MonoBehaviour
 {
     [SerializeField]
-    private Text mapXP;
-
-    [SerializeField]
-    private Text playerXP;
-
-    [SerializeField]
     private int xpGain;
 
     private Player player; //! The instantiated prefab of Player
