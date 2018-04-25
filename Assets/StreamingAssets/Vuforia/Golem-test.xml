@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
+  <Tracking>
+    <ImageTarget name="wrecked_hapel_AR_resized" size="1.000000 1.333578" />
+    <ImageTarget name="wooden_guillotine_AR_resized" size="1.000000 1.333058" />
+    <ImageTarget name="wierd_tiles_AR_resized" size="1.000000 1.333058" />
+    <ImageTarget name="stained_glass_AR_resized" size="1.000000 1.333333" />
+    <ImageTarget name="RTP_AR_resized" size="1.000000 1.333058" />
+    <ImageTarget name="plaque_AR_resized" size="1.000000 1.333578" />
+    <ImageTarget name="monk_college_AR_resized" size="1.000000 1.333333" />
+    <ImageTarget name="mini_statue_AR_resized" size="1.000000 1.333333" />
+    <ImageTarget name="light_house_AR_resized" size="1.000000 1.333333" />
+    <ImageTarget name="clock_tower_AR_resized" size="1.000000 1.333333" />
+    <ImageTarget name="churhc_door_AR_resized" size="1.000000 1.333333" />
+    <ImageTarget name="bust_AR_resized" size="1.000000 1.333333" />
+    <ImageTarget name="bricked_church_AR_resized" size="1.000000 1.333578" />
+    <ImageTarget name="gol-front" size="1.000000 1.333333" />
+  </Tracking>
+</QCARConfig>

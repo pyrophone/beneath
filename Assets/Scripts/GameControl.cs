@@ -21,8 +21,15 @@ public class GameControl : MonoBehaviour
 
     [SerializeField]
 	private AbstractMap map; //! The map
-	private QControl qControl; //! Reference to the quest controller
-	private UIControl uiControl; //! Reference to the UI controller
+
+    [SerializeField]
+    private Camera[] cams = new Camera[2]; // Array that holds the two cameras, "0" is the map camera view, "1" is the AR Puzzle camera view
+
+    [SerializeField]
+    private List<GameObject> items; // List that contains references to all of the coin prefabs that are children to the image targets
+
+	private QControl qControl;
+	private UIControl uiControl;
 	private GameObject player; //! The player object
 
     // Settings
@@ -33,24 +40,21 @@ public class GameControl : MonoBehaviour
 	 */
     private void Awake()
     {
-		DontDestroyOnLoad(this);
+        DontDestroyOnLoad(this);
 		player = (GameObject)Instantiate(playerPrefab);
-		player.name = "player";
 		player.GetComponent<Player>().Map = this.map;
-		player.GetComponent<Player>().PName = "player";
+		player.name = "player";
 		DontDestroyOnLoad(player);
 
 		qControl = GetComponent<QControl>();
 		uiControl = GetComponent<UIControl>();
-
-		uiControl.TutorialActive = true;
     }
 
     /*! \brief Called when the object is initialized
 	 */
     private void Start()
 	{
-
+        cams[1].enabled = false; // makes sure the AR camera is not active when the application is started
 	}
 
 	/*! \brief Updates the object
@@ -60,13 +64,34 @@ public class GameControl : MonoBehaviour
         //set player as map center
         mapCam.CenterOnTarget(player.GetComponent<Player>().Loc);
 
-        //for now, this will test vuforia by switching the scene on click or tap.
-        if (Input.GetMouseButtonDown(0) && Input.touchCount > 2)
+        //for now, this will test vuforia by switching the scene on click, tap, or keypress.
+        if (Input.GetMouseButtonDown(0) && Input.touchCount > 2 || Input.GetKeyDown(KeyCode.T))
         {
+            if (cams[0].enabled == true)
+            {
+                cams[0].enabled = false; // disables the main camera view
+                cams[1].enabled = true; // enables the AR camera view
+
+                uiControl.SetCanvas(UIState.VUFORIA); // sets the canvas to the vuforia canvas
+
+                for (int i = 0; i < items.Count; i++)
+                {
+                    items[i].SetActive(true); // makes sure that all items are active when switching to AR camera view
+                }
+            }
+            else
+            {
+                cams[0].enabled = true; // enables the main camera view
+                cams[1].enabled = false; // disables the AR camera view
+
+                uiControl.SetCanvas(UIState.MAP); // sets the canvas to the map canvas
+            }
+            /*
             if (SceneManager.GetActiveScene().buildIndex == 0)
                 SceneManager.LoadScene(1);
             else
                 SceneManager.LoadScene(0);
+                */
         }
 
         if (qControl.CurQuest != null)
@@ -74,38 +99,36 @@ public class GameControl : MonoBehaviour
 			switch(uiControl.CurrentUIState)
 			{
 				case UIState.DIALOGUE:
-					if(qControl.MarkerCurrent < qControl.CurQuest.dialogueNum.Count - 1)
-					{
-						uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece.Count;
-						uiControl.Dial.NameField.text = qControl.CurQuest.convo[qControl.MarkerCurrent].name;
-						string text = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece[uiControl.Dial.ConvoNum].Replace("-----", player.GetComponent<Player>().PName);
-						uiControl.Dial.DialogueField.text = text;
-					}
+                    if (qControl.MarkerCurrent < qControl.CurQuest.dialogueNum.Count - 1)
+                    {
+                        uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece.Count;
+                        uiControl.Dial.NameField.text = qControl.CurQuest.convo[qControl.MarkerCurrent].name;
+                        string text = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece[uiControl.Dial.ConvoNum].Replace("-----", player.GetComponent<Player>().PName);
+                        uiControl.Dial.DialogueField.text = text;
+                    }
 
-					if(qControl.QuestShouldFinish)
-					{
-						uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.CurQuest.convo.Count - 1].convoPiece.Count;
-						uiControl.Dial.LastDialogue = true;
-						uiControl.Dial.NameField.text = qControl.CurQuest.convo[qControl.CurQuest.convo.Count - 1].name;
-						uiControl.Dial.DialogueField.text = "Reward: " + qControl.CurQuest.reward;
-						qControl.SetCurrentQuest(null);
-						qControl.QuestShouldFinish = false;
-					}
-
-					break;
+                    if (qControl.QuestShouldFinish)
+                    {
+                        uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.CurQuest.convo.Count - 1].convoPiece.Count;
+                        uiControl.Dial.LastDialogue = true;
+                        uiControl.Dial.NameField.text = qControl.CurQuest.convo[qControl.CurQuest.convo.Count - 1].name;
+                        uiControl.Dial.DialogueField.text = "Reward: " + qControl.CurQuest.reward;
+                        qControl.SetCurrentQuest(null);
+                        qControl.QuestShouldFinish = false;
+                    }
+                    break;
 
 				default:
 					break;
 			}
         }
+
 	}
 
-	/*! \brief Updates the player info on other screens
-	 */
-	public void UpdatePlayerInfo()
-	{
-		player.GetComponent<Player>().PName = uiControl.PName;
-	}
+    public void UpdatePlayerInfo()
+    {
+        player.GetComponent<Player>().PName = uiControl.PName;
+    }
 
 	/*! \brief Gets the map data
 	 *
@@ -116,10 +139,9 @@ public class GameControl : MonoBehaviour
 		get { return this.map; }
 	}
 
-	/*! \brief Gets the player prefab
-	 */
-	public GameObject PlayerPrefab
-	{
-		get { return playerPrefab; }
-	}
+    // getter / setter for playerprefab
+    public GameObject PlayerPrefab
+    {
+        get { return playerPrefab; }
+    }
 }

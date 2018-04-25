@@ -13,8 +13,12 @@ using UnityEngine.UI;
  */
 public class Player : Mappable
 {
+
+    [SerializeField]
     private string pName; //! The player's in-game name
-    private int lvl;  //! The player's level
+    [SerializeField]
+    private int lvl;  //! the player's level
+    [SerializeField]
     private int exp;   //! The players experience
 
     /*! \brief Called when the object is initialized
@@ -50,7 +54,7 @@ public class Player : Mappable
         if (Input.location.status != LocationServiceStatus.Failed)
 		{
 			loc = new Vector2d(Input.location.lastData.latitude, Input.location.lastData.longitude);
-		}
+		}      
     }
 
 	/*! \brief Updates the object
@@ -77,22 +81,25 @@ public class Player : Mappable
 
         this.transform.localPosition = this.map.GeoToWorldPosition(this.loc);
 	}
-
+    
+    // Getter for the player name
     public string PName
     {
         get { return pName; }
         set { pName = value; }
     }
 
-    public int Exp
+    // Getter and Setter for player exp
+    public int EXP
     {
         get { return exp; }
         set { exp = value; }
     }
 
-    public int Lvl
+    // Getter and Setter for player lvl
+    public int LVL
     {
-        get { return lvl; }
+        get{ return lvl; }
         set { lvl = value; }
     }
 }

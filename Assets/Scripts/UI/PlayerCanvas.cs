@@ -12,19 +12,19 @@ public class PlayerCanvas : AbstractCanvas
 	private Button backButton; //! Reference to the back button
 	private Button playerButton; //! Button for the player to change their name
 
-	private Text nameText;  //! The Text component related to the player's name
-	private Text lvlText;   //! The Text component related to the player's level
-	private Text expText;   //! The Text component related to the player's experience
+    private Text nameText;  //! The Text component related to the player's name
+    private Text lvlText;   //! The Text component related to the player's level
+    private Text expText;   //! The Text component related to the player's experience
 
-	private Player player; //! The instantiated prefab of Player
+    private Player player; //! The instantiated prefab of Player
 
     /*! \brief Called on startup
 	 */
-	protected override void Awake()
-	{
-		base.Awake();
+    protected override void Awake()
+    {
+        base.Awake();
 
-		backButton = transform.Find("BackButton").GetComponent<Button>();
+        backButton = transform.Find("BackButton").GetComponent<Button>();
 		backButton.onClick.AddListener(OnBackButtonClick);
 
 		playerButton = transform.Find("PlayerName").GetComponent<Button>();
@@ -35,20 +35,20 @@ public class PlayerCanvas : AbstractCanvas
 		expText = transform.Find("PlayerXP").GetComponent<Text>();
     }
 
-	/*! \brief Called when the object is initialized
+    /*! \brief Called when the object is initialized
 	 */
-	private void Start()
+    private void Start()
 	{
         player = GameObject.Find("player").GetComponent<Player>();
-	}
+    }
 
-	/*! \brief Updates the object
+    /*! \brief Updates the object
 	 */
-	protected override void Update()
+    protected override void Update()
 	{
-        nameText.text = player.PName;
-        lvlText.text = "LVL:" + player.Lvl;
-        expText.text = "EXP: " + player.Exp;
+        nameText.text = player.PName; // get the player name
+        lvlText.text = "LVL:" + player.LVL; // get the player level
+        expText.text = "EXP: " + player.EXP; // get the player exp
     }
 
 	/*! \brief Called when the back button is clicked

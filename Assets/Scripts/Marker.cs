@@ -112,8 +112,16 @@ public class Marker : Mappable
 
         try //wrap this in try catch to get rid of some dumb exceptions
         {
+            string si = "m";
+            //if distance is above 1000 meters, change to kilometers
+            if (distance >= 1000)
+            {
+                distance /= 1000;
+                si = "km";
+            }
+                
             //display distance on Map Canvas
-            GameObject.Find("DistCounter").GetComponent<Text>().text = "Distance: " + distance.ToString("N2") + "m";
+            GameObject.Find("DistCounter").GetComponent<Text>().text = "Distance: " + distance.ToString("N2") + si;
         }
         catch { }
 

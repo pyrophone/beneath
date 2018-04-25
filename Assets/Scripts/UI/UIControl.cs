@@ -72,9 +72,12 @@ public class UIControl : MonoBehaviour
 	 */
 	public void UpdateTutorial()
 	{
-		for(int i = 0; i < canvases.Length; i++)
-			canvases[i].GetComponent<AbstractCanvas>().UpdateTutorialUI();
-
+        for (int i = 0; i < canvases.Length; i++)
+        {
+            Debug.Log(canvases[i].name);
+            if(canvases[i].name != "VuforiaCanvas")
+               canvases[i].GetComponent<AbstractCanvas>().UpdateTutorialUI();
+        }
 		transform.Find("TutorialOverlay").GetComponent<TutorialOverlay>().UpdateTutorialUI();
 	}
 
