@@ -108,16 +108,10 @@ public class QControl : MonoBehaviour
 
 		if(curQuest != null)
 		{
-			uiControl.QLCanvas.SetActiveQuestText(curQuest.name);
 			LoadMarkers();
 
 			//enough info to set up compass
 			compass.SetActive(true);
-		}
-
-		else
-		{
-			uiControl.QLCanvas.SetActiveQuestText("No Active Quest");
 		}
 
 		uiControl.QLCanvas.RefreshQuestList(quests, curQuest);

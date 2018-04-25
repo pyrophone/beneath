@@ -1,0 +1,33 @@
+fileFormatVersion: 2
+guid: ed5d402a86cfe43efb75ff66e580c473
+timeCreated: 1524578583
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Spectral
+  fontNames:
+  - Spectral
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: bfb1a8a088cd24230ae1fdc418fa40f8, type: 3}
+  - {fileID: 12800000, guid: 28b71ea392f974eaba99aac2893e9a59, type: 3}
+  - {fileID: 12800000, guid: 72cff7f316f294622b299d34c3a285c4, type: 3}
+  - {fileID: 12800000, guid: 7a4638a63fe20474a9eea09888b57129, type: 3}
+  - {fileID: 12800000, guid: e05d903b4d5a34a9fac0bf7a6c44b190, type: 3}
+  - {fileID: 12800000, guid: 0cb14e6b8483c493b869400add5de2fc, type: 3}
+  - {fileID: 12800000, guid: aff0e71c2168c4ace90c43a1fb078df8, type: 3}
+  - {fileID: 12800000, guid: 9c16440dcd88c4e9e81303ed270d15c6, type: 3}
+  - {fileID: 12800000, guid: d59cac2e5c9cf42bf8add8f03b7e5f7a, type: 3}
+  - {fileID: 12800000, guid: ced38cbffbcbf461289fbedba958d87a, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

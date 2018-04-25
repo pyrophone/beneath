@@ -22,7 +22,7 @@ public class DialogueCanvas : AbstractCanvas
 		base.Awake();
 
 		nameField = transform.Find("Name").GetComponent<Text>();
-		dialogueField = transform.Find("Text").GetComponent<Text>();
+		dialogueField = transform.Find("TextPanel").Find("Text").GetComponent<Text>();
 		nextButton = transform.Find("Button").GetComponent<Button>();
 		nextButton.onClick.AddListener(OnButtonClick);
 		ResetDialogue();

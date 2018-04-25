@@ -18,7 +18,6 @@ public class TutorialOverlay : AbstractCanvas
 	private Button backButton; //! The back button
 	private Button nextButton; //! The next button
 	private List<string> tutorialDialogue; //! The tutorial dialogue list
-	private List<Vector2> panelPos; //! The panel position
 
 	/*! \brief Called on startup
 	 */
@@ -62,13 +61,6 @@ public class TutorialOverlay : AbstractCanvas
 		tutorialDialogue.Add("Eyes up! You will be exploring Dubrovnik in the present and in the past! Don’t miss out on the beauty of the Old Town!");
 
 		textBox.text = tutorialDialogue[tutorialProgress];
-
-		panelPos = new List<Vector2>();
-
-		panelPos.Add(new Vector2(0, 350));
-		panelPos.Add(new Vector2(0, -250));
-		panelPos.Add(new Vector2(0, -500));
-		panelPos.Add(new Vector2(0, 400));
 	}
 
 	/*! \brief Updates the object
@@ -151,7 +143,6 @@ public class TutorialOverlay : AbstractCanvas
 			//This case is used by states that set the next button to inactive
 			case -1:
 				nextButton.gameObject.SetActive(false);
-				//panel.GetComponent<CanvasGroup>().blocksRaycasts = false;
 				break;
 
 			case 0:
@@ -163,14 +154,14 @@ public class TutorialOverlay : AbstractCanvas
 				goto case 0;
 
 			case 2:
-				panel.transform.localPosition = new Vector3(0, -250, 0);
+				panel.transform.localPosition = new Vector3(0, -200, 0);
 				nextButton.gameObject.SetActive(false);
 				uiControl.SetCanvas(UIState.MAP);
 				break;
 
 			case 3:
 			case 10:
-				panel.transform.localPosition = new Vector3(0, -500, 0);
+				panel.transform.localPosition = new Vector3(0, -350, 0);
 				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().SetBackButton(false);
 				goto default;
 
@@ -183,9 +174,13 @@ public class TutorialOverlay : AbstractCanvas
 				qPopPanel.SetActive(false);
 				goto case -1;
 
+			case 7:
+				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().SetQuestAccept(false);
+				goto default;
+
 			case 8:
 				transform.parent.GetComponent<QControl>().SetCurrentQuest(null);
-				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().ActivateQuestAccept();
+				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().SetQuestAccept(true);
 
 				if(backPressed)
 				{

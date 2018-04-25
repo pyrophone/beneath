@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: 7a4638a63fe20474a9eea09888b57129
+timeCreated: 1524578583
+licenseType: Free
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Spectral
+  fontNames:
+  - Spectral
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 28b71ea392f974eaba99aac2893e9a59, type: 3}
+  - {fileID: 12800000, guid: 72cff7f316f294622b299d34c3a285c4, type: 3}
+  - {fileID: 12800000, guid: 0cb14e6b8483c493b869400add5de2fc, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

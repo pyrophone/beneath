@@ -12,11 +12,11 @@ public class PlayerCanvas : AbstractCanvas
 	private Button backButton; //! Reference to the back button
 	private Button playerButton; //! Button for the player to change their name
 
-    private Text nameText;  //! The Text component related to the player's name
-    private Text lvlText;   //! The Text component related to the player's level
-    private Text expText;   //! The Text component related to the player's experience
+	private Text nameText;  //! The Text component related to the player's name
+	private Text lvlText;   //! The Text component related to the player's level
+	private Text expText;   //! The Text component related to the player's experience
 
-    private Player player; //! The instantiated prefab of Player
+	private Player player; //! The instantiated prefab of Player
 
     /*! \brief Called on startup
 	 */
@@ -30,9 +30,9 @@ public class PlayerCanvas : AbstractCanvas
 		playerButton = transform.Find("PlayerName").GetComponent<Button>();
 		playerButton.onClick.AddListener(OnPlayerButtonClick);
 
-        nameText = transform.Find("PlayerName").Find("Text").GetComponent<Text>();
-        lvlText = transform.Find("PlayerLevel").GetComponent<Text>();
-        expText = transform.Find("PlayerXP").GetComponent<Text>();
+		nameText = transform.Find("PlayerName").Find("Text").GetComponent<Text>();
+		lvlText = transform.Find("PlayerLevel").GetComponent<Text>();
+		expText = transform.Find("PlayerXP").GetComponent<Text>();
     }
 
 	/*! \brief Called when the object is initialized

@@ -12,7 +12,8 @@ public class MapCanvas : AbstractCanvas
 	private Button qListButton; //! The button for the quest list screen
 	private Button playerButton; //! The next button for the player screen
 	private Button settingsButton; //! The next button for the settings screen
-    private Button locButton; //! the button to copy the current location
+    private Button locButton; //! The button to copy the current location
+    private Button helpButton; //! The button for the help dialogue
 
     private Text nameText;  //! The Text component related to the player's name
     private Text lvlText;   //! The Text component related to the player's level
@@ -34,6 +35,8 @@ public class MapCanvas : AbstractCanvas
 		settingsButton.onClick.AddListener(OnSettingsButtonClick);
         locButton = transform.Find("GeoButton").GetComponent<Button>();
         locButton.onClick.AddListener(OnGeoClick);
+		helpButton = transform.Find("HelpButton").GetComponent<Button>();
+		helpButton.onClick.AddListener(OnHelpClick);
 
         if(playerButton != null)
         {
@@ -116,5 +119,12 @@ public class MapCanvas : AbstractCanvas
 	{
 		uiControl.SetCanvas(UIState.SETTINGS);
 		uiControl.SettingsSwitchTo = UIState.MAP;
+	}
+
+	/*! \brief Called when the help button is clicked
+	 */
+	private void OnHelpClick()
+	{
+		transform.parent.Find("PopupCanvas").GetComponent<PopupCanvas>().PopulateCanvas("Help", "This is description text that will appear on the maps and stuff.");
 	}
 }
