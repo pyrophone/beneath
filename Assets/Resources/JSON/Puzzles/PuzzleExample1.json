@@ -1,5 +1,8 @@
 {
 	"puzzleType": "multipleChoice",
+	"markerName": "name",
+	"bgPic": "background.png",
+	"arPuzzleObject": "Vuforia GameObject Name in Unity";
 	"location": {
 				"x": 42.64206,
 				"y": 18.10279

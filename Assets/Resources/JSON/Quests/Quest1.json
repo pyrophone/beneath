@@ -3,40 +3,53 @@
     "name": "Grim Beginnings",
     "markerGenList": [
 		{
+			"markerName": "name",
+			"markerPic": "placeimage.png",
 			"markerLoc": {
 				"x": 42.641787,
 				"y": 18.106856
 			},
+			"mRadius": 20;
 			"prereqMarker": -1
 		},
 		{
+			"markerName": "name",
+			"markerPic": "placeimage.png",
 			"markerLoc": {
 				"x": 42.641584,
 				"y": 18.107329
 			},
+			"mRadius": 20;
 			"prereqMarker": 0
 		},
 		{
+			"markerName": "name",
+			"markerPic": "placeimage.png",
 			"markerLoc": {
 				"x": 42.641361,
 				"y": 18.108965
 			},
+			"mRadius": 20;
 			"prereqMarker": 1
 		},
 		{
+			"markerName": "name",
+			"markerPic": "placeimage.png",
 			"markerLoc": {
 				"x": 42.640865,
 				"y": 18.110373
 			},
+			"mRadius": 20;
 			"prereqMarker": 2
 		}
     ],
     "isTutorial": true,
     "timeToCompleteMin": 1,
     "reward": "Hunter's License",
+	"rewardXP": 100,
     "prereqQuestID": 0,
     "completed": false,
-    "dialogueNum": [
+    "dialogueNum": [ 
 		0,
 		0,
 		0,
@@ -45,6 +58,8 @@
     "convo": [
 		{
 			"name": "Aleksander",
+			"charPic": "char.png",
+			"bgPic": "background.png",
 			"convoPiece": [
 				"Hello again, --------! I’m glad you found your way to the Pile Gate.",
 				"Just through here is the Stradun, the main street of Dubrovnik.It’s usually busy, as fitting a trade town, so keep your eyes up!",
@@ -54,6 +69,8 @@
 		},
 		{
 			"name": "Aleksander",
+			"charPic": "char.png",
+			"bgPic": "background.png",
 			"convoPiece": [
 				"Hello world.",
 				"I like Tacos.",
@@ -63,6 +80,8 @@
 		},
 		{
 			"name": "Aleksander",
+			"charPic": "char.png",
+			"bgPic": "background.png",
 			"convoPiece": [
 				"Have you heard of the tale of Darth Taco the delicious?",
 				"It's not a story the Salsarita employees would tell you. It's a Chipotle legend.",
@@ -72,6 +91,8 @@
 		},
 		{
 			"name": "Grim Beginnings",
+			"charPic": "char.png",
+			"bgPic": "background.png",
 			"convoPiece": [
 				"QUEST COMPLETE /nReward: Hunter's License"
 			]
