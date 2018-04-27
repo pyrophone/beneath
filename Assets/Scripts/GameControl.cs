@@ -65,7 +65,7 @@ public class GameControl : MonoBehaviour
         mapCam.CenterOnTarget(player.GetComponent<Player>().Loc);
 
         //for now, this will test vuforia by switching the scene on click, tap, or keypress.
-        if (Input.GetMouseButtonDown(0) && Input.touchCount > 2 || Input.GetKeyDown(KeyCode.T))
+        if (Input.GetMouseButtonDown(0) && Input.touchCount > 2)
         {
             if (cams[0].enabled == true)
             {

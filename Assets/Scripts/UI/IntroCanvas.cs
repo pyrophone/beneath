@@ -9,7 +9,6 @@ using UnityEngine.UI;
  */
 public class IntroCanvas : AbstractCanvas
 {
-	private Button settingsButton; //! Reference to the settings button
 	private Button playButton; //! Reference to the play button
 
 	/*! \brief Called on startup
@@ -20,9 +19,7 @@ public class IntroCanvas : AbstractCanvas
 
 		playButton = transform.Find("PlayButton").GetComponent<Button>();
 		playButton.onClick.AddListener(OnPlayButtonClick);
-
-		settingsButton = transform.Find("SettingsButton").GetComponent<Button>();
-		settingsButton.onClick.AddListener(OnSettingsButtonClick);
+        
 	}
 
 	/*! \brief Called when the object is initialized

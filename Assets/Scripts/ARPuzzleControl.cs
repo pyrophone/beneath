@@ -8,34 +8,16 @@ public class ARPuzzleControl : MonoBehaviour
     [SerializeField]
     private int xpGain;
 
+    [SerializeField]
+    private Text congrats; // reference to the textbox on the vuforia canvas
+
     private Player player; //! The instantiated prefab of Player
-
-    /*
-    private bool getSomeXP;
-
     
-
-    private UIControl uiCont;
-
-    private Button playerButton; //! The next button for the player screen
-    private Text expText;   //! The Text component related to the player's experience
-    */
+    
     // Use this for initialization
     void Start ()
     {
-        /*
-        playerButton = GameObject.Find("PlayerButton").GetComponent<Button>();
-
-        // getSomeXP = false;
-        // Debug.Log(getSomeXP);
-        // uiCont = GameObject.Find("GameManager").GetComponent<UIControl>();
-        //mapXP = GameObject.Find("MapPlayerXP")
-
-        GameObject gObj = GameObject.Find("GameManager");
-        GameControl gc = gObj.GetComponent<GameControl>();
-        gObj = gc.playerPrefab;
-        player = gObj.GetComponent<Player>();
-        */
+        // congrats.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -47,6 +29,7 @@ public class ARPuzzleControl : MonoBehaviour
     private void OnMouseDown()
     {
         gameObject.SetActive(false); // deactivates the coin item when tapped
-        player.EXP += 200; // increments and sets the player's exp variable to 200
+        player.EXP += xpGain; // increments and sets the player's exp variable to 200
+        congrats.text = "Congratulations!";
     }
 }

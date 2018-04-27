@@ -20,7 +20,8 @@ public class TutorialCanvas : AbstractCanvas
 	{
 		base.Awake();
 
-		dialogueBox = transform.Find("Dialogue").GetComponent<Text>();
+        // dialogueBox = transform.Find("DialogueBox").GetComponentInChildren<Text>();
+        dialogueBox = transform.Find("Dialogue").GetComponent<Text>();
 		nextButton = transform.Find("Button").GetComponent<Button>();
 		nextButton.onClick.AddListener(OnNextButtonClick);
 	}

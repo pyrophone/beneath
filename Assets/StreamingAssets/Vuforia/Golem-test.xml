@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="dog2" size="1.000000 0.600000" />
+    <ImageTarget name="maskeron-dog-onofrio-full" size="1.000000 1.497872" />
+    <ImageTarget name="Onos_Fountain_03" size="1.000000 1.333136" />
+    <ImageTarget name="Onos_Fountain_02" size="1.000000 1.333125" />
+    <ImageTarget name="Onos_Fountain_01" size="1.000000 1.333133" />
     <ImageTarget name="wrecked_hapel_AR_resized" size="1.000000 1.333578" />
     <ImageTarget name="wooden_guillotine_AR_resized" size="1.000000 1.333058" />
     <ImageTarget name="wierd_tiles_AR_resized" size="1.000000 1.333058" />
