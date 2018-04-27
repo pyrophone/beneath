@@ -18,6 +18,7 @@ public class Quest
 	public bool isTutorial; //! If the quest is the tutorial quest
 	public int timeToCompleteMin; //! The minimum time to complete the quest
 	public string reward; //! The quest reward
+    public int rewardXP; //! XP reward
 	public int prereqQuestID; //! The prerequisite quest ID, if 0, ignored
 	public bool completed; //! If the quest is completed
 	public List<int> dialogueNum; //! The amount of dialogue for each section

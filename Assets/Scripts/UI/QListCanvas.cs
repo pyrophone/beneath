@@ -157,6 +157,7 @@ public class QListCanvas : AbstractCanvas
 			popUpPanel.transform.Find("Text").GetComponent<Text>().text = "Are you sure you want to accept " + q.name + "? This will cancel your current quest";
 			popUpPanel.SetActive(true);
 
+
 			popUpPanel.transform.Find("YesButton").GetComponent<Button>().interactable = true;
 
 			//More funky anonymous function stuff

@@ -1,0 +1,19 @@
+{
+	"puzzleType": "multipleChoice",
+	"markerName": "The Stradun",
+	"bgPic": "",
+	"failText": "No, that's not it either. It's limestone, which  has been polished to a shine by millions of footsteps.",
+	"winText": "That's right! The limestone has been polished to a shine by millions of footsteps.",
+	"arPuzzleObject": "",
+	"location": {
+				"x": 42.64147,
+				"y": 18.10833
+	},
+	"puzzleQuestion": "This main street is quite beautiful, isn't it? What kind of stone do you think it is paved with?",
+	"puzzleAnswers": [
+		"Slate",
+		"Granite",
+		"Limestone"
+	],
+	"correctAnswer": 2
+}

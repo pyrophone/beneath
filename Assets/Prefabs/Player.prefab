@@ -19,7 +19,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4930672331673114}
-  - component: {fileID: 33981359954535274}
   - component: {fileID: 135132205250953934}
   - component: {fileID: 23257510096148004}
   - component: {fileID: 114176586738672092}
@@ -37,7 +36,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1760772783511124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2373.3628, y: 2912.8164, z: -3898.2886}
+  m_LocalPosition: {x: -204.35458, y: 770.5548, z: -2142.6763}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,13 +76,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33981359954535274
-MeshFilter:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1760772783511124}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &114176586738672092
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -99,6 +91,9 @@ MonoBehaviour:
   loc:
     x: 0
     y: 0
+  pName: 
+  lvl: 0
+  exp: 0
 --- !u!135 &135132205250953934
 SphereCollider:
   m_ObjectHideFlags: 1

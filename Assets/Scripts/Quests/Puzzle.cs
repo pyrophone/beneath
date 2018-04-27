@@ -15,6 +15,8 @@ public class Puzzle
 	public string puzzleType;
     public Vector2d location;
 	public string puzzleQuestion;
+    public string failText;
+    public string winText;
     public List<string> puzzleAnswers;
     public int correctAnswer; //! the correct answer
     public string filePath; //! Used for saving data

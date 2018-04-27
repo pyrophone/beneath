@@ -95,7 +95,7 @@ public class RotateHand : MonoBehaviour {
             //catch { }
 
             //set arrow direction to gyro
-            Quaternion gyro = Input.gyro.attitude;
+            Quaternion gyro = Quaternion.Euler(Input.gyro.attitude.eulerAngles + new Vector3(0f,0f,45f * Mathf.Deg2Rad));
             gyro.x = 0; gyro.y = 0;
             transform.rotation = gyro;
 

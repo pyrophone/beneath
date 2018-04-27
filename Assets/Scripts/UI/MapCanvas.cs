@@ -11,10 +11,14 @@ public class MapCanvas : AbstractCanvas
 	private Button playerButton; //! The next button for the player screen
 	private Button settingsButton; //! The next button for the settings screen
     private Button locButton; //! the button to copy the current location
+    private Button helpButton; //! the button for help, you silly goose
+    private Button helpDialog; //! the pseudocanvas for help
+    private Button helpClose; //! close button on help
+
+    private GameObject helpCanvas; //! help pseudocanvas 
 
     private Text nameText;  //! The Text component related to the player's name
     private Text lvlText;   //! The Text component related to the player's level
-    private Text expText;   //! The Text component related to the player's experience
 
     private Player player; //! The instantiated prefab of Player
 
@@ -27,16 +31,24 @@ public class MapCanvas : AbstractCanvas
 
         qListButton = transform.Find("QuestListButton").GetComponent<Button>();
         qListButton.onClick.AddListener(OnQListButtonClick);
+
         playerButton = transform.Find("PlayerButton").GetComponent<Button>();
         playerButton.onClick.AddListener(OnPlayerButtonClick);
         settingsButton = transform.Find("SettingsButton").GetComponent<Button>();
         settingsButton.onClick.AddListener(OnSettingsButtonClick);
         locButton = transform.Find("GeoButton").GetComponent<Button>();
         locButton.onClick.AddListener(OnGeoClick);
+        helpButton = transform.Find("HelpButton").GetComponent<Button>();
+        helpButton.onClick.AddListener(OnHelpButtonClick);
+        
+
+        helpCanvas = transform.Find("HelpBox").gameObject;
+        helpClose = helpCanvas.transform.Find("Button").GetComponent<Button>();
+        helpClose.onClick.AddListener(OnHelpCloseClick);
+        helpCanvas.SetActive(false);
 
         nameText = playerButton.transform.Find("PlayerName").GetComponent<Text>();
         lvlText = playerButton.transform.Find("PlayerLevel").GetComponent<Text>();
-        expText = playerButton.transform.Find("PlayerXP").GetComponent<Text>();
 
         /*
         nameText = transform.Find("PlayerName").GetComponent<Text>();
@@ -67,7 +79,6 @@ public class MapCanvas : AbstractCanvas
 	{
         nameText.text = player.PName; // get the player name
         lvlText.text = "LVL: " + player.LVL; // get the player level
-        expText.text = "EXP: " + player.EXP; // get the player exp
     }
 
     /*! \brief Called when the location text is clicked
@@ -128,4 +139,20 @@ public class MapCanvas : AbstractCanvas
 		uiControl.SetCanvas(UIState.SETTINGS);
 		uiControl.SettingsSwitchTo = UIState.MAP;
 	}
+
+    /*! \brief Called when the help button is clicked
+	 */
+    private void OnHelpButtonClick()
+    {
+        helpCanvas.SetActive(true);
+        helpButton.gameObject.SetActive(false);
+    }
+
+    /*! \brief Called when the help button is clicked
+	 */
+    private void OnHelpCloseClick()
+    {
+        helpCanvas.SetActive(false);
+        helpButton.gameObject.SetActive(true);
+    }
 }

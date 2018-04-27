@@ -26,6 +26,9 @@ public class PuzzleCanvas : AbstractCanvas
     [SerializeField]
     private Button backButton; //! back button
 
+    [SerializeField]
+    private int amtWrong; //! amount times answered wrong
+
     /*! \brief Called when the object is initialized
 	 */
     protected override void Awake()
@@ -56,29 +59,47 @@ public class PuzzleCanvas : AbstractCanvas
 	 */
     private void OnRightAnswer()
     {
+        int xp = (2 - amtWrong) * 50;
+        if (xp == 0)
+            xp = 2;
         Debug.Log("OnRightAnswer()");
-        uiControl.SetCanvas(UIState.MAP);
+        qText.text = puzzle.winText + "\n\nYou've Earned " + xp + "xp!";
+        GameObject.Find("player").GetComponent<Player>().EXP += xp;
+        aAButton.interactable = false;
+        aBButton.interactable = false;
+        aCButton.interactable = false;
+    }
+
+    /*! \brief next three mothods called when the specific button is pressed
+	 */
+    private void OnWrongAnswerA()
+    {
+        aAButton.interactable = false;
+        OnWrongAnswer();
+    }
+    private void OnWrongAnswerB()
+    {
+        aBButton.interactable = false;
+        OnWrongAnswer();
+    }
+    private void OnWrongAnswerC()
+    {
+        aCButton.interactable = false;
+        OnWrongAnswer();
     }
 
     /*! \brief Called when the wrong answer is pressed
-	 */
+     */
     private void OnWrongAnswer()
     {
-        switch (puzzle.correctAnswer)
+        amtWrong++;
+        if (amtWrong >= 2)
         {
-            case 0:
-                aBButton.GetComponent<Image>().color = Color.red;
-                aCButton.GetComponent<Image>().color = Color.red;
-                break;
-            case 1:
-                aAButton.GetComponent<Image>().color = Color.red;
-                aCButton.GetComponent<Image>().color = Color.red;
-                break;
-            case 2:
-                aAButton.GetComponent<Image>().color = Color.red;
-                aBButton.GetComponent<Image>().color = Color.red;
-                break;
+            amtWrong = 2;
+            qText.text = puzzle.failText;
         }
+        else
+            qText.text = "Good guess, but that's not correct. Try again?";
     }
 
     /*! \brief Called when the back button is pressed
@@ -99,9 +120,14 @@ public class PuzzleCanvas : AbstractCanvas
         aBText.text = p.puzzleAnswers[1];
         aCText.text = p.puzzleAnswers[2];
 
-        aAButton.GetComponent<Image>().color = Color.white;
-        aAButton.GetComponent<Image>().color = Color.white;
-        aAButton.GetComponent<Image>().color = Color.white;
+        aAButton.interactable = true;
+        aBButton.interactable = true;
+        aCButton.interactable = true;
+
+        amtWrong = 0;
+
+        //assign back button listener because I have no idea if the last listener actually gets set
+        backButton.onClick.AddListener(OnBackButtonClick);
 
         // perhaps not the most efficient solution but it works?
         //assign listeners
@@ -109,17 +135,17 @@ public class PuzzleCanvas : AbstractCanvas
         {
             case 0:
                 aAButton.onClick.AddListener(OnRightAnswer);
-                aBButton.onClick.AddListener(OnWrongAnswer);
-                aCButton.onClick.AddListener(OnWrongAnswer);
+                aBButton.onClick.AddListener(OnWrongAnswerB);
+                aCButton.onClick.AddListener(OnWrongAnswerC);
                 break;
             case 1:
-                aAButton.onClick.AddListener(OnWrongAnswer);
+                aAButton.onClick.AddListener(OnWrongAnswerA);
                 aBButton.onClick.AddListener(OnRightAnswer);
-                aCButton.onClick.AddListener(OnWrongAnswer);
+                aCButton.onClick.AddListener(OnWrongAnswerC);
                 break;
             case 2:
-                aAButton.onClick.AddListener(OnWrongAnswer);
-                aBButton.onClick.AddListener(OnWrongAnswer);
+                aAButton.onClick.AddListener(OnWrongAnswerA);
+                aBButton.onClick.AddListener(OnWrongAnswerB);
                 aCButton.onClick.AddListener(OnRightAnswer);
                 break;
         } 

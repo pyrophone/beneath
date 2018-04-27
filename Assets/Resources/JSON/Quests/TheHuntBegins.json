@@ -1,0 +1,96 @@
+{
+    "id": 1,
+    "name": "The Hunt Begins",
+    "markerGenList": [
+		{
+			"markerName": "Pile Gate Bridge",
+			"markerPic": "placeimage.png",
+			"markerLoc": {
+				"x": 42.641787,
+				"y": 18.106856
+			},
+			"mRadius": 20,
+			"prereqMarker": -1
+		},
+		{
+			"markerName": "Stradun Narrative",
+			"markerPic": "placeimage.png",
+			"markerLoc": {
+				"x": 42.641584,
+				"y": 18.107329
+			},
+			"mRadius": 20,
+			"prereqMarker": 0
+		},
+		{
+			"markerName": "Church of St. Blaise",
+			"markerPic": "placeimage.png",
+			"markerLoc": {
+				"x": 42.640865,
+				"y": 18.110373
+			},
+			"mRadius": 20,
+			"prereqMarker": 1
+		},
+		{
+			"markerName": "Church of St. Blaise",
+			"markerPic": "placeimage.png",
+			"markerLoc": {
+				"x": 42.640865,
+				"y": 18.110373
+			},
+			"mRadius": 20,
+			"prereqMarker": 2
+		}
+    ],
+    "isTutorial": true,
+    "timeToCompleteMin": 1,
+    "reward": "Hunter's License",
+	"rewardXP": 300,
+    "prereqQuestID": 0,
+    "completed": false,
+    "dialogueNum": [ 
+		0,
+		0,
+		0,
+		1
+    ],
+    "convo": [
+		{
+			"name": "Aleksander",
+			"charPic": "char.png",
+			"bgPic": "background.png",
+			"convoPiece": [
+				"Hello again, -----!",
+				"Follow me into town. We're headed to the church of St. Blaise, where the archbishop would like to speak with you."
+			]
+		},
+		{
+			"name": "Aleksander",
+			"charPic": "char.png",
+			"bgPic": "background.png",
+			"convoPiece": [
+				"Welcome to the old town! These walls have stood for hundreds of years, protecting the city from all kinds of invaders.",
+                "The city is full of secrets and hidden treasures, all just waiting to be found!"
+			]
+		},
+		{
+			"name": "Aleksander/Archbishop",
+			"charPic": "char.png",
+			"bgPic": "background.png",
+			"convoPiece": [
+				"Here we are, the Church of St. Blaise! It looks like the archbishop is waiting for us.",
+                "Hello, explorer. Thank you for coming to see our beautiful city. We are excited to have someone here who can uncover all of Dubrovnik's secrets!",
+                "I have a gift for you!"
+			]
+		},
+		{
+			"name": "Quest Complete",
+			"charPic": "char.png",
+			"bgPic": "background.png",
+			"convoPiece": [
+				"Here, take this license. It will allow you to explore the old city and the surrounding area unhindered. We have already recieved word from a number of citizens who have tasks for you to undertake!"
+			]
+		}
+    ]
+}

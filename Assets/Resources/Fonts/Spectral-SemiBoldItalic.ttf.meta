@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: f8aeaed92b2b34d7bab46fbd21f462c0
-timeCreated: 1521638780
+guid: 02bf65c7c58af2b4e90ac072f59ec851
+timeCreated: 1524793728
 licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
@@ -10,9 +10,9 @@ TrueTypeFontImporter:
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Chantelli Antiqua
+  fontName: Spectral
   fontNames:
-  - Chantelli Antiqua
+  - Spectral
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
