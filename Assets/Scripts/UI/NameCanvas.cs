@@ -48,17 +48,33 @@ public class NameCanvas : AbstractCanvas
 	 */
 	private void OnCloseClick()
 	{
-		if(nameField.text.Length < 3 || nameField.text.Length > 12)
-			errorText.SetActive(true);
+		if(errorText.active)
+		{
+			nameField.gameObject.SetActive(true);
+			displayText.SetActive(true);
+			errorText.SetActive(false);
+			enterBtn.gameObject.transform.Find("Text").GetComponent<Text>().text = "Continue";
+		}
 
 		else
 		{
-			displayText.GetComponent<Text>().text = "Are you sure your name is " + nameField.text + "?";
-			nameField.gameObject.SetActive(false);
-			errorText.SetActive(false);
-			enterBtn.gameObject.SetActive(false);
-			yesBtn.gameObject.SetActive(true);
-			noBtn.gameObject.SetActive(true);
+			if(nameField.text.Length < 3 || nameField.text.Length > 12)
+			{
+				nameField.gameObject.SetActive(false);
+				displayText.SetActive(false);
+				errorText.SetActive(true);
+				enterBtn.gameObject.transform.Find("Text").GetComponent<Text>().text = "Okay";
+			}
+
+			else
+			{
+				displayText.GetComponent<Text>().text = "Are you sure your name is " + nameField.text + "?";
+				nameField.gameObject.SetActive(false);
+				errorText.SetActive(false);
+				enterBtn.gameObject.SetActive(false);
+				yesBtn.gameObject.SetActive(true);
+				noBtn.gameObject.SetActive(true);
+			}
 		}
 	}
 

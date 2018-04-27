@@ -8,12 +8,17 @@ using UnityEngine.UI;
  */
 public class DialogueCanvas : AbstractCanvas
 {
-	private Text nameField; //! The name field of the canvas
+	private Text header; //! The headerof the canvas
 	private Text dialogueField; //! The text field of the canvas
-	private Button nextButton; //! The next button for the dialogue screen
+	private Image bg; //! The background image
+	private Image charPic; //! The background image
+	private Button panel; //! The next button for the dialogue screen
+	private Button rwdButton; //! The reward button
+	private Button exitButton; //! The reward button
 	private int convoNum; //! Progress in dialogue
 	private int dialogueAmount; //! The amount of dialogue in each part
 	private bool lastDialogue; //! If the dialogue is the last one
+	private bool displayReward; //! If the reward should be displayed
 
 	/*! \brief Called on startup
 	 */
@@ -21,10 +26,18 @@ public class DialogueCanvas : AbstractCanvas
 	{
 		base.Awake();
 
-		nameField = transform.Find("Name").GetComponent<Text>();
-		dialogueField = transform.Find("TextPanel").Find("Text").GetComponent<Text>();
-		nextButton = transform.Find("Button").GetComponent<Button>();
-		nextButton.onClick.AddListener(OnButtonClick);
+		//header = transform.Find("Header").Find("Text").GetComponent<Text>();
+		dialogueField = transform.Find("Button").Find("Text").GetComponent<Text>();
+		bg = transform.Find("BG").GetComponent<Image>();
+		charPic = dialogueField.gameObject.transform.Find("Char").GetComponent<Image>();
+		panel = transform.Find("Button").GetComponent<Button>();
+		panel.onClick.AddListener(OnButtonClick);
+		exitButton = panel.gameObject.transform.Find("Text").Find("Button").GetComponent<Button>();
+		exitButton.onClick.AddListener(OnButtonClick);
+		exitButton.gameObject.SetActive(false);
+		rwdButton = panel.gameObject.transform.Find("Text").Find("rwdButton").GetComponent<Button>();
+		rwdButton.onClick.AddListener(OnRWDButton);
+
 		ResetDialogue();
 	}
 
@@ -48,7 +61,22 @@ public class DialogueCanvas : AbstractCanvas
 	{
 		convoNum++;
 
-		if(convoNum > dialogueAmount - 1)
+		if(convoNum > dialogueAmount - 2)
+		{
+			if(!displayReward)
+			{
+				rwdButton.gameObject.SetActive(false);
+				exitButton.gameObject.SetActive(true);
+			}
+
+			else
+			{
+				rwdButton.gameObject.SetActive(true);
+				exitButton.gameObject.SetActive(false);
+			}
+		}
+
+		else if(convoNum > dialogueAmount - 1)
 		{
 			convoNum = 0;
 			uiControl.SetCanvas(UIState.MAP);
@@ -61,6 +89,14 @@ public class DialogueCanvas : AbstractCanvas
 		}
 	}
 
+	/*! \brief Event for when the rewards button is used
+	 */
+	private void OnRWDButton()
+	{
+		convoNum = 0;
+		uiControl.SetCanvas(UIState.PLAYER);
+	}
+
 	/*! \brief Resets the dialogue progress
 	 */
 	public void ResetDialogue()
@@ -68,12 +104,20 @@ public class DialogueCanvas : AbstractCanvas
 		convoNum = 0;
 	}
 
-	/*! \brief Getter / Setter for nameField
+	/*! \brief Getter / Setter for the background
 	 */
-	public Text NameField
+	public Image BG
 	{
-		get { return nameField; }
-		set { nameField = value; }
+		get { return BG; }
+		set { BG = value; }
+	}
+
+	/*! \brief Getter / Setter for charPic
+	 */
+	public Image CharPic
+	{
+		get { return charPic; }
+		set { charPic = value; }
 	}
 
 	/*! \brief Getter / Setter for dialogueField
@@ -104,5 +148,13 @@ public class DialogueCanvas : AbstractCanvas
 	{
 		get { return lastDialogue; }
 		set { lastDialogue = value; }
+	}
+
+	/*! \brief Getter / Setter for the last dialogue bool
+	 */
+	public bool DisplayReward
+	{
+		get { return displayReward; }
+		set { displayReward = value; }
 	}
 }

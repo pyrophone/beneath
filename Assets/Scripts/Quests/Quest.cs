@@ -22,8 +22,8 @@ public class Quest
 	public bool completed; //! If the quest is completed
 	public List<int> dialogueNum; //! The amount of dialogue for each section
 	public List<ConvoData> convo; //! All the dialogue said by the character
-    public string filePath; //! Used for saving data
     public string qDescription; //! The quest description
+    public string filePath; //! Used for saving data
 
     /*! \brief Gets quests from JSON
      *

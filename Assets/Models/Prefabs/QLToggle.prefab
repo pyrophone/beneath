@@ -161,10 +161,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: fd4f5041db3114af7b83ea5f2fa2ba30, type: 3}
-    m_FontSize: 65
+    m_FontSize: 42
     m_FontStyle: 0
     m_BestFit: 0
-    m_MinSize: 6
+    m_MinSize: 4
     m_MaxSize: 86
     m_Alignment: 3
     m_AlignByGeometry: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Quest Name
+  m_Text: The Hunt Begins
 --- !u!114 &114670414611041062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -264,8 +264,8 @@ RectTransform:
   m_Father: {fileID: 224706399348404186}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.15, y: 0.5}
-  m_AnchorMax: {x: 0.15, y: 0.5}
+  m_AnchorMin: {x: 0.2, y: 0.5}
+  m_AnchorMax: {x: 0.2, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 650, y: 130}
   m_Pivot: {x: 0, y: 0.5}
@@ -305,7 +305,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 125, y: 100}
+  m_SizeDelta: {x: 60, y: 55}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224783813028736014
 RectTransform:
@@ -321,10 +321,10 @@ RectTransform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.55, y: 0.5}
-  m_AnchorMax: {x: 0.55, y: 0.5}
+  m_AnchorMin: {x: 0.53, y: 0.5}
+  m_AnchorMax: {x: 0.53, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 800, y: 150}
+  m_SizeDelta: {x: 780, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &224796433947695164
 RectTransform:
@@ -340,8 +340,8 @@ RectTransform:
   m_Father: {fileID: 224706399348404186}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.2, y: 0.5}
-  m_AnchorMax: {x: 0.2, y: 0.5}
-  m_AnchoredPosition: {x: -160, y: 0}
-  m_SizeDelta: {x: 125, y: 100}
+  m_AnchorMin: {x: 0.1, y: 0.5}
+  m_AnchorMax: {x: 0.1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 60, y: 55}
   m_Pivot: {x: 0, y: 0.5}

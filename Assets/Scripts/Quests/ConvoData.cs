@@ -5,5 +5,7 @@ using System.Collections.Generic;
 public class ConvoData
 {
 	public string name;
+	public string charPic;
+	public string bgPic;
 	public List<string> convoPiece;
 }

@@ -31,7 +31,7 @@ public class TutorialOverlay : AbstractCanvas
 		btn.GetComponent<Button>().onClick.AddListener(OnBtnClick);
 		textBox = btn.transform.Find("Text").GetComponent<Text>();
 
-		lgBtn = panel.transform.Find("LetsGo").gameObject;
+		lgBtn = textBox.gameObject.transform.Find("LetsGo").gameObject;
 		lgBtn.GetComponent<Button>().onClick.AddListener(OnBtnClick);
 	}
 
@@ -106,19 +106,19 @@ public class TutorialOverlay : AbstractCanvas
 		switch(tutorialProgress)
 		{
 			case 0:
-				panel.transform.localPosition = new Vector3(30, 100, 0);
+				panel.transform.localPosition = new Vector3(10, -100, 0);
 				uiControl.SetCanvas(UIState.MAP);
 				Reset();
 				break;
 			case 1:
-				panel.transform.localPosition = new Vector3(30, -200, 0);
+				panel.transform.localPosition = new Vector3(10, -325, 0);
 				break;
 			case 2:
 				panel.SetActive(false);
 				break;
 			case 3:
 				btn.GetComponent<Button>().interactable = true;
-				panel.transform.localPosition = new Vector3(-20, 100, 0);
+				panel.transform.localPosition = new Vector3(-5, 100, 0);
 				break;
 			case 4:
 				panel.transform.Find("Alek").gameObject.SetActive(false);

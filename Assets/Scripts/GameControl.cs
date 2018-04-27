@@ -36,6 +36,8 @@ public class GameControl : MonoBehaviour
     [SerializeField]
     public bool Debug; //! Debug bool (on/off) currently used for distance
 
+    Dictionary<string, Sprite> sprites;
+
     /*! \brief Called when the game is initialized (ensures this code runs first no matter what)
 	 */
     private void Awake()
@@ -48,6 +50,21 @@ public class GameControl : MonoBehaviour
 
 		qControl = GetComponent<QControl>();
 		uiControl = GetComponent<UIControl>();
+
+		sprites = new Dictionary<string, Sprite>();
+
+		Object[] bgs = Resources.LoadAll("Backgrounds", typeof(Sprite));
+		Object[] chars = Resources.LoadAll("Characters", typeof(Sprite));
+
+		foreach(Sprite s in bgs)
+		{
+			sprites.Add("Backgrounds/" + s.name, s);
+		}
+
+		foreach(Sprite s in chars)
+		{
+			sprites.Add("Characters/" + s.name, s);
+		}
     }
 
     /*! \brief Called when the object is initialized
@@ -97,17 +114,29 @@ public class GameControl : MonoBehaviour
                     if (qControl.MarkerCurrent < qControl.CurQuest.dialogueNum.Count - 1)
                     {
                         uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece.Count;
-                        uiControl.Dial.NameField.text = qControl.CurQuest.convo[qControl.MarkerCurrent].name;
                         string text = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece[uiControl.Dial.ConvoNum].Replace("-----", player.GetComponent<Player>().PName);
                         uiControl.Dial.DialogueField.text = text;
+
+                        Sprite s = sprites[qControl.CurQuest.convo[qControl.MarkerCurrent].bgPic];
+						//UnityEngine.Debug.Log(s);
+
+                        //if(s != null)
+						//	uiControl.Dial.BG.sprite = s;
+
+						s =  sprites[qControl.CurQuest.convo[qControl.MarkerCurrent].charPic];
+
+						//UnityEngine.Debug.Log(s);
+						//if(s != null)
+						//	uiControl.Dial.CharPic.sprite = s;
                     }
 
                     if (qControl.QuestShouldFinish)
                     {
                         uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.CurQuest.convo.Count - 1].convoPiece.Count;
                         uiControl.Dial.LastDialogue = true;
-                        uiControl.Dial.NameField.text = qControl.CurQuest.convo[qControl.CurQuest.convo.Count - 1].name;
-                        uiControl.Dial.DialogueField.text = "Reward: " + qControl.CurQuest.reward;
+                        //uiControl.Dial.DialogueField.text = "Reward: " + qControl.CurQuest.reward;
+                        string text = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece[uiControl.Dial.ConvoNum].Replace("-----", player.GetComponent<Player>().PName);
+                        uiControl.Dial.DialogueField.text = text;
                         qControl.SetCurrentQuest(null);
                         qControl.QuestShouldFinish = false;
                     }

@@ -11,9 +11,12 @@ public class QListCanvas : AbstractCanvas
 {
 	private QControl qControl; //! Reference to the Quest controller
 	private Button backButton; //! Reference to the back button
-	private GameObject scrollContent; //! Scroll content list
+	private GameObject avScrollContent; //! Scroll content list
+	private GameObject coScrollContent; //! Scroll content list
 	[SerializeField]
 	private GameObject tglObj; //! Used to instantiate buttons for the scroll view.
+	[SerializeField]
+	private GameObject compObj; //! Used to instantiate buttons for the scroll view.
 	private GameObject popUpPanel; //! The panel that pops up for confirmations
 
 	/*! \brief Called on startup
@@ -22,7 +25,8 @@ public class QListCanvas : AbstractCanvas
 	{
 		base.Awake();
 
-		scrollContent = transform.Find("Scroll View").Find("Viewport").Find("Content").gameObject;
+		avScrollContent = transform.Find("AvailableScrollView").Find("Viewport").Find("Content").gameObject;
+		coScrollContent = transform.Find("CompletedScrollView").Find("Viewport").Find("Content").gameObject;
 		popUpPanel = transform.Find("PopUpPanel").gameObject;
 		popUpPanel.SetActive(false);
 		qControl = transform.parent.GetComponent<QControl>();
@@ -73,11 +77,17 @@ public class QListCanvas : AbstractCanvas
 	 */
 	public void RefreshQuestList(Dictionary<Quest, bool> quests, Quest current)
 	{
-		Vector3 offset = new Vector3(0.0f, 75.0f, 0.0f);
+		Vector3 offset1 = new Vector3(0.0f, 75.0f, 0.0f);
+		Vector3 offset2 = new Vector3(0.0f, 75.0f, 0.0f);
 
-		for(int i = scrollContent.transform.childCount - 1; i >= 0; i--)
+		for(int i = avScrollContent.transform.childCount - 1; i >= 0; i--)
 		{
-			DestroyImmediate(scrollContent.transform.GetChild(i).gameObject);
+			DestroyImmediate(avScrollContent.transform.GetChild(i).gameObject);
+		}
+
+		for(int i = coScrollContent.transform.childCount - 1; i >= 0; i--)
+		{
+			DestroyImmediate(coScrollContent.transform.GetChild(i).gameObject);
 		}
 
 		foreach(var quest in quests)
@@ -85,9 +95,9 @@ public class QListCanvas : AbstractCanvas
 			if(quest.Value == false)
 			{
 				GameObject tgl = Instantiate(tglObj);
-				tgl.transform.SetParent(scrollContent.transform, false);
+				tgl.transform.SetParent(avScrollContent.transform, false);
 				tgl.transform.Find("Toggle").Find("Label").GetComponent<Text>().text = quest.Key.name;
-				tgl.transform.localPosition += offset;
+				tgl.transform.localPosition += offset1;
 
 				Toggle tglComp = tgl.transform.Find("Toggle").GetComponent<Toggle>();
 
@@ -103,13 +113,23 @@ public class QListCanvas : AbstractCanvas
 				if(prereq != null && prereq.completed == false)
 					tglComp.interactable = false;
 
-				offset -= new Vector3(0, 150.0f, 0.0f);
+				offset1 -= new Vector3(0, 150.0f, 0.0f);
+			}
+
+			else
+			{
+				GameObject txt = Instantiate(compObj);
+				txt.transform.SetParent(coScrollContent.transform, false);
+				txt.GetComponent<Text>().text = quest.Key.name;
+				txt.transform.localPosition += offset2;
+
+				offset2 -= new Vector3(0, 150.0f, 0.0f);
 			}
 		}
 
-		for(int i = 0; i < scrollContent.transform.childCount; i++)
+		for(int i = 0; i < avScrollContent.transform.childCount; i++)
 		{
-			Transform child = scrollContent.transform.GetChild(i);
+			Transform child = avScrollContent.transform.GetChild(i);
 		}
 	}
 
