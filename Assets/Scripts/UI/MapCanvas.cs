@@ -40,28 +40,12 @@ public class MapCanvas : AbstractCanvas
         nameText = playerButton.transform.Find("PlayerName").GetComponent<Text>();
         lvlText = playerButton.transform.Find("PlayerLevel").GetComponent<Text>();
         expText = playerButton.transform.Find("PlayerXP").GetComponent<Text>();
-
-        /*
-        nameText = transform.Find("PlayerName").GetComponent<Text>();
-        lvlText = transform.Find("PlayerLevel").GetComponent<Text>();
-        expText = transform.Find("PlayerXP").GetComponent<Text>();
-        */
     }
 
     private void Start()
 	{
-        /*
-		// uiControl = transform.parent.GetComponent<UIControl>();
-        
-        if(playerButton != null)
-        {
-            nameText =  playerButton.transform.Find("PlayerName").GetComponent<Text>();
-            lvlText =   playerButton.transform.Find("PlayerLevel").GetComponent<Text>();
-            expText =   playerButton.transform.Find("PlayerXP").GetComponent<Text>();
-        }
-        */
         player = GameObject.Find("player").GetComponent<Player>();
-        
+
     }
 
 	/*! \brief Updates the object
@@ -77,7 +61,7 @@ public class MapCanvas : AbstractCanvas
 	 */
     private void OnGeoClick()
     {
-        //solution from https://github.com/sanukin39/UniClipboard    
+        //solution from https://github.com/sanukin39/UniClipboard
         UniClipboard.SetText(transform.Find("GeoCounter").GetComponent<Text>().text);
         Handheld.Vibrate();
     }
@@ -106,11 +90,8 @@ public class MapCanvas : AbstractCanvas
         if (uiControl.TutorialActive)
         {
             TutorialOverlay to = transform.Find("../TutorialOverlay").GetComponent<TutorialOverlay>();
-            if (to.TutorialProgress == 2)
-            {
-                to.SpecialClick();
-                uiControl.SetCanvas(UIState.QLIST);
-            }
+			to.SpecialClick();
+			uiControl.SetCanvas(UIState.QLIST);
         }
 
         else
@@ -129,7 +110,6 @@ public class MapCanvas : AbstractCanvas
 	private void OnSettingsButtonClick()
 	{
 		uiControl.SetCanvas(UIState.SETTINGS);
-		uiControl.SettingsSwitchTo = UIState.MAP;
 	}
 
 	/*! \brief Called when the help button is clicked

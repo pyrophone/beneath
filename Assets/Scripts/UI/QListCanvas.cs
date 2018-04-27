@@ -63,9 +63,6 @@ public class QListCanvas : AbstractCanvas
 	 */
 	private void OnBackButtonClick()
 	{
-		if(uiControl.TutorialActive)
-			transform.Find("../TutorialOverlay").GetComponent<TutorialOverlay>().SpecialClick();
-
 		uiControl.SetCanvas(UIState.MAP);
 	}
 
@@ -114,9 +111,6 @@ public class QListCanvas : AbstractCanvas
 		{
 			Transform child = scrollContent.transform.GetChild(i);
 		}
-
-		if(uiControl.TutorialActive && GameObject.Find("TutorialOverlay").GetComponent<TutorialOverlay>().TutorialProgress < 8)
-			scrollContent.transform.GetChild(0).Find("Toggle").GetComponent<Toggle>().interactable = false;
 	}
 
 	/*! \brief Called when a quest button is clicked
@@ -137,48 +131,39 @@ public class QListCanvas : AbstractCanvas
 
 		nBtn.onClick.AddListener(() => {
 				tgl.isOn = !tgl.isOn;
-				gameObject.transform.Find("PopUpPanel").gameObject.SetActive(false);
+				popUpPanel.SetActive(false);
 			});
 
 		if(tgl.isOn)
 		{
-			popUpPanel.transform.Find("YesButton").Find("Text").GetComponent<Text>().text = "Accept";
-			popUpPanel.transform.Find("NoButton").Find("Text").GetComponent<Text>().text = "Cancel";
-
-			popUpPanel.transform.Find("Text").GetComponent<Text>().text = "Are you sure you want to accept " + q.name + "? This will cancel your current quest.";
+			popUpPanel.transform.Find("Header").Find("Title").GetComponent<Text>().text = q.name;
+			popUpPanel.transform.Find("TextBox").Find("QuestDescriptionText").GetComponent<Text>().text = "Quest Description";
+			popUpPanel.transform.Find("Text").GetComponent<Text>().text = "Accept Quest?";
 			popUpPanel.SetActive(true);
 
 			yBtn.interactable = true;
 
-			//More funky anonymous function stuff
-			if(uiControl.TutorialActive) {
-				yBtn.onClick.AddListener(() => {
-					qControl.SetCurrentQuest(q);
-					popUpPanel.SetActive(false);
+			yBtn.onClick.AddListener(() => {
+				qControl.SetCurrentQuest(q);
+				popUpPanel.SetActive(false);
+
+				//More funky anonymous function stuff
+				if(uiControl.TutorialActive)
 					transform.Find("../TutorialOverlay").GetComponent<TutorialOverlay>().SpecialClick();
-				});
 
-				yBtn.interactable = false;
+				uiControl.SetCanvas(UIState.MAP);
+			});
+
+			if(uiControl.TutorialActive)
 				nBtn.interactable = false;
-			}
 
-			else {
-				yBtn.onClick.AddListener(() => {
-					qControl.SetCurrentQuest(q);
-					popUpPanel.SetActive(false);
-				});
-
-				nBtn.GetComponent<Button>().interactable = true;
-			}
-
+			else
+				nBtn.interactable = true;
 		}
 
 		else
 		{
-			popUpPanel.transform.Find("YesButton").Find("Text").GetComponent<Text>().text = "Yes";
-			popUpPanel.transform.Find("NoButton").Find("Text").GetComponent<Text>().text = "No";
-
-			popUpPanel.transform.Find("Text").GetComponent<Text>().text = "Are you sure you want to cancel your current quest?";
+			popUpPanel.transform.Find("Text").GetComponent<Text>().text = "Cancel Quest?";
 			popUpPanel.SetActive(true);
 
 			yBtn.interactable = true;
@@ -186,35 +171,5 @@ public class QListCanvas : AbstractCanvas
 
 			uiControl.Dial.ResetDialogue();
 		}
-	}
-
-	/*! \brief Activates grim beginnings for the tutorial
-	 *
-	 * \param (bool) state - If the toggle should be set
-	 */
-	public void SetGrimBeginnings(bool state)
-	{
-		if(uiControl.TutorialActive)
-			scrollContent.transform.GetChild(0).Find("Toggle").GetComponent<Toggle>().interactable = state;
-	}
-
-	/*! \brief Sets the quest accept button for the tutorial
-	 *
-	 * \param (bool) state - If the button should be set
-	 */
-	public void SetQuestAccept(bool state)
-	{
-		if(uiControl.TutorialActive)
-			popUpPanel.transform.Find("YesButton").GetComponent<Button>().interactable = state;
-	}
-
-	/*! \brief Activates the back button for the tutorial
-	 *
-	 * \param (bool) state - If the button should be set
-	 */
-	public void SetBackButton(bool state)
-	{
-		if(uiControl.TutorialActive)
-			backButton.interactable = state;
 	}
 }

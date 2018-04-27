@@ -23,6 +23,7 @@ public class Quest
 	public List<int> dialogueNum; //! The amount of dialogue for each section
 	public List<ConvoData> convo; //! All the dialogue said by the character
     public string filePath; //! Used for saving data
+    public string qDescription; //! The quest description
 
     /*! \brief Gets quests from JSON
      *

@@ -20,7 +20,6 @@ public class UIControl : MonoBehaviour
 	private DialogueCanvas dial; //! The dialogue canvas script
 	private QListCanvas qlCanvas; //! The quest list canvas script
 	private UIState currentUIState; //! The current state of the UI
-	private UIState settingsSwitchTo; //! The UIState tha the settings menu should switch to
 	private bool doTutOverlay; //! If the tutorial overlay
     [SerializeField]
 	private bool tutorialActive; //! Is the tutorial active
@@ -74,7 +73,6 @@ public class UIControl : MonoBehaviour
 	{
         for (int i = 0; i < canvases.Length; i++)
         {
-            Debug.Log(canvases[i].name);
             if(canvases[i].name != "VuforiaCanvas")
                canvases[i].GetComponent<AbstractCanvas>().UpdateTutorialUI();
         }
@@ -103,14 +101,6 @@ public class UIControl : MonoBehaviour
 	{
 		get { return currentUIState; }
 		set { currentUIState = value; }
-	}
-
-	/*! \brief Getter / Setter for settingsSwitchTo
-	 */
-	public UIState SettingsSwitchTo
-	{
-		get { return settingsSwitchTo; }
-		set { settingsSwitchTo = value; }
 	}
 
 	/*! \brief Getter / Setter for doTutOverlay

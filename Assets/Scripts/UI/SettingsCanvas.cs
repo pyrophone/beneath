@@ -44,7 +44,7 @@ public class SettingsCanvas : AbstractCanvas
 	 */
 	private void OnBackButtonClick()
 	{
-		uiControl.SetCanvas(uiControl.SettingsSwitchTo);
+		uiControl.SetCanvas(UIState.MAP);
 	}
 
     /*! \brief Called when the debug setting is toggled

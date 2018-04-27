@@ -79,6 +79,7 @@ public class GameControl : MonoBehaviour
                     items[i].SetActive(true); // makes sure that all items are active when switching to AR camera view
                 }
             }
+
             else
             {
                 cams[0].enabled = true; // enables the main camera view
@@ -86,12 +87,6 @@ public class GameControl : MonoBehaviour
 
                 uiControl.SetCanvas(UIState.MAP); // sets the canvas to the map canvas
             }
-            /*
-            if (SceneManager.GetActiveScene().buildIndex == 0)
-                SceneManager.LoadScene(1);
-            else
-                SceneManager.LoadScene(0);
-                */
         }
 
         if (qControl.CurQuest != null)
@@ -122,7 +117,6 @@ public class GameControl : MonoBehaviour
 					break;
 			}
         }
-
 	}
 
     public void UpdatePlayerInfo()
