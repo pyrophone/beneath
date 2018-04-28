@@ -33,7 +33,7 @@ public class DialogueCanvas : AbstractCanvas
 		bg = transform.Find("BG").GetComponent<Image>();
 		charPic = transform.Find("Char").GetComponent<Image>();
 		panel = transform.Find("Char").Find("Button").gameObject;
-		screenButton = transform.Find("Button").GetComponent<Button>();
+		screenButton = transform.Find("Button").GetComponentInChildren<Button>();
 		screenButton.onClick.AddListener(OnButtonClick);
 		exitButton = panel.transform.Find("Text").Find("Button").GetComponent<Button>();
 		exitButton.onClick.AddListener(OnButtonClick);
