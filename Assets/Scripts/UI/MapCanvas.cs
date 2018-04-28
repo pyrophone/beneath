@@ -10,12 +10,15 @@ public class MapCanvas : AbstractCanvas
 	private Button qListButton; //! The button for the quest list screen
 	private Button playerButton; //! The next button for the player screen
 	private Button settingsButton; //! The next button for the settings screen
-    private Button locButton; //! The button to copy the current location
-    private Button helpButton; //! The button for the help dialogue
+    private Button locButton; //! the button to copy the current location
+    private Button helpButton; //! the button for help, you silly goose
+    private Button helpDialog; //! the pseudocanvas for help
+    private Button helpClose; //! close button on help
+
+    private GameObject helpCanvas; //! help pseudocanvas 
 
     private Text nameText;  //! The Text component related to the player's name
     private Text lvlText;   //! The Text component related to the player's level
-    private Text expText;   //! The Text component related to the player's experience
 
     private Player player; //! The instantiated prefab of Player
 
@@ -28,24 +31,44 @@ public class MapCanvas : AbstractCanvas
 
         qListButton = transform.Find("QuestListButton").GetComponent<Button>();
         qListButton.onClick.AddListener(OnQListButtonClick);
+
         playerButton = transform.Find("PlayerButton").GetComponent<Button>();
         playerButton.onClick.AddListener(OnPlayerButtonClick);
         settingsButton = transform.Find("SettingsButton").GetComponent<Button>();
         settingsButton.onClick.AddListener(OnSettingsButtonClick);
-        locButton = transform.Find("GeoButton").GetComponent<Button>();
-        locButton.onClick.AddListener(OnGeoClick);
-		helpButton = transform.Find("HelpButton").GetComponent<Button>();
-		helpButton.onClick.AddListener(OnHelpClick);
+        helpButton = transform.Find("HelpButton").GetComponent<Button>();
+        helpButton.onClick.AddListener(OnHelpButtonClick);
+        
+
+        helpCanvas = transform.Find("HelpBox").gameObject;
+        helpClose = helpCanvas.transform.Find("Button").GetComponent<Button>();
+        helpClose.onClick.AddListener(OnHelpCloseClick);
+        helpCanvas.SetActive(false);
 
         nameText = playerButton.transform.Find("PlayerName").GetComponent<Text>();
         lvlText = playerButton.transform.Find("PlayerLevel").GetComponent<Text>();
-        expText = playerButton.transform.Find("PlayerXP").GetComponent<Text>();
+
+        /*
+        nameText = transform.Find("PlayerName").GetComponent<Text>();
+        lvlText = transform.Find("PlayerLevel").GetComponent<Text>();
+        expText = transform.Find("PlayerXP").GetComponent<Text>();
+        */
     }
 
     private void Start()
 	{
+        /*
+		// uiControl = transform.parent.GetComponent<UIControl>();
+        
+        if(playerButton != null)
+        {
+            nameText =  playerButton.transform.Find("PlayerName").GetComponent<Text>();
+            lvlText =   playerButton.transform.Find("PlayerLevel").GetComponent<Text>();
+            expText =   playerButton.transform.Find("PlayerXP").GetComponent<Text>();
+        }
+        */
         player = GameObject.Find("player").GetComponent<Player>();
-
+        
     }
 
 	/*! \brief Updates the object
@@ -53,15 +76,14 @@ public class MapCanvas : AbstractCanvas
 	protected override void Update()
 	{
         nameText.text = player.PName; // get the player name
-        lvlText.text = "LVL: " + player.LVL; // get the player level
-        expText.text = "EXP: " + player.EXP; // get the player exp
+        lvlText.text = "Level " + player.LVL; // get the player level
     }
 
     /*! \brief Called when the location text is clicked
 	 */
     private void OnGeoClick()
     {
-        //solution from https://github.com/sanukin39/UniClipboard
+        //solution from https://github.com/sanukin39/UniClipboard    
         UniClipboard.SetText(transform.Find("GeoCounter").GetComponent<Text>().text);
         Handheld.Vibrate();
     }
@@ -90,8 +112,11 @@ public class MapCanvas : AbstractCanvas
         if (uiControl.TutorialActive)
         {
             TutorialOverlay to = transform.Find("../TutorialOverlay").GetComponent<TutorialOverlay>();
-			to.SpecialClick();
-			uiControl.SetCanvas(UIState.QLIST);
+            if (to.TutorialProgress == 0)
+            {
+                to.SpecialClick();
+                uiControl.SetCanvas(UIState.QLIST);
+            }
         }
 
         else
@@ -110,12 +135,22 @@ public class MapCanvas : AbstractCanvas
 	private void OnSettingsButtonClick()
 	{
 		uiControl.SetCanvas(UIState.SETTINGS);
+		uiControl.SettingsSwitchTo = UIState.MAP;
 	}
 
-	/*! \brief Called when the help button is clicked
+    /*! \brief Called when the help button is clicked
 	 */
-	private void OnHelpClick()
-	{
-		transform.parent.Find("PopupCanvas").GetComponent<PopupCanvas>().PopulateCanvas("Help", "This is description text that will appear on the maps and stuff.");
-	}
+    private void OnHelpButtonClick()
+    {
+        helpCanvas.SetActive(true);
+        helpButton.gameObject.SetActive(false);
+    }
+
+    /*! \brief Called when the help button is clicked
+	 */
+    private void OnHelpCloseClick()
+    {
+        helpCanvas.SetActive(false);
+        helpButton.gameObject.SetActive(true);
+    }
 }

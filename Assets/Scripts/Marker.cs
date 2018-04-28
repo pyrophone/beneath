@@ -20,9 +20,13 @@ public class Marker : Mappable
     [SerializeField]
     protected bool isPuzzle; //! does the marker include a puzzle?
     [SerializeField]
+    protected bool isAR; //! is this the elusive and rare artificial reality puzzle?
+    [SerializeField]
     protected bool triggered; //! is marker triggered?
     [SerializeField]
     protected string mName; //! name of the marker
+    [SerializeField]
+    protected string mPic; //! pic of the marker
     [SerializeField]
     protected Puzzle puzzle; //! puzzle
     [SerializeField]
@@ -34,6 +38,26 @@ public class Marker : Mappable
     protected int radius; //! radius of the marker (in meters) aka trigger distance
 
     private bool inRange; //! If the player is in range of the marker
+
+    private GameObject waypointP;
+    private GameObject puzzleP;
+
+    [SerializeField]
+    private SettingsCanvas settings;
+
+    private PopupCanvas popup; //! The popup canvas script
+
+    /*! \brief Called on startup
+	 */
+    private void Awake()
+    {
+        //get popup
+        popup = GameObject.Find("PopupCanvas").GetComponent<PopupCanvas>();
+
+        puzzleP = transform.Find("puzzle").gameObject;
+        if (!isAR)
+            waypointP = transform.Find("waypoint").gameObject;
+    }
 
     /*! \brief Called when the object is initialized
 	 */
@@ -59,6 +83,7 @@ public class Marker : Mappable
 		//if triggered & has puzzle
         if (isPuzzle)
         {
+            waypointP.SetActive(false);
             //code adapted from solution at: https://stackoverflow.com/questions/365826/calculate-distance-between-2-gps-coordinates
             #region distance
             int earthRadiusM = 6371000;
@@ -75,9 +100,9 @@ public class Marker : Mappable
             double distance = earthRadiusM * c;
             #endregion
             if (distance < 30)
-                transform.GetComponent<MeshRenderer>().enabled = true;
+                puzzleP.SetActive(true);
             else
-                transform.GetComponent<MeshRenderer>().enabled = false;
+                puzzleP.SetActive(false);
 
             if (triggered)
             {
@@ -86,7 +111,40 @@ public class Marker : Mappable
                 triggered = false;
             }
         }
-	}
+        else if (isAR && GameObject.Find("GameManager").GetComponent<GameControl>().OnofrioAR)
+        {
+            GetComponent<SphereCollider>().enabled = true;
+            //code adapted from solution at: https://stackoverflow.com/questions/365826/calculate-distance-between-2-gps-coordinates
+            #region distance
+            int earthRadiusM = 6371000;
+
+            float dLat = Mathf.Deg2Rad * (float)(loc.x - player.GetComponent<Player>().Loc.x);
+            float dLon = Mathf.Deg2Rad * (float)(loc.y - player.GetComponent<Player>().Loc.y);
+
+            float lat1 = Mathf.Deg2Rad * (float)(loc.x);
+            float lat2 = Mathf.Deg2Rad * (float)(player.GetComponent<Player>().Loc.x);
+
+            var a = Mathf.Sin(dLat / 2) * Mathf.Sin(dLat / 2) +
+                    Mathf.Sin(dLon / 2) * Mathf.Sin(dLon / 2) * Mathf.Cos(lat1) * Mathf.Cos(lat2);
+            var c = 2 * Mathf.Atan2(Mathf.Sqrt(a), Mathf.Sqrt(1 - a)); //optimize this part or limit frequency of calculation
+            double distance = earthRadiusM * c;
+            #endregion
+            if (distance < 30)
+                puzzleP.SetActive(true);
+            else
+                puzzleP.SetActive(false);
+
+            if (triggered)
+            {
+                GameObject.Find("GameManager").GetComponent<GameControl>().Cams[1].enabled = true; // enables the AR camera view
+                GameObject.Find("GameManager").GetComponent<GameControl>().Cams[0].enabled = false; // disables the main camera view
+                GameObject.Find("GameManager").GetComponent<UIControl>().SetCanvas(UIState.VUFORIA);
+                triggered = false;
+            }
+        }
+        else
+            puzzleP.SetActive(false);
+    }
 
     /*! \brief Checks if the player object and the marker are colliding
 	 *
@@ -120,8 +178,15 @@ public class Marker : Mappable
                 si = "km";
             }
 
-            //display distance on Map Canvas
-            GameObject.Find("DistCounter").GetComponent<Text>().text = "Distance: " + distance.ToString("N2") + si;
+            if (GameObject.Find("GameManager").GetComponent<GameControl>().DistCountEnabled)
+            {
+                //display distance on Map Canvas
+                GameObject.Find("DistCounter").GetComponent<Text>().text = "Next Location: " + distance.ToString("N2") + si;
+            }
+            else
+            {
+                GameObject.Find("DistCounter").GetComponent<Text>().text = "";
+            }
         }
         catch { }
 
@@ -140,8 +205,11 @@ public class Marker : Mappable
     {
         if(!inRange)
         {
-			Handheld.Vibrate();
-			inRange = true;
+            if (GameObject.Find("GameManager").GetComponent<GameControl>().VibrateEnable)
+            {
+                Handheld.Vibrate();
+            }
+            inRange = true;
         }
 
         //TODO
@@ -149,8 +217,15 @@ public class Marker : Mappable
 
     public void OnMouseDown()
     {
-		if(inRange && !EventSystem.current.IsPointerOverGameObject())
-			triggered = true; // ideally triggered should not be set true until player has completed all events at marker
+        //  && !EventSystem.current.IsPointerOverGameObject() //this still wasn't working
+        if (inRange)
+        {
+            triggered = true; // ideally triggered should not be set true until player has completed all events at marker
+            if (name == "q1.marker1")
+                GameObject.Find("GameManager").GetComponent<GameControl>().OnofrioAR = true;
+        }     
+        else
+            popup.PopulateCanvas(this);
     }
 
     /*! \brief Gets the bool for if current marker is part of a quest
@@ -170,6 +245,16 @@ public class Marker : Mappable
     {
         get { return isPuzzle; }
         set { isPuzzle = value; }
+    }
+
+    /*! \brief Gets the bool for if current marker has an AR puzzle
+	 *
+	 * \return (bool) The bool for isAR
+	 */
+    public bool IsAR
+    {
+        get { return isAR; }
+        set { isAR = value; }
     }
 
     /*! \brief Gets the bool for if current marker is triggered
@@ -212,5 +297,15 @@ public class Marker : Mappable
     {
         get { return puzzle; }
         set { puzzle = value; }
+    }
+
+    /*! \brief The image of the marker
+    *
+    * \return (string) the name of the marker
+    */
+    public string MPic
+    {
+        get { return mPic; }
+        set { mPic = value; }
     }
 }

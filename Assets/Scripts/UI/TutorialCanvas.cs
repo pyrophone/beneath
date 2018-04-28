@@ -19,8 +19,9 @@ public class TutorialCanvas : AbstractCanvas
 	protected override void Awake()
 	{
 		base.Awake();
-
-		dialogueBox = transform.Find("TextPanel").Find("Dialogue").GetComponent<Text>();
+        
+        // dialogueBox = transform.Find("DialogueBox").GetComponentInChildren<Text>();
+        dialogueBox = transform.Find("DialogueBox").GetComponentInChildren<Text>();
 		nextButton = transform.Find("Button").GetComponent<Button>();
 		nextButton.onClick.AddListener(OnNextButtonClick);
 	}
@@ -32,9 +33,19 @@ public class TutorialCanvas : AbstractCanvas
 		dialCount = 0;
 
 		dialogue = new List<string>();
-		dialogue.Add("Hello and welcome to the city of Dubrovnik!\n\nMy name is Aleksander.\n\nWe've been expecting you.");
+		dialogue.Add("Hello and welcome to the city of Dubrovnik!");
+		dialogue.Add("My name is Aleksander. I am what is known as a ‘krsnik’.");
+		dialogue.Add("The krsnik are local shamans, allied with the church here.");
+		dialogue.Add("We work with the church to seek and destroy monsters, wherever they hide.");
+		dialogue.Add("You are the new agent, sent from the Vatican, yes? What is your name?");
 		dialogue.Add("");
-		dialogue.Add("Welcome, -----.\n\nEach quest you complete will increase your knowledge of this ancient city, and help you unlock the mysteries of What Lies Beneath.\n\nShall we begin?");
+		dialogue.Add("Ah, I see! A lovely name. Well, -----, let me explain what is going on.");
+		dialogue.Add("Dubrovnik, you see, has been infested with an especially vile monster...");
+		dialogue.Add("The vampire! The vile bloodsucking fiends have taken up residence in this beautiful city.");
+		dialogue.Add("They have been stealing innocent lives nearly every night.");
+		dialogue.Add("Normally, the krsnik and the local agents of the church would be enough to fend them off.");
+		dialogue.Add("But this time… something is different. We think that the creatures are planning something.");
+		dialogue.Add("We have called for your aid. We need someone with your skills to help us defeat the vampire menace.");
 	}
 
 	/*! \brief Updates the object
@@ -50,10 +61,10 @@ public class TutorialCanvas : AbstractCanvas
 	{
 		dialCount++;
 
-		if(dialCount == 1)
+		if(dialCount == 5)
 			transform.parent.Find("NameEnterCanvas").gameObject.SetActive(true);
 
-		else if(dialCount == 2)
+		else if(dialCount == 6)
 			dialogue[dialCount] = dialogue[dialCount].Replace("-----", uiControl.PName);
 
 		else if(dialCount >= dialogue.Count)

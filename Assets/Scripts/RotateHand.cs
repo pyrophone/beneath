@@ -86,21 +86,14 @@ public class RotateHand : MonoBehaviour {
         //check if gyro is active
         if (SystemInfo.supportsGyroscope)
         {
-            //DEBUG
-            //try
-            //{
-            //    //DEBUG: show location on main screen
-            //    GameObject.Find("GeoAttitude").GetComponent<Text>().text = "gyro: " + Input.gyro.attitude;
-            //}
-            //catch { }
-
             //set arrow direction to gyro
             Quaternion gyro = Input.gyro.attitude;
             gyro.x = 0; gyro.y = 0;
             transform.rotation = gyro;
 
         }
-
+        else
+            gameObject.SetActive(false);
     }
 
     /*! \brief checks if Gyro is supported

@@ -76,10 +76,11 @@ public class QControl : MonoBehaviour
 			{
 				GameObject m = Instantiate(marker);
 				m.GetComponent<Marker>().Loc = curQuest.markerGenList[i].markerLoc;
-				m.GetComponent<Marker>().MName = curQuest.markerGenList[i].markerName;
 				m.GetComponent<Marker>().Map = GetComponent<GameControl>().Map;
-				m.GetComponent<Marker>().Radius = 20;
-				m.name = "q" + curQuest.id + "." + "marker" + i;
+                m.GetComponent<Marker>().Radius = curQuest.markerGenList[i].mRadius;
+                m.GetComponent<Marker>().MName = curQuest.markerGenList[i].markerName;
+                m.GetComponent<Marker>().MPic = curQuest.markerGenList[i].markerPic;
+                m.name = "q" + curQuest.id + "." + "marker" + i;
 
 				if (i != 0)
 				{
@@ -188,7 +189,8 @@ public class QControl : MonoBehaviour
 		curQuest.completed = true;
 		quests[curQuest] = true;
 		questShouldFinish = true;
-		ClearMarkers();
+        GameObject.Find("player").GetComponent<Player>().EXP += curQuest.rewardXP;
+        ClearMarkers();
 	}
 
 	/*! \brief Gets the quest with a certain ID

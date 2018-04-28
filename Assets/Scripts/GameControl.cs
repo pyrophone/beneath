@@ -35,6 +35,12 @@ public class GameControl : MonoBehaviour
     // Settings
     [SerializeField]
     public bool Debug; //! Debug bool (on/off) currently used for distance
+    public bool DistCountEnabled; //! Distance counter enabled
+    public bool VibrateEnable; //! Vibe on or not, simple
+    //cheaty but fuck it
+    public bool OnofrioAR; //! lets AR marker know that it needs to show up
+
+    Dictionary<string, Sprite> sprites;
 
     Dictionary<string, Sprite> sprites;
 
@@ -82,7 +88,7 @@ public class GameControl : MonoBehaviour
         mapCam.CenterOnTarget(player.GetComponent<Player>().Loc);
 
         //for now, this will test vuforia by switching the scene on click, tap, or keypress.
-        if (Input.GetMouseButtonDown(0) && Input.touchCount > 2 || Input.GetKeyDown(KeyCode.T))
+        if (Input.GetMouseButtonDown(0) && Input.touchCount > 2 || Input.GetKeyDown(KeyCode.BackQuote))
         {
             if (cams[0].enabled == true)
             {
@@ -195,5 +201,12 @@ public class GameControl : MonoBehaviour
     public GameObject PlayerPrefab
     {
         get { return playerPrefab; }
+    }
+
+    // getter / setter for cams
+    public Camera[] Cams
+    {
+        get { return cams; }
+        set { cams = value; }
     }
 }
