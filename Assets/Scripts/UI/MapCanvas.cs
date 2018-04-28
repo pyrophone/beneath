@@ -36,8 +36,6 @@ public class MapCanvas : AbstractCanvas
         playerButton.onClick.AddListener(OnPlayerButtonClick);
         settingsButton = transform.Find("SettingsButton").GetComponent<Button>();
         settingsButton.onClick.AddListener(OnSettingsButtonClick);
-        locButton = transform.Find("GeoButton").GetComponent<Button>();
-        locButton.onClick.AddListener(OnGeoClick);
         helpButton = transform.Find("HelpButton").GetComponent<Button>();
         helpButton.onClick.AddListener(OnHelpButtonClick);
         
