@@ -11,4 +11,5 @@ public class MarkerInfo
 {
 	public Vector2d markerLoc; //! The location of the marker
 	public int prereqMarker; //! The prereqMarker to this marker
+	public string markerName; //! The real name of the marker
 }

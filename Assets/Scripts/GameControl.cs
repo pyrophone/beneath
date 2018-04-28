@@ -111,35 +111,64 @@ public class GameControl : MonoBehaviour
 			switch(uiControl.CurrentUIState)
 			{
 				case UIState.DIALOGUE:
-                    if (qControl.MarkerCurrent < qControl.CurQuest.dialogueNum.Count - 1)
-                    {
-                        uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece.Count;
-                        string text = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece[uiControl.Dial.ConvoNum].Replace("-----", player.GetComponent<Player>().PName);
-                        uiControl.Dial.DialogueField.text = text;
+					if (qControl.MarkerCurrent < qControl.CurQuest.dialogueNum.Count - 1)
+					{
+						uiControl.Dial.SetHeader(qControl.MarkerList[qControl.MarkerCurrent].GetComponent<Marker>().MName);
+						uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece.Count;
+						uiControl.Dial.Text = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece;
 
-                        Sprite s = sprites[qControl.CurQuest.convo[qControl.MarkerCurrent].bgPic];
-						//UnityEngine.Debug.Log(s);
+						Sprite s = sprites[qControl.CurQuest.convo[qControl.MarkerCurrent].bgPic];
+						Vector2 mod = new Vector2(s.rect.width, s.rect.height);
 
-                        //if(s != null)
-						//	uiControl.Dial.BG.sprite = s;
+						float scale = 2.0f;
 
-						s =  sprites[qControl.CurQuest.convo[qControl.MarkerCurrent].charPic];
+						while(mod.y < 1280.0f)
+						{
+							mod *= scale;
+							scale *= 0.75f;
+						}
 
-						//UnityEngine.Debug.Log(s);
-						//if(s != null)
-						//	uiControl.Dial.CharPic.sprite = s;
-                    }
+						uiControl.Dial.BG.GetComponent<RectTransform>().sizeDelta = mod;
+						uiControl.Dial.BG.preserveAspect = true;
+						uiControl.Dial.BG.sprite = s;
 
-                    if (qControl.QuestShouldFinish)
-                    {
-                        uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.CurQuest.convo.Count - 1].convoPiece.Count;
-                        uiControl.Dial.LastDialogue = true;
-                        //uiControl.Dial.DialogueField.text = "Reward: " + qControl.CurQuest.reward;
-                        string text = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece[uiControl.Dial.ConvoNum].Replace("-----", player.GetComponent<Player>().PName);
-                        uiControl.Dial.DialogueField.text = text;
-                        qControl.SetCurrentQuest(null);
-                        qControl.QuestShouldFinish = false;
-                    }
+						s = sprites[qControl.CurQuest.convo[qControl.MarkerCurrent].charPic];
+						uiControl.Dial.CharPic.preserveAspect = true;
+						uiControl.Dial.CharPic.sprite = s;
+					}
+
+					if (qControl.QuestShouldFinish)
+					{
+						uiControl.Dial.SetHeader(qControl.FinalPlaceName);
+						uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.CurQuest.convo.Count - 1].convoPiece.Count;
+						uiControl.Dial.LastDialogue = true;
+						uiControl.Dial.SetReward(qControl.CurQuest.reward);
+						uiControl.Dial.DisplayReward = true;
+						uiControl.Dial.Text = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece;
+
+						Sprite s = sprites[qControl.CurQuest.convo[qControl.MarkerCurrent].bgPic];
+						Vector2 mod = new Vector2(s.rect.width, s.rect.height);
+
+						float scale = 2.0f;
+
+						while(mod.y < 1280.0f)
+						{
+							mod *= scale;
+							scale *= 0.75f;
+						}
+
+						uiControl.Dial.BG.GetComponent<RectTransform>().sizeDelta = mod;
+						uiControl.Dial.BG.preserveAspect = true;
+						uiControl.Dial.BG.sprite = s;
+
+						s = sprites[qControl.CurQuest.convo[qControl.MarkerCurrent].charPic];
+						uiControl.Dial.CharPic.preserveAspect = true;
+						uiControl.Dial.CharPic.sprite = s;
+
+						qControl.SetCurrentQuest(null);
+						qControl.QuestShouldFinish = false;
+					}
+
                     break;
 
 				default:

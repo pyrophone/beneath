@@ -50,8 +50,7 @@
 			"charPic": "Characters/aleksandr",
 			"bgPic": "Backgrounds/grim-beginnings-pile",
 			"convoPiece": [
-				"Hello again, -----!",
-				"Follow me into town. We're headed to the church of St. Blaise, where the archbishop would like to speak with you."
+				"Hello again, -----!\n\nFollow me into town. We're headed to the church of St. Blaise, where the archbishop would like to speak with you."
 			]
 		},
 		{
@@ -75,5 +74,5 @@
 			]
 		}
     ],
-    "qDescription": "Test"
+    "qDescription": "Meet Aleksandr at the Pile Gate and follow him down the Stradun (the main street of the Old Town). The area where the quest takes place is indicated on the map below."
 }

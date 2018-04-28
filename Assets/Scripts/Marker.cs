@@ -119,7 +119,7 @@ public class Marker : Mappable
                 distance /= 1000;
                 si = "km";
             }
-                
+
             //display distance on Map Canvas
             GameObject.Find("DistCounter").GetComponent<Text>().text = "Distance: " + distance.ToString("N2") + si;
         }
@@ -189,6 +189,7 @@ public class Marker : Mappable
     public string MName
     {
         get { return mName; }
+        set { mName = value; }
     }
 
     /*! \brief The Marker's radius in meters

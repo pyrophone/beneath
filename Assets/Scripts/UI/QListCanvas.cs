@@ -157,7 +157,7 @@ public class QListCanvas : AbstractCanvas
 		if(tgl.isOn)
 		{
 			popUpPanel.transform.Find("Header").Find("Title").GetComponent<Text>().text = q.name;
-			popUpPanel.transform.Find("TextBox").Find("QuestDescriptionText").GetComponent<Text>().text = "Quest Description";
+			popUpPanel.transform.Find("TextBox").Find("QuestDescriptionText").GetComponent<Text>().text = q.qDescription;
 			popUpPanel.transform.Find("Text").GetComponent<Text>().text = "Accept Quest?";
 			popUpPanel.SetActive(true);
 

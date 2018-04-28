@@ -19,6 +19,7 @@ public class DialogueCanvas : AbstractCanvas
 	private int dialogueAmount; //! The amount of dialogue in each part
 	private bool lastDialogue; //! If the dialogue is the last one
 	private bool displayReward; //! If the reward should be displayed
+	private List<string> text; //! The text to display
 
 	/*! \brief Called on startup
 	 */
@@ -26,17 +27,17 @@ public class DialogueCanvas : AbstractCanvas
 	{
 		base.Awake();
 
-		//header = transform.Find("Header").Find("Text").GetComponent<Text>();
-		dialogueField = transform.Find("Button").Find("Text").GetComponent<Text>();
+		header = transform.Find("Header").Find("Text").GetComponent<Text>();
+		dialogueField = transform.Find("Char").Find("Button").Find("Text").GetComponent<Text>();
 		bg = transform.Find("BG").GetComponent<Image>();
-		charPic = dialogueField.gameObject.transform.Find("Char").GetComponent<Image>();
-		panel = transform.Find("Button").GetComponent<Button>();
+		charPic = transform.Find("Char").GetComponent<Image>();
+		panel = transform.Find("Char").Find("Button").GetComponent<Button>();
 		panel.onClick.AddListener(OnButtonClick);
 		exitButton = panel.gameObject.transform.Find("Text").Find("Button").GetComponent<Button>();
 		exitButton.onClick.AddListener(OnButtonClick);
-		exitButton.gameObject.SetActive(false);
 		rwdButton = panel.gameObject.transform.Find("Text").Find("rwdButton").GetComponent<Button>();
 		rwdButton.onClick.AddListener(OnRWDButton);
+		rwdButton.gameObject.SetActive(false);
 
 		ResetDialogue();
 	}
@@ -52,7 +53,15 @@ public class DialogueCanvas : AbstractCanvas
 	 */
 	protected override void Update()
 	{
+		if(convoNum == 0 && dialogueAmount == 1)
+		{
+			SwapButtons();
+		}
 
+		if(convoNum < dialogueAmount)
+		{
+			dialogueField.text = text[convoNum].Replace("-----", GameObject.Find("player").GetComponent<Player>().PName);
+		}
 	}
 
 	/*! \brief Event for when the next button is clicked
@@ -61,24 +70,16 @@ public class DialogueCanvas : AbstractCanvas
 	{
 		convoNum++;
 
-		if(convoNum > dialogueAmount - 2)
+		if(convoNum == dialogueAmount - 1)
 		{
-			if(!displayReward)
-			{
-				rwdButton.gameObject.SetActive(false);
-				exitButton.gameObject.SetActive(true);
-			}
-
-			else
-			{
-				rwdButton.gameObject.SetActive(true);
-				exitButton.gameObject.SetActive(false);
-			}
+			SwapButtons();
 		}
 
 		else if(convoNum > dialogueAmount - 1)
 		{
-			convoNum = 0;
+			rwdButton.gameObject.SetActive(false);
+			exitButton.gameObject.SetActive(false);
+			ResetDialogue();
 			uiControl.SetCanvas(UIState.MAP);
 		}
 
@@ -89,11 +90,30 @@ public class DialogueCanvas : AbstractCanvas
 		}
 	}
 
+	/*! \brief Helper function to swap reward button
+	 */
+	private void SwapButtons()
+	{
+	 	if(!displayReward)
+		{
+			rwdButton.gameObject.SetActive(false);
+			exitButton.gameObject.SetActive(true);
+		}
+
+		else
+		{
+			rwdButton.gameObject.SetActive(true);
+			exitButton.gameObject.SetActive(false);
+		}
+
+		panel.interactable = false;
+	}
+
 	/*! \brief Event for when the rewards button is used
 	 */
 	private void OnRWDButton()
 	{
-		convoNum = 0;
+		ResetDialogue();
 		uiControl.SetCanvas(UIState.PLAYER);
 	}
 
@@ -102,14 +122,33 @@ public class DialogueCanvas : AbstractCanvas
 	public void ResetDialogue()
 	{
 		convoNum = 0;
+		panel.interactable = true;
+	}
+
+	/*! \brief Sets the reward
+	 *
+	 * \param (string) rwd - The quest reward
+	 */
+	public void SetReward(string rwd)
+	{
+		rwdButton.gameObject.transform.Find("Text").GetComponent<Text>().text = rwd;
+	}
+
+	/*! \brief Sets the header text
+	 *
+	 * \param (string) text - The header text;
+	 */
+	public void SetHeader(string text)
+	{
+		header.text = text;
 	}
 
 	/*! \brief Getter / Setter for the background
 	 */
 	public Image BG
 	{
-		get { return BG; }
-		set { BG = value; }
+		get { return bg; }
+		set { bg = value; }
 	}
 
 	/*! \brief Getter / Setter for charPic
@@ -156,5 +195,13 @@ public class DialogueCanvas : AbstractCanvas
 	{
 		get { return displayReward; }
 		set { displayReward = value; }
+	}
+
+	/*! \brief Getter / Setter for the text
+	 */
+	public List<string> Text
+	{
+		get { return text; }
+		set { text = value; }
 	}
 }
