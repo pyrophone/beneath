@@ -218,7 +218,7 @@ public class Marker : Mappable
     public void OnMouseDown()
     {
         //  && !EventSystem.current.IsPointerOverGameObject() //this still wasn't working
-        if (inRange)
+        if (inRange && !EventSystem.current.IsPointerOverGameObject())
         {
             triggered = true; // ideally triggered should not be set true until player has completed all events at marker
             if (name == "q1.marker1")

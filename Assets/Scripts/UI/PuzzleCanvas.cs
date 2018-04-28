@@ -99,7 +99,6 @@ public class PuzzleCanvas : AbstractCanvas
 	 */
     private void OnBackButtonClick()
     {
-        Debug.Log("OnBackButtonClick()");
         uiControl.SetCanvas(UIState.MAP);
     }
 
@@ -117,8 +116,11 @@ public class PuzzleCanvas : AbstractCanvas
         aBButton.interactable = true;
         aCButton.interactable = true;
 
-        amtWrong = 0;
+        aAButton.onClick.RemoveAllListeners();
+        aBButton.onClick.RemoveAllListeners();
+        aCButton.onClick.RemoveAllListeners();
 
+        amtWrong = 0;
         //assign back button listener because I have no idea if the last listener actually gets set
         backButton.onClick.AddListener(OnBackButtonClick);
 
