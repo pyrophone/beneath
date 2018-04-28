@@ -35,7 +35,7 @@
     ],
     "isTutorial": true,
     "timeToCompleteMin": 1,
-    "reward": "Hunter's License",
+    "reward": "hunters-license",
 	"rewardXP": 300,
     "prereqQuestID": 0,
     "completed": false,

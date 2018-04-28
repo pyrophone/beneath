@@ -186,6 +186,7 @@ public class QControl : MonoBehaviour
 	public void OnComplete()
 	{
 		//Mark that the quest is complete and write it to the quest file
+		transform.Find("PlayerCanvas").GetComponent<PlayerCanvas>().SetReward(curQuest.reward);
 		curQuest.completed = true;
 		quests[curQuest] = true;
 		questShouldFinish = true;

@@ -12,9 +12,10 @@ public class DialogueCanvas : AbstractCanvas
 	private Text dialogueField; //! The text field of the canvas
 	private Image bg; //! The background image
 	private Image charPic; //! The background image
-	private Button panel; //! The next button for the dialogue screen
+	private GameObject panel; //! The next button for the dialogue screen
 	private Button rwdButton; //! The reward button
 	private Button exitButton; //! The reward button
+	private Button screenButton; //! The screen sized button
 	private int convoNum; //! Progress in dialogue
 	private int dialogueAmount; //! The amount of dialogue in each part
 	private bool lastDialogue; //! If the dialogue is the last one
@@ -31,11 +32,12 @@ public class DialogueCanvas : AbstractCanvas
 		dialogueField = transform.Find("Char").Find("Button").Find("Text").GetComponent<Text>();
 		bg = transform.Find("BG").GetComponent<Image>();
 		charPic = transform.Find("Char").GetComponent<Image>();
-		panel = transform.Find("Char").Find("Button").GetComponent<Button>();
-		panel.onClick.AddListener(OnButtonClick);
-		exitButton = panel.gameObject.transform.Find("Text").Find("Button").GetComponent<Button>();
+		panel = transform.Find("Char").Find("Button").gameObject;
+		screenButton = transform.Find("Button").GetComponent<Button>();
+		screenButton.onClick.AddListener(OnButtonClick);
+		exitButton = panel.transform.Find("Text").Find("Button").GetComponent<Button>();
 		exitButton.onClick.AddListener(OnButtonClick);
-		rwdButton = panel.gameObject.transform.Find("Text").Find("rwdButton").GetComponent<Button>();
+		rwdButton = panel.transform.Find("Text").Find("rwdButton").GetComponent<Button>();
 		rwdButton.onClick.AddListener(OnRWDButton);
 		rwdButton.gameObject.SetActive(false);
 
@@ -106,7 +108,7 @@ public class DialogueCanvas : AbstractCanvas
 			exitButton.gameObject.SetActive(false);
 		}
 
-		panel.interactable = false;
+		screenButton.gameObject.SetActive(false);
 	}
 
 	/*! \brief Event for when the rewards button is used
@@ -115,6 +117,7 @@ public class DialogueCanvas : AbstractCanvas
 	{
 		ResetDialogue();
 		uiControl.SetCanvas(UIState.PLAYER);
+		GameObject.Find("PlayerCanvas").GetComponent<PlayerCanvas>().OnBadgeClick();
 	}
 
 	/*! \brief Resets the dialogue progress
@@ -122,7 +125,7 @@ public class DialogueCanvas : AbstractCanvas
 	public void ResetDialogue()
 	{
 		convoNum = 0;
-		panel.interactable = true;
+		screenButton.gameObject.SetActive(true);
 	}
 
 	/*! \brief Sets the reward
@@ -131,7 +134,7 @@ public class DialogueCanvas : AbstractCanvas
 	 */
 	public void SetReward(string rwd)
 	{
-		rwdButton.gameObject.transform.Find("Text").GetComponent<Text>().text = rwd;
+		rwdButton.gameObject.GetComponent<Image>().sprite = ResourceManager.GetSprite("AchievementItems/" + rwd);
 	}
 
 	/*! \brief Sets the header text

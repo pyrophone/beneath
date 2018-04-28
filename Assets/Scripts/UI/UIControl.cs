@@ -74,7 +74,6 @@ public class UIControl : MonoBehaviour
 	{
         for (int i = 0; i < canvases.Length; i++)
         {
-            Debug.Log(canvases[i].name);
             if(canvases[i].name != "VuforiaCanvas")
                canvases[i].GetComponent<AbstractCanvas>().UpdateTutorialUI();
         }

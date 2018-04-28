@@ -40,8 +40,6 @@ public class GameControl : MonoBehaviour
     //cheaty but fuck it
     public bool OnofrioAR; //! lets AR marker know that it needs to show up
 
-    Dictionary<string, Sprite> sprites;
-
     /*! \brief Called when the game is initialized (ensures this code runs first no matter what)
 	 */
     private void Awake()
@@ -54,21 +52,6 @@ public class GameControl : MonoBehaviour
 
 		qControl = GetComponent<QControl>();
 		uiControl = GetComponent<UIControl>();
-
-		sprites = new Dictionary<string, Sprite>();
-
-		Object[] bgs = Resources.LoadAll("Backgrounds", typeof(Sprite));
-		Object[] chars = Resources.LoadAll("Characters", typeof(Sprite));
-
-		foreach(Sprite s in bgs)
-		{
-			sprites.Add("Backgrounds/" + s.name, s);
-		}
-
-		foreach(Sprite s in chars)
-		{
-			sprites.Add("Characters/" + s.name, s);
-		}
     }
 
     /*! \brief Called when the object is initialized
@@ -121,12 +104,15 @@ public class GameControl : MonoBehaviour
 						uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece.Count;
 						uiControl.Dial.Text = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece;
 
-						Sprite s = sprites[qControl.CurQuest.convo[qControl.MarkerCurrent].bgPic];
+						Sprite s = ResourceManager.GetSprite(qControl.CurQuest.convo[qControl.MarkerCurrent].bgPic);
 						Vector2 mod = new Vector2(s.rect.width, s.rect.height);
+
+						UnityEngine.Debug.Log(mod.y);
+						UnityEngine.Debug.Log(Screen.height);
 
 						float scale = 2.0f;
 
-						while(mod.y < 1280.0f)
+						while(mod.y < Screen.height)
 						{
 							mod *= scale;
 							scale *= 0.75f;
@@ -136,7 +122,7 @@ public class GameControl : MonoBehaviour
 						uiControl.Dial.BG.preserveAspect = true;
 						uiControl.Dial.BG.sprite = s;
 
-						s = sprites[qControl.CurQuest.convo[qControl.MarkerCurrent].charPic];
+						s = ResourceManager.GetSprite(qControl.CurQuest.convo[qControl.MarkerCurrent].charPic);
 						uiControl.Dial.CharPic.preserveAspect = true;
 						uiControl.Dial.CharPic.sprite = s;
 					}
@@ -150,12 +136,12 @@ public class GameControl : MonoBehaviour
 						uiControl.Dial.DisplayReward = true;
 						uiControl.Dial.Text = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece;
 
-						Sprite s = sprites[qControl.CurQuest.convo[qControl.MarkerCurrent].bgPic];
+						Sprite s = ResourceManager.GetSprite(qControl.CurQuest.convo[qControl.MarkerCurrent].bgPic);
 						Vector2 mod = new Vector2(s.rect.width, s.rect.height);
 
 						float scale = 2.0f;
 
-						while(mod.y < 1280.0f)
+						while(mod.y < Screen.height)
 						{
 							mod *= scale;
 							scale *= 0.75f;
@@ -165,7 +151,8 @@ public class GameControl : MonoBehaviour
 						uiControl.Dial.BG.preserveAspect = true;
 						uiControl.Dial.BG.sprite = s;
 
-						s = sprites[qControl.CurQuest.convo[qControl.MarkerCurrent].charPic];
+						s = ResourceManager.GetSprite(qControl.CurQuest.convo[qControl.MarkerCurrent].charPic);
+
 						uiControl.Dial.CharPic.preserveAspect = true;
 						uiControl.Dial.CharPic.sprite = s;
 

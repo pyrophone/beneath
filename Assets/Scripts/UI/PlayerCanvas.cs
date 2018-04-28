@@ -40,6 +40,8 @@ public class PlayerCanvas : AbstractCanvas
 		backButton.onClick.AddListener(OnBackButtonClick);
 
         badgeButton.onClick.AddListener(OnBadgeClick);
+        badgeButton.interactable = false;
+
         returnButton.onClick.AddListener(OnReturnToProfileButtonClick);
 
         nameText = transform.Find("PlayerName").GetComponentInChildren<Text>();
@@ -69,10 +71,11 @@ public class PlayerCanvas : AbstractCanvas
 	 */
 	private void OnBackButtonClick()
 	{
+		OnReturnToProfileButtonClick();
 		uiControl.SetCanvas(UIState.MAP);
 	}
 
-    private void OnBadgeClick()
+    public void OnBadgeClick()
     {
         accompsAndBadges.SetActive(false);
         popUpContent.SetActive(true);
@@ -151,7 +154,7 @@ public class PlayerCanvas : AbstractCanvas
             {
                 gains.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
                 LevelUp();
-            } 
+            }
             else if (player.LVL == 1)
             {
                 gains.transform.localScale = new Vector3(0.5f, 1.0f, 1.0f);
@@ -229,5 +232,13 @@ public class PlayerCanvas : AbstractCanvas
         player.EXP = 0;
 
         gains.transform.localScale = new Vector3(0, 1, 1);
+    }
+
+    public void SetReward(string resource)
+    {
+		GameObject g = transform.Find("AccomplishmentsAndBadges").Find(resource).Find(resource).gameObject;
+		g.GetComponent<Image>().sprite = ResourceManager.GetSprite("AchievementItems/" + resource);
+		g.SetActive(true);
+        badgeButton.interactable = true;
     }
 }
