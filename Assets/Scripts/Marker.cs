@@ -38,6 +38,9 @@ public class Marker : Mappable
     private GameObject waypointP;
     private GameObject puzzleP;
 
+    [SerializeField]
+    private SettingsCanvas settings;
+
     private PopupCanvas popup; //! The popup canvas script
 
     private bool inRange; //! If the player is in range of the marker
@@ -142,8 +145,16 @@ public class Marker : Mappable
                 si = "km";
             }
                 
-            //display distance on Map Canvas
-            GameObject.Find("DistCounter").GetComponent<Text>().text = "Next Location: " + distance.ToString("N2") + si;
+            if (GameObject.Find("GameManager").GetComponent<GameControl>().DistCountEnabled)
+            {
+                //display distance on Map Canvas
+                GameObject.Find("DistCounter").GetComponent<Text>().text = "Next Location: " + distance.ToString("N2") + si;
+            }
+            else
+            {
+                GameObject.Find("DistCounter").GetComponent<Text>().text = "";
+            }
+            
         }
         catch { }
 
@@ -162,7 +173,10 @@ public class Marker : Mappable
     {
         if(!inRange)
         {
-			Handheld.Vibrate();
+            if (GameObject.Find("GameManager").GetComponent<GameControl>().VibrateEnable)
+            {
+                Handheld.Vibrate();
+            }
 			inRange = true;
         }
 

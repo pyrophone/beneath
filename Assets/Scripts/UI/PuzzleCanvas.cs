@@ -35,14 +35,7 @@ public class PuzzleCanvas : AbstractCanvas
     {
         base.Awake();
 
-        qText = transform.Find("Q").GetComponent<Text>();
-        aAText = transform.Find("A1").GetComponentInChildren<Text>();
-        aBText = transform.Find("A2").GetComponentInChildren<Text>();
-        aCText = transform.Find("A3").GetComponentInChildren<Text>();
-        aAButton = transform.Find("A1").GetComponent<Button>();
-        aBButton = transform.Find("A2").GetComponent<Button>();
-        aCButton = transform.Find("A3").GetComponent<Button>();
-        backButton = transform.Find("BackButton").GetComponent<Button>();
+        //most of the buttons assigned thru inspector
 
         //assign back button listener 
         backButton.onClick.AddListener(OnBackButtonClick);

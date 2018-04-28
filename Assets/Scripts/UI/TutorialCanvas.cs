@@ -19,8 +19,9 @@ public class TutorialCanvas : AbstractCanvas
 	protected override void Awake()
 	{
 		base.Awake();
-
-		dialogueBox = transform.Find("Dialogue").GetComponent<Text>();
+        
+        // dialogueBox = transform.Find("DialogueBox").GetComponentInChildren<Text>();
+        dialogueBox = transform.Find("DialogueBox").GetComponentInChildren<Text>();
 		nextButton = transform.Find("Button").GetComponent<Button>();
 		nextButton.onClick.AddListener(OnNextButtonClick);
 	}

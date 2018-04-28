@@ -35,6 +35,8 @@ public class GameControl : MonoBehaviour
     // Settings
     [SerializeField]
     public bool Debug; //! Debug bool (on/off) currently used for distance
+    public bool DistCountEnabled; //! Distance counter enabled
+    public bool VibrateEnable; //! Vibe on or not, simple
 
     /*! \brief Called when the game is initialized (ensures this code runs first no matter what)
 	 */
@@ -65,7 +67,7 @@ public class GameControl : MonoBehaviour
         mapCam.CenterOnTarget(player.GetComponent<Player>().Loc);
 
         //for now, this will test vuforia by switching the scene on click, tap, or keypress.
-        if (Input.GetMouseButtonDown(0) && Input.touchCount > 2 || Input.GetKeyDown(KeyCode.T))
+        if (Input.GetMouseButtonDown(0) && Input.touchCount > 2 || Input.GetKeyDown(KeyCode.BackQuote))
         {
             if (cams[0].enabled == true)
             {
