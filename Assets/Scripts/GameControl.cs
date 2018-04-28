@@ -37,6 +37,8 @@ public class GameControl : MonoBehaviour
     public bool Debug; //! Debug bool (on/off) currently used for distance
     public bool DistCountEnabled; //! Distance counter enabled
     public bool VibrateEnable; //! Vibe on or not, simple
+    //cheaty but fuck it
+    public bool OnofrioAR; //! lets AR marker know that it needs to show up
 
     Dictionary<string, Sprite> sprites;
 
@@ -197,5 +199,12 @@ public class GameControl : MonoBehaviour
     public GameObject PlayerPrefab
     {
         get { return playerPrefab; }
+    }
+
+    // getter / setter for cams
+    public Camera[] Cams
+    {
+        get { return cams; }
+        set { cams = value; }
     }
 }

@@ -47,6 +47,8 @@ public class VuforiaCanvas : AbstractCanvas
 	 */
     private void OnBackButtonClick()
     {
+        GameObject.Find("GameManager").GetComponent<GameControl>().Cams[0].enabled = true; // enables the main camera view
+        GameObject.Find("GameManager").GetComponent<GameControl>().Cams[1].enabled = false; // disables the AR camera view
         uiControl.SetCanvas(UIState.MAP);
     }
 

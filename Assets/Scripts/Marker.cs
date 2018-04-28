@@ -20,6 +20,8 @@ public class Marker : Mappable
     [SerializeField]
     protected bool isPuzzle; //! does the marker include a puzzle?
     [SerializeField]
+    protected bool isAR; //! is this the elusive and rare artificial reality puzzle?
+    [SerializeField]
     protected bool triggered; //! is marker triggered?
     [SerializeField]
     protected string mName; //! name of the marker
@@ -52,8 +54,9 @@ public class Marker : Mappable
         //get popup
         popup = GameObject.Find("PopupCanvas").GetComponent<PopupCanvas>();
 
-        waypointP = transform.Find("waypoint").gameObject;
         puzzleP = transform.Find("puzzle").gameObject;
+        if (!isAR)
+            waypointP = transform.Find("waypoint").gameObject;
     }
 
     /*! \brief Called when the object is initialized
@@ -105,6 +108,37 @@ public class Marker : Mappable
             {
                 GameObject.Find("GameManager").GetComponent<UIControl>().SetCanvas(UIState.PUZZLE);
                 GameObject.Find("PuzzleCanvas").GetComponent<PuzzleCanvas>().SetPuzzle(puzzle);
+                triggered = false;
+            }
+        }
+        else if (isAR && GameObject.Find("GameManager").GetComponent<GameControl>().OnofrioAR)
+        {
+            GetComponent<SphereCollider>().enabled = true;
+            //code adapted from solution at: https://stackoverflow.com/questions/365826/calculate-distance-between-2-gps-coordinates
+            #region distance
+            int earthRadiusM = 6371000;
+
+            float dLat = Mathf.Deg2Rad * (float)(loc.x - player.GetComponent<Player>().Loc.x);
+            float dLon = Mathf.Deg2Rad * (float)(loc.y - player.GetComponent<Player>().Loc.y);
+
+            float lat1 = Mathf.Deg2Rad * (float)(loc.x);
+            float lat2 = Mathf.Deg2Rad * (float)(player.GetComponent<Player>().Loc.x);
+
+            var a = Mathf.Sin(dLat / 2) * Mathf.Sin(dLat / 2) +
+                    Mathf.Sin(dLon / 2) * Mathf.Sin(dLon / 2) * Mathf.Cos(lat1) * Mathf.Cos(lat2);
+            var c = 2 * Mathf.Atan2(Mathf.Sqrt(a), Mathf.Sqrt(1 - a)); //optimize this part or limit frequency of calculation
+            double distance = earthRadiusM * c;
+            #endregion
+            if (distance < 30)
+                puzzleP.SetActive(true);
+            else
+                puzzleP.SetActive(false);
+
+            if (triggered)
+            {
+                GameObject.Find("GameManager").GetComponent<GameControl>().Cams[1].enabled = true; // enables the AR camera view
+                GameObject.Find("GameManager").GetComponent<GameControl>().Cams[0].enabled = false; // disables the main camera view
+                GameObject.Find("GameManager").GetComponent<UIControl>().SetCanvas(UIState.VUFORIA);
                 triggered = false;
             }
         }
@@ -183,8 +217,13 @@ public class Marker : Mappable
 
     public void OnMouseDown()
     {
-		if (inRange && !EventSystem.current.IsPointerOverGameObject())
+        //  && !EventSystem.current.IsPointerOverGameObject() //this still wasn't working
+        if (inRange)
+        {
             triggered = true; // ideally triggered should not be set true until player has completed all events at marker
+            if (name == "q1.marker1")
+                GameObject.Find("GameManager").GetComponent<GameControl>().OnofrioAR = true;
+        }     
         else
             popup.PopulateCanvas(this);
     }
@@ -206,6 +245,16 @@ public class Marker : Mappable
     {
         get { return isPuzzle; }
         set { isPuzzle = value; }
+    }
+
+    /*! \brief Gets the bool for if current marker has an AR puzzle
+	 *
+	 * \return (bool) The bool for isAR
+	 */
+    public bool IsAR
+    {
+        get { return isAR; }
+        set { isAR = value; }
     }
 
     /*! \brief Gets the bool for if current marker is triggered

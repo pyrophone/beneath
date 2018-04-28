@@ -76,7 +76,7 @@ public class MapCanvas : AbstractCanvas
 	protected override void Update()
 	{
         nameText.text = player.PName; // get the player name
-        lvlText.text = "LVL: " + player.LVL; // get the player level
+        lvlText.text = "Level " + player.LVL; // get the player level
     }
 
     /*! \brief Called when the location text is clicked
@@ -112,7 +112,7 @@ public class MapCanvas : AbstractCanvas
         if (uiControl.TutorialActive)
         {
             TutorialOverlay to = transform.Find("../TutorialOverlay").GetComponent<TutorialOverlay>();
-            if (to.TutorialProgress == 2)
+            if (to.TutorialProgress == 0)
             {
                 to.SpecialClick();
                 uiControl.SetCanvas(UIState.QLIST);
