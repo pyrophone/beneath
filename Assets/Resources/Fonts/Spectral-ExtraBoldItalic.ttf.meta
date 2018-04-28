@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 8df85ff94af1c3249b432a61d538b975
-timeCreated: 1524793729
+guid: aff0e71c2168c4ace90c43a1fb078df8
+timeCreated: 1524578583
 licenseType: Free
 TrueTypeFontImporter:
   externalObjects: {}
@@ -14,13 +14,11 @@ TrueTypeFontImporter:
   fontNames:
   - Spectral
   fallbackFontReferences:
-  - {fileID: 12800000, guid: 280cbd236a6b6ca4b8c97bf032d3f664, type: 3}
-  - {fileID: 12800000, guid: 1c42ed9373fff4142afe5225d86549dd, type: 3}
-  - {fileID: 12800000, guid: 7bcf1eb3a83714f48bd5913e7d7bc7df, type: 3}
-  - {fileID: 12800000, guid: 121a7f057bf5d07488c98d4aee440f9a, type: 3}
-  - {fileID: 12800000, guid: 02bf65c7c58af2b4e90ac072f59ec851, type: 3}
-  - {fileID: 12800000, guid: 63f55a2d2de59474ca3e693a7ff7a663, type: 3}
-  - {fileID: 12800000, guid: 493e8c7da9e199a49b0ae7cf76d90ec5, type: 3}
+  - {fileID: 12800000, guid: 28b71ea392f974eaba99aac2893e9a59, type: 3}
+  - {fileID: 12800000, guid: 72cff7f316f294622b299d34c3a285c4, type: 3}
+  - {fileID: 12800000, guid: 7a4638a63fe20474a9eea09888b57129, type: 3}
+  - {fileID: 12800000, guid: 0cb14e6b8483c493b869400add5de2fc, type: 3}
+  - {fileID: 12800000, guid: 9c16440dcd88c4e9e81303ed270d15c6, type: 3}
   customCharacters: 
   fontRenderingMode: 0
   ascentCalculationMode: 1

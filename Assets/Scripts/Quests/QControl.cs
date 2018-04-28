@@ -24,6 +24,7 @@ public class QControl : MonoBehaviour
     private int markerCurrent; //! Current marker index in the list
     private Object[] textAssets; //! The list of text assets
     private int questAssetNum; //! The quest number for the asset list
+    private string finalPlaceName; //! The name of the last marker
 
     /*! \brief Called on startup
      */
@@ -76,7 +77,7 @@ public class QControl : MonoBehaviour
 				GameObject m = Instantiate(marker);
 				m.GetComponent<Marker>().Loc = curQuest.markerGenList[i].markerLoc;
 				m.GetComponent<Marker>().Map = GetComponent<GameControl>().Map;
-				m.GetComponent<Marker>().Radius = curQuest.markerGenList[i].mRadius;
+                m.GetComponent<Marker>().Radius = curQuest.markerGenList[i].mRadius;
                 m.GetComponent<Marker>().MName = curQuest.markerGenList[i].markerName;
                 m.GetComponent<Marker>().MPic = curQuest.markerGenList[i].markerPic;
                 m.name = "q" + curQuest.id + "." + "marker" + i;
@@ -95,6 +96,7 @@ public class QControl : MonoBehaviour
 			}
 
 			markerCurrent = 0;
+			finalPlaceName = curQuest.markerGenList[curQuest.markerGenList.Count - 1].markerName;
 		}
 	}
 
@@ -110,16 +112,10 @@ public class QControl : MonoBehaviour
 
 		if(curQuest != null)
 		{
-			uiControl.QLCanvas.SetActiveQuestText(curQuest.name);
 			LoadMarkers();
 
 			//enough info to set up compass
 			compass.SetActive(true);
-		}
-
-		else
-		{
-			uiControl.QLCanvas.SetActiveQuestText("No Active Quest");
 		}
 
 		uiControl.QLCanvas.RefreshQuestList(quests, curQuest);
@@ -197,6 +193,23 @@ public class QControl : MonoBehaviour
         ClearMarkers();
 	}
 
+	/*! \brief Gets the quest with a certain ID
+	 *
+	 * \param (int) id - The id of the quest to look for
+	 *
+	 * \return (Quest) The quest with the corresponding id
+     */
+    public Quest GetQuest(int id)
+    {
+		foreach(var quest in quests)
+		{
+			if(quest.Key.id == id)
+				return quest.Key;
+		}
+
+		return null;
+    }
+
 	/*! \brief Getter / Setter for the current quest
 	 */
 	public Quest CurQuest
@@ -220,7 +233,7 @@ public class QControl : MonoBehaviour
 		get { return quests; }
 	 }
 
-	/*! \brief Getter / Setter for the marker list
+	/*! \brief Getter for the marker list
 	 */
 	public List<GameObject> MarkerList
 	{
@@ -235,20 +248,10 @@ public class QControl : MonoBehaviour
         set { MarkerCurrent = value; }
     }
 
-    /*! \brief Gets the quest with a certain ID
-	 *
-	 * \param (int) id - The id of the quest to look for
-	 *
-	 * \return (Quest) The quest with the corresponding id
-     */
-    public Quest GetQuest(int id)
-    {
-		foreach(var quest in quests)
-		{
-			if(quest.Key.id == id)
-				return quest.Key;
-		}
-
-		return null;
-    }
+	/*! \brief Getter for finalPlaceName
+	 */
+	public string FinalPlaceName
+	{
+		get { return finalPlaceName; }
+	}
 }

@@ -12,13 +12,12 @@ public class TutorialOverlay : AbstractCanvas
 	private int tutorialProgress; //! The progress in the tutorial
 	private bool backPressed; //! If the back button was pressed
 	private GameObject panel; //! The panel for displaying tutorial dialogue
+	private GameObject btn; //! The btn for displaying tutorial dialogue
+	private GameObject lgBtn; //! The btn for displaying tutorial dialogue
 	[SerializeField]
 	private GameObject qPopPanel; //! The questlist popup panel
 	private Text textBox; //! The textbox of the panel
-	private Button backButton; //! The back button
-	private Button nextButton; //! The next button
 	private List<string> tutorialDialogue; //! The tutorial dialogue list
-	private List<Vector2> panelPos; //! The panel position
 
 	/*! \brief Called on startup
 	 */
@@ -26,13 +25,14 @@ public class TutorialOverlay : AbstractCanvas
 	{
 		base.Awake();
 
-		panel = transform.Find("Image").gameObject;
-		textBox = panel.transform.Find("Text").GetComponent<Text>();
-		backButton = panel.transform.Find("BackButton").GetComponent<Button>();
-		backButton.onClick.AddListener(OnBackButtonClick);
-		backButton.gameObject.SetActive(false);
-		nextButton = panel.transform.Find("NextButton").GetComponent<Button>();
-		nextButton.onClick.AddListener(OnNextButtonClick);
+		panel = transform.Find("Panel").gameObject;
+
+		btn = panel.transform.Find("Button").gameObject;
+		btn.GetComponent<Button>().onClick.AddListener(OnBtnClick);
+		textBox = btn.transform.Find("Text").GetComponent<Text>();
+
+		lgBtn = textBox.gameObject.transform.Find("LetsGo").gameObject;
+		lgBtn.GetComponent<Button>().onClick.AddListener(OnBtnClick);
 	}
 
 	/*! \brief Called when the object is initialized
@@ -42,33 +42,14 @@ public class TutorialOverlay : AbstractCanvas
 		tutorialProgress = 0;
 
 		tutorialDialogue = new List<string>();
-		tutorialDialogue.Add("Here, take this map of the city. It will help you navigate the streets with ease.");
-		tutorialDialogue.Add("This is you! Your name, experience, and level are listed here. You can tap this spot to open the Profile screen.");
-		tutorialDialogue.Add("Tapping this icon will open your Quest List. Tap here now, let’s see what’s available!");
-		tutorialDialogue.Add("This screen lists all of the currently available Quests in the city. Once you complete one, it will be listed here under “Complete”.");
-		tutorialDialogue.Add("Quests in green will take 15 minutes or less to complete. Yellow Quests are a bit longer, but you can still finish them in under 30 minutes.");
-		tutorialDialogue.Add("Quests in red are longer and more complicated than the others. They can often take longer than 30 minutes to finish!");
-		tutorialDialogue.Add("Tap here on the “Grim Beginnings” Quest, and we can get you started on exploring the city.");
-		tutorialDialogue.Add("This is the description of the Quest, filled with useful information about what you’ll be doing.");
-		tutorialDialogue.Add("You have to make a Quest active to make progress toward it. Tap here to accept the Quest.");
-		tutorialDialogue.Add("Now “Grim Beginnings” is set as your Active Quest. You can drop your Active Quest if you want, but be careful!");
-		tutorialDialogue.Add("If you drop your Active Quest you will have to start it over from the beginning!");
-		tutorialDialogue.Add("Tap here to return to your Map.");
-		tutorialDialogue.Add("First, we will need to take you to meet the Archbishop of Dubrovnik.");
-		tutorialDialogue.Add("The city is not too fond of outsiders, so you will need the Archbishop’s blessing to move freely within the walls.");
-		tutorialDialogue.Add("Come, meet me by the Pile Gate when you are ready to go, my friend. Here, I will mark it on your map.");
-		tutorialDialogue.Add("I will show you the beauty of our fine city, and why we must fight to protect it!");
-		tutorialDialogue.Add("Move your feet! What Lies Beneath is a game that uses your phone’s GPS to move through the game!");
-		tutorialDialogue.Add("Eyes up! You will be exploring Dubrovnik in the present and in the past! Don’t miss out on the beauty of the Old Town!");
+		tutorialDialogue.Add("Tap on the quest scroll at the bottom of the screen to see what tasks lie ahead.");
+		tutorialDialogue.Add("As a newcomer to the city, you only have one available quest. As you finish tasks and explore the city, more will become available to you.");
+		tutorialDialogue.Add("");
+		tutorialDialogue.Add("I will meet you by the Pile Gate, one of the entrances to the Old Town. You can see how far you have to travel at the top of the screen.\n\nFollow the directional arrow until you see the location highlighted on your map.");
+		tutorialDialogue.Add("Move Your Feet!\nWhat Lies Beneath is a game that requires you to move around the city\n\nEyes Up!\nYour phone will vibrate when you need to look at it. Don't miss out on the beauty of the city!");
 
 		textBox.text = tutorialDialogue[tutorialProgress];
-
-		panelPos = new List<Vector2>();
-
-		panelPos.Add(new Vector2(0, 350));
-		panelPos.Add(new Vector2(0, -250));
-		panelPos.Add(new Vector2(0, -500));
-		panelPos.Add(new Vector2(0, 400));
+		Reset();
 	}
 
 	/*! \brief Updates the object
@@ -82,40 +63,21 @@ public class TutorialOverlay : AbstractCanvas
 	 */
 	public override void UpdateTutorialUI()
 	{
-		if(uiControl.DoTutOverlay)
+		if(uiControl.DoTutOverlay && tutorialProgress != 2)
 		{
 			gameObject.SetActive(true);
 			panel.SetActive(true);
-			GetComponent<Canvas>().sortingOrder = 15;
+			GetComponent<Canvas>().sortingOrder = 2;
 		}
 
 		else
-		{
 			gameObject.SetActive(false);
-			panel.SetActive(false);
-		}
-	}
-
-	/*! \brief Called when the back button is clicked
-	 */
-	protected void OnBackButtonClick()
-	{
-		backPressed = true;
-		tutorialProgress--;
-
-		SetText();
-
-		if(tutorialProgress <= 0)
-		{
-			backButton.gameObject.SetActive(false);
-		}
 	}
 
 	/*! \brief Called when the next button is clicked
 	 */
-	private void OnNextButtonClick()
+	private void OnBtnClick()
 	{
-		backPressed = false;
 		tutorialProgress++;
 
 		if(tutorialProgress >= tutorialDialogue.Count)
@@ -127,11 +89,6 @@ public class TutorialOverlay : AbstractCanvas
 		}
 
 		SetText();
-
-		if(tutorialProgress > 0)
-		{
-			backButton.gameObject.SetActive(true);
-		}
 	}
 
 	/*! \brief Sets the text of the tutorial dialogue
@@ -148,76 +105,42 @@ public class TutorialOverlay : AbstractCanvas
 	{
 		switch(tutorialProgress)
 		{
-			//This case is used by states that set the next button to inactive
-			case -1:
-				nextButton.gameObject.SetActive(false);
-				//panel.GetComponent<CanvasGroup>().blocksRaycasts = false;
-				break;
-
 			case 0:
+				panel.transform.localPosition = new Vector3(10, -100, 0);
 				uiControl.SetCanvas(UIState.MAP);
-				goto default;
-
-			case 1:
-				panel.transform.localPosition = new Vector3(0, 350, 0);
-				goto case 0;
-
-			case 2:
-				panel.transform.localPosition = new Vector3(0, -250, 0);
-				nextButton.gameObject.SetActive(false);
-				uiControl.SetCanvas(UIState.MAP);
+				Reset();
 				break;
-
+			case 1:
+				panel.transform.localPosition = new Vector3(10, -325, 0);
+				break;
+			case 2:
+				panel.SetActive(false);
+				break;
 			case 3:
-			case 10:
-				panel.transform.localPosition = new Vector3(0, -500, 0);
-				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().SetBackButton(false);
-				goto default;
-
-			case 5:
-				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().SetGrimBeginnings(false);
-				goto default;
-
-			case 6:
-				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().SetGrimBeginnings(true);
-				qPopPanel.SetActive(false);
-				goto case -1;
-
-			case 8:
-				transform.parent.GetComponent<QControl>().SetCurrentQuest(null);
-				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().ActivateQuestAccept();
-
-				if(backPressed)
-				{
-					tutorialProgress = 6;
-					SetText();
-					break;
-				}
-				goto case -1;
-
-			case 11:
-				panel.transform.localPosition = new Vector3(0, 400, 0);
-				if(backPressed)
-					uiControl.SetCanvas(UIState.QLIST);
-				transform.Find("../QuestCanvas").GetComponent<QListCanvas>().SetBackButton(true);
-				goto case -1;
-
-			case 12:
-				panel.transform.localPosition = new Vector3();
-				goto default;
-
-			//This case is used by states that set the next button in active
-			default:
-				nextButton.gameObject.SetActive(true);
+				btn.GetComponent<Button>().interactable = true;
+				panel.transform.localPosition = new Vector3(-5, 100, 0);
+				break;
+			case 4:
+				panel.transform.Find("Alek").gameObject.SetActive(false);
+				btn.GetComponent<Button>().interactable = false;
+				lgBtn.SetActive(true);
+				panel.transform.localPosition = new Vector3(0, 200, 0);
 				break;
 		}
+	}
+
+	private void Reset()
+	{
+		panel.transform.Find("Alek").gameObject.SetActive(true);
+		lgBtn.SetActive(false);
+		btn.GetComponent<Button>().interactable = false;
 	}
 
 	/*! \brief Used to progress dialogue from other places
 	 */
 	public void SpecialClick()
 	{
-		OnNextButtonClick();
+		OnBtnClick();
 	}
 
 	/*! \brief Gets the tutorial progress

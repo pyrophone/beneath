@@ -1,9 +1,18 @@
 fileFormatVersion: 2
-guid: 176b8a3f1deaef743b80a1aa0b8cab2f
-timeCreated: 1524782383
+guid: 6e105a78aa6ea48aea72b17e5855b8c5
+timeCreated: 1524769486
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: dialog-box_0
+    21300002: dialog-box_1
+    21300004: dialog-box_2
+    21300006: dialog-box_3
+    21300008: dialog-box_4
+    21300010: dialog-box_5
+    21300012: dialog-box_6
+    21300014: dialog-box_7
+    21300016: dialog-box_8
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -41,11 +50,11 @@ TextureImporter:
   lightmap: 0
   compressionQuality: 50
   spriteMode: 1
-  spriteExtrude: 1
-  spriteMeshType: 0
+  spriteExtrude: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spriteBorder: {x: 50, y: 50, z: 50, w: 50}
+  spriteBorder: {x: 60, y: 60, z: 60, w: 60}
   spritePixelsToUnits: 100
   alphaUsage: 1
   alphaIsTransparency: 1
@@ -98,23 +107,22 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline:
-    - - {x: 100, y: 74}
-      - {x: 80, y: 97}
-      - {x: 68, y: 100}
-      - {x: -69, y: 100}
-      - {x: -77, y: 97}
-      - {x: -97, y: 80}
-      - {x: -100, y: 71}
-      - {x: -100, y: -72}
-      - {x: -92, y: -84}
-      - {x: -77, y: -97}
-      - {x: -69, y: -100}
-      - {x: 68, y: -100}
-      - {x: 71, y: -99}
-      - {x: 85, y: -93}
-      - {x: 100, y: -73}
+    sprites:
+    - serializedVersion: 2
+      name: dialog-box_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    outline: []
     physicsShape: []
   spritePackingTag: 
   userData: 

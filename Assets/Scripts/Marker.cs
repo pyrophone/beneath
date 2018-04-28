@@ -7,8 +7,8 @@ using Mapbox.Unity.Map;
 using Mapbox.Unity.Utilities;
 
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 /*! \class Marker
  *	\brief Acts as a marker on a map
@@ -28,12 +28,14 @@ public class Marker : Mappable
     [SerializeField]
     protected Puzzle puzzle; //! puzzle
     [SerializeField]
-    protected string DialogueFile; //! directory of dialogue 
+    protected string DialogueFile; //! directory of dialogue
     protected string dialogue;
     [SerializeField]
     protected GameObject player; //! reference to player object
     [SerializeField]
     protected int radius; //! radius of the marker (in meters) aka trigger distance
+
+    private bool inRange; //! If the player is in range of the marker
 
     private GameObject waypointP;
     private GameObject puzzleP;
@@ -42,8 +44,6 @@ public class Marker : Mappable
     private SettingsCanvas settings;
 
     private PopupCanvas popup; //! The popup canvas script
-
-    private bool inRange; //! If the player is in range of the marker
 
     /*! \brief Called on startup
 	 */
@@ -57,7 +57,7 @@ public class Marker : Mappable
     }
 
     /*! \brief Called when the object is initialized
-     */
+	 */
     private void Start()
 	{
 
@@ -66,7 +66,6 @@ public class Marker : Mappable
         //get player object
         player = GameObject.Find("player");
         dialogue = "This is test text. Have you heard of the tradegy of Darth Plageius the Wise? I thought not. It's not a story the Jedi would tell you. It's a Sith legend.";
-   
 	}
 
 	/*! \brief Updates the object
@@ -76,13 +75,12 @@ public class Marker : Mappable
 		this.transform.localPosition = this.map.GeoToWorldPosition(this.loc);
         if (IsColliding())
             OnArrive();
-        //this.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
+		//this.transform.localScale = new Vector3(5.0f, 5.0f, 5.0f);
 
-        //if triggered & has puzzle
+		//if triggered & has puzzle
         if (isPuzzle)
         {
             waypointP.SetActive(false);
-
             //code adapted from solution at: https://stackoverflow.com/questions/365826/calculate-distance-between-2-gps-coordinates
             #region distance
             int earthRadiusM = 6371000;
@@ -102,6 +100,7 @@ public class Marker : Mappable
                 puzzleP.SetActive(true);
             else
                 puzzleP.SetActive(false);
+
             if (triggered)
             {
                 GameObject.Find("GameManager").GetComponent<UIControl>().SetCanvas(UIState.PUZZLE);
@@ -111,7 +110,7 @@ public class Marker : Mappable
         }
         else
             puzzleP.SetActive(false);
-	}
+    }
 
     /*! \brief Checks if the player object and the marker are colliding
 	 *
@@ -144,7 +143,7 @@ public class Marker : Mappable
                 distance /= 1000;
                 si = "km";
             }
-                
+
             if (GameObject.Find("GameManager").GetComponent<GameControl>().DistCountEnabled)
             {
                 //display distance on Map Canvas
@@ -154,7 +153,6 @@ public class Marker : Mappable
             {
                 GameObject.Find("DistCounter").GetComponent<Text>().text = "";
             }
-            
         }
         catch { }
 
@@ -177,7 +175,7 @@ public class Marker : Mappable
             {
                 Handheld.Vibrate();
             }
-			inRange = true;
+            inRange = true;
         }
 
         //TODO
@@ -185,7 +183,7 @@ public class Marker : Mappable
 
     public void OnMouseDown()
     {
-        if (inRange && !EventSystem.current.IsPointerOverGameObject())
+		if (inRange && !EventSystem.current.IsPointerOverGameObject())
             triggered = true; // ideally triggered should not be set true until player has completed all events at marker
         else
             popup.PopulateCanvas(this);
@@ -230,16 +228,6 @@ public class Marker : Mappable
         set { mName = value; }
     }
 
-    /*! \brief The image of the marker
-	 *
-	 * \return (string) the name of the marker
-	 */
-    public string MPic
-    {
-        get { return mPic; }
-        set { mPic = value; }
-    }
-
     /*! \brief The Marker's radius in meters
     *
     * \return (int) the radius of the marker in meters
@@ -260,5 +248,15 @@ public class Marker : Mappable
     {
         get { return puzzle; }
         set { puzzle = value; }
+    }
+
+    /*! \brief The image of the marker
+    *
+    * \return (string) the name of the marker
+    */
+    public string MPic
+    {
+        get { return mPic; }
+        set { mPic = value; }
     }
 }

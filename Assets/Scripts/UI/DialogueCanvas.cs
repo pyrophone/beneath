@@ -8,12 +8,18 @@ using UnityEngine.UI;
  */
 public class DialogueCanvas : AbstractCanvas
 {
-	private Text nameField; //! The name field of the canvas
+	private Text header; //! The headerof the canvas
 	private Text dialogueField; //! The text field of the canvas
-	private Button nextButton; //! The next button for the dialogue screen
+	private Image bg; //! The background image
+	private Image charPic; //! The background image
+	private Button panel; //! The next button for the dialogue screen
+	private Button rwdButton; //! The reward button
+	private Button exitButton; //! The reward button
 	private int convoNum; //! Progress in dialogue
 	private int dialogueAmount; //! The amount of dialogue in each part
 	private bool lastDialogue; //! If the dialogue is the last one
+	private bool displayReward; //! If the reward should be displayed
+	private List<string> text; //! The text to display
 
 	/*! \brief Called on startup
 	 */
@@ -21,10 +27,18 @@ public class DialogueCanvas : AbstractCanvas
 	{
 		base.Awake();
 
-		nameField = transform.Find("Name").GetComponent<Text>();
-		dialogueField = transform.Find("Text").GetComponent<Text>();
-		nextButton = transform.Find("Button").GetComponent<Button>();
-		nextButton.onClick.AddListener(OnButtonClick);
+		header = transform.Find("Header").Find("Text").GetComponent<Text>();
+		dialogueField = transform.Find("Char").Find("Button").Find("Text").GetComponent<Text>();
+		bg = transform.Find("BG").GetComponent<Image>();
+		charPic = transform.Find("Char").GetComponent<Image>();
+		panel = transform.Find("Char").Find("Button").GetComponent<Button>();
+		panel.onClick.AddListener(OnButtonClick);
+		exitButton = panel.gameObject.transform.Find("Text").Find("Button").GetComponent<Button>();
+		exitButton.onClick.AddListener(OnButtonClick);
+		rwdButton = panel.gameObject.transform.Find("Text").Find("rwdButton").GetComponent<Button>();
+		rwdButton.onClick.AddListener(OnRWDButton);
+		rwdButton.gameObject.SetActive(false);
+
 		ResetDialogue();
 	}
 
@@ -39,7 +53,15 @@ public class DialogueCanvas : AbstractCanvas
 	 */
 	protected override void Update()
 	{
+		if(convoNum == 0 && dialogueAmount == 1)
+		{
+			SwapButtons();
+		}
 
+		if(convoNum < dialogueAmount)
+		{
+			dialogueField.text = text[convoNum].Replace("-----", GameObject.Find("player").GetComponent<Player>().PName);
+		}
 	}
 
 	/*! \brief Event for when the next button is clicked
@@ -48,9 +70,16 @@ public class DialogueCanvas : AbstractCanvas
 	{
 		convoNum++;
 
-		if(convoNum > dialogueAmount - 1)
+		if(convoNum == dialogueAmount - 1)
 		{
-			convoNum = 0;
+			SwapButtons();
+		}
+
+		else if(convoNum > dialogueAmount - 1)
+		{
+			rwdButton.gameObject.SetActive(false);
+			exitButton.gameObject.SetActive(false);
+			ResetDialogue();
 			uiControl.SetCanvas(UIState.MAP);
 		}
 
@@ -61,19 +90,73 @@ public class DialogueCanvas : AbstractCanvas
 		}
 	}
 
+	/*! \brief Helper function to swap reward button
+	 */
+	private void SwapButtons()
+	{
+	 	if(!displayReward)
+		{
+			rwdButton.gameObject.SetActive(false);
+			exitButton.gameObject.SetActive(true);
+		}
+
+		else
+		{
+			rwdButton.gameObject.SetActive(true);
+			exitButton.gameObject.SetActive(false);
+		}
+
+		panel.interactable = false;
+	}
+
+	/*! \brief Event for when the rewards button is used
+	 */
+	private void OnRWDButton()
+	{
+		ResetDialogue();
+		uiControl.SetCanvas(UIState.PLAYER);
+	}
+
 	/*! \brief Resets the dialogue progress
 	 */
 	public void ResetDialogue()
 	{
 		convoNum = 0;
+		panel.interactable = true;
 	}
 
-	/*! \brief Getter / Setter for nameField
+	/*! \brief Sets the reward
+	 *
+	 * \param (string) rwd - The quest reward
 	 */
-	public Text NameField
+	public void SetReward(string rwd)
 	{
-		get { return nameField; }
-		set { nameField = value; }
+		rwdButton.gameObject.transform.Find("Text").GetComponent<Text>().text = rwd;
+	}
+
+	/*! \brief Sets the header text
+	 *
+	 * \param (string) text - The header text;
+	 */
+	public void SetHeader(string text)
+	{
+		header.text = text;
+	}
+
+	/*! \brief Getter / Setter for the background
+	 */
+	public Image BG
+	{
+		get { return bg; }
+		set { bg = value; }
+	}
+
+	/*! \brief Getter / Setter for charPic
+	 */
+	public Image CharPic
+	{
+		get { return charPic; }
+		set { charPic = value; }
 	}
 
 	/*! \brief Getter / Setter for dialogueField
@@ -104,5 +187,21 @@ public class DialogueCanvas : AbstractCanvas
 	{
 		get { return lastDialogue; }
 		set { lastDialogue = value; }
+	}
+
+	/*! \brief Getter / Setter for the last dialogue bool
+	 */
+	public bool DisplayReward
+	{
+		get { return displayReward; }
+		set { displayReward = value; }
+	}
+
+	/*! \brief Getter / Setter for the text
+	 */
+	public List<string> Text
+	{
+		get { return text; }
+		set { text = value; }
 	}
 }

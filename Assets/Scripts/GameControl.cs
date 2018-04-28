@@ -38,6 +38,8 @@ public class GameControl : MonoBehaviour
     public bool DistCountEnabled; //! Distance counter enabled
     public bool VibrateEnable; //! Vibe on or not, simple
 
+    Dictionary<string, Sprite> sprites;
+
     /*! \brief Called when the game is initialized (ensures this code runs first no matter what)
 	 */
     private void Awake()
@@ -50,6 +52,21 @@ public class GameControl : MonoBehaviour
 
 		qControl = GetComponent<QControl>();
 		uiControl = GetComponent<UIControl>();
+
+		sprites = new Dictionary<string, Sprite>();
+
+		Object[] bgs = Resources.LoadAll("Backgrounds", typeof(Sprite));
+		Object[] chars = Resources.LoadAll("Characters", typeof(Sprite));
+
+		foreach(Sprite s in bgs)
+		{
+			sprites.Add("Backgrounds/" + s.name, s);
+		}
+
+		foreach(Sprite s in chars)
+		{
+			sprites.Add("Characters/" + s.name, s);
+		}
     }
 
     /*! \brief Called when the object is initialized
@@ -81,6 +98,7 @@ public class GameControl : MonoBehaviour
                     items[i].SetActive(true); // makes sure that all items are active when switching to AR camera view
                 }
             }
+
             else
             {
                 cams[0].enabled = true; // enables the main camera view
@@ -88,12 +106,6 @@ public class GameControl : MonoBehaviour
 
                 uiControl.SetCanvas(UIState.MAP); // sets the canvas to the map canvas
             }
-            /*
-            if (SceneManager.GetActiveScene().buildIndex == 0)
-                SceneManager.LoadScene(1);
-            else
-                SceneManager.LoadScene(0);
-                */
         }
 
         if (qControl.CurQuest != null)
@@ -101,30 +113,70 @@ public class GameControl : MonoBehaviour
 			switch(uiControl.CurrentUIState)
 			{
 				case UIState.DIALOGUE:
-                    if (qControl.MarkerCurrent < qControl.CurQuest.dialogueNum.Count - 1)
-                    {
-                        uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece.Count;
-                        uiControl.Dial.NameField.text = qControl.CurQuest.convo[qControl.MarkerCurrent].name;
-                        string text = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece[uiControl.Dial.ConvoNum].Replace("-----", player.GetComponent<Player>().PName);
-                        uiControl.Dial.DialogueField.text = text;
-                    }
+					if (qControl.MarkerCurrent < qControl.CurQuest.dialogueNum.Count - 1)
+					{
+						uiControl.Dial.SetHeader(qControl.MarkerList[qControl.MarkerCurrent].GetComponent<Marker>().MName);
+						uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece.Count;
+						uiControl.Dial.Text = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece;
 
-                    if (qControl.QuestShouldFinish)
-                    {
-                        uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.CurQuest.convo.Count - 1].convoPiece.Count;
-                        uiControl.Dial.LastDialogue = true;
-                        uiControl.Dial.NameField.text = qControl.CurQuest.convo[qControl.CurQuest.convo.Count - 1].name;
-                        uiControl.Dial.DialogueField.text = "Reward: " + qControl.CurQuest.reward;
-                        qControl.SetCurrentQuest(null);
-                        qControl.QuestShouldFinish = false;
-                    }
+						Sprite s = sprites[qControl.CurQuest.convo[qControl.MarkerCurrent].bgPic];
+						Vector2 mod = new Vector2(s.rect.width, s.rect.height);
+
+						float scale = 2.0f;
+
+						while(mod.y < 1280.0f)
+						{
+							mod *= scale;
+							scale *= 0.75f;
+						}
+
+						uiControl.Dial.BG.GetComponent<RectTransform>().sizeDelta = mod;
+						uiControl.Dial.BG.preserveAspect = true;
+						uiControl.Dial.BG.sprite = s;
+
+						s = sprites[qControl.CurQuest.convo[qControl.MarkerCurrent].charPic];
+						uiControl.Dial.CharPic.preserveAspect = true;
+						uiControl.Dial.CharPic.sprite = s;
+					}
+
+					if (qControl.QuestShouldFinish)
+					{
+						uiControl.Dial.SetHeader(qControl.FinalPlaceName);
+						uiControl.Dial.DialogueAmount = qControl.CurQuest.convo[qControl.CurQuest.convo.Count - 1].convoPiece.Count;
+						uiControl.Dial.LastDialogue = true;
+						uiControl.Dial.SetReward(qControl.CurQuest.reward);
+						uiControl.Dial.DisplayReward = true;
+						uiControl.Dial.Text = qControl.CurQuest.convo[qControl.MarkerCurrent].convoPiece;
+
+						Sprite s = sprites[qControl.CurQuest.convo[qControl.MarkerCurrent].bgPic];
+						Vector2 mod = new Vector2(s.rect.width, s.rect.height);
+
+						float scale = 2.0f;
+
+						while(mod.y < 1280.0f)
+						{
+							mod *= scale;
+							scale *= 0.75f;
+						}
+
+						uiControl.Dial.BG.GetComponent<RectTransform>().sizeDelta = mod;
+						uiControl.Dial.BG.preserveAspect = true;
+						uiControl.Dial.BG.sprite = s;
+
+						s = sprites[qControl.CurQuest.convo[qControl.MarkerCurrent].charPic];
+						uiControl.Dial.CharPic.preserveAspect = true;
+						uiControl.Dial.CharPic.sprite = s;
+
+						qControl.SetCurrentQuest(null);
+						qControl.QuestShouldFinish = false;
+					}
+
                     break;
 
 				default:
 					break;
 			}
         }
-
 	}
 
     public void UpdatePlayerInfo()
