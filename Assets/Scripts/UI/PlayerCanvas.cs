@@ -54,6 +54,7 @@ public class PlayerCanvas : AbstractCanvas
     private void Start()
 	{
         player = GameObject.Find("player").GetComponent<Player>();
+        gains.transform.localScale = new Vector3(0.0f, 1.0f, 1.0f);
     }
 
     /*! \brief Updates the object
@@ -118,7 +119,22 @@ public class PlayerCanvas : AbstractCanvas
             maxXP.text = "900 xp";
         }
 
-        if(player.EXP == 100) // 100 XP checks
+        if(player.EXP == 50)
+        {
+            if(player.LVL == 0)
+            {
+                gains.transform.localScale = new Vector3(0.15f, 1.0f, 1.0f);
+            }
+            else if(player.LVL == 1)
+            {
+                gains.transform.localScale = new Vector3(0.5f, 1.0f, 1.0f);
+            }
+            else if(player.LVL == 2)
+            {
+                gains.transform.localScale = new Vector3(0.05f, 1.0f, 1.0f);
+            }
+        }
+        else if(player.EXP == 100) // 100 XP checks
         {
             if(player.LVL == 0)
             {

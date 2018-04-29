@@ -191,6 +191,8 @@ public class QControl : MonoBehaviour
 		quests[curQuest] = true;
 		questShouldFinish = true;
         GameObject.Find("player").GetComponent<Player>().EXP += curQuest.rewardXP;
+        // GameObject.Find("player").GetComponent<Player>().EXP += 300;
+        // Debug.Log("Reward: " + curQuest.rewardXP);
         ClearMarkers();
 	}
 
