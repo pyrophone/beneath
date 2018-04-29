@@ -139,12 +139,11 @@ public class GameControl : MonoBehaviour
 						Sprite s = ResourceManager.GetSprite(qControl.CurQuest.convo[qControl.MarkerCurrent].bgPic);
 						Vector2 mod = new Vector2(s.rect.width, s.rect.height);
 
-						float scale = 2.0f;
+						float scale = 3.0f;
 
-						while(mod.y < Screen.height)
+						if(mod.y < 1280.0f)
 						{
-							mod *= scale;
-							scale *= 0.75f;
+                            mod *= scale;
 						}
 
 						uiControl.Dial.BG.GetComponent<RectTransform>().sizeDelta = mod;

@@ -217,15 +217,18 @@ public class Marker : Mappable
 
     public void OnMouseDown()
     {
-        //  && !EventSystem.current.IsPointerOverGameObject() //this still wasn't working
-        if (inRange && !EventSystem.current.IsPointerOverGameObject())
+        //  && !EventSystem.current.IsPointerOverGameObject() //EXPERIMENTAL SOLUTION, ONLY ABLE TO TRIGGER MARKERS ON MAP SCREEN
+        if (GameObject.Find("GameManager").GetComponent<UIControl>().CurrentUIState == UIState.MAP)
         {
-            triggered = true; // ideally triggered should not be set true until player has completed all events at marker
-            if (name == "q1.marker1")
-                GameObject.Find("GameManager").GetComponent<GameControl>().OnofrioAR = true;
-        }     
-        else
-            popup.PopulateCanvas(this);
+            if (inRange)
+            {
+                triggered = true; // ideally triggered should not be set true until player has completed all events at marker
+                if (name == "q1.marker1")
+                    GameObject.Find("GameManager").GetComponent<GameControl>().OnofrioAR = true;
+            }
+            else
+                popup.PopulateCanvas(this);
+        }   
     }
 
     /*! \brief Gets the bool for if current marker is part of a quest
