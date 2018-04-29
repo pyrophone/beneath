@@ -18,6 +18,7 @@ public class ARPuzzleControl : MonoBehaviour
     void Start ()
     {
         // congrats.SetActive(false);
+        player = GameObject.Find("player").GetComponent<Player>();
     }
 	
 	// Update is called once per frame

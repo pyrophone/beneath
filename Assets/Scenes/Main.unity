@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1391,7 +1391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &169095402
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1471,10 +1471,10 @@ MonoBehaviour:
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1.333578
+  mAspectRatio: 1.497872
   mImageTargetType: 0
-  mWidth: 1.1231979
-  mHeight: 1.497872
+  mWidth: 0.08011365
+  mHeight: 0.12
 --- !u!4 &169095407
 Transform:
   m_ObjectHideFlags: 0
@@ -1483,7 +1483,7 @@ Transform:
   m_GameObject: {fileID: 169095401}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5763.1733, y: -490.5984, z: 39.78946}
-  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_Children:
   - {fileID: 1736029487}
   m_Father: {fileID: 1233188820}
@@ -1539,7 +1539,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.3338069, y: 0, z: 0.5}
+      m_Extent: {x: 0.3750001, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -1592,7 +1592,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: bde8aabe00000000000000bf000000000000803f000000000000000000000000bde8aabe000000000000003f000000000000803f00000000000000000000803fbde8aa3e00000000000000bf000000000000803f000000000000803f00000000bde8aa3e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: 0300c0be00000000000000bf000000000000803f0000000000000000000000000300c0be000000000000003f000000000000803f00000000000000000000803f0300c03e00000000000000bf000000000000803f000000000000803f000000000300c03e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -1921,7 +1921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &207706527
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -2001,10 +2001,10 @@ MonoBehaviour:
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1.333578
+  mAspectRatio: 1.497872
   mImageTargetType: 0
-  mWidth: 1.1231979
-  mHeight: 1.497872
+  mWidth: 0.08011365
+  mHeight: 0.12
 --- !u!4 &207706532
 Transform:
   m_ObjectHideFlags: 0
@@ -2013,7 +2013,7 @@ Transform:
   m_GameObject: {fileID: 207706526}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5762.4233, y: -490.5984, z: 39.78946}
-  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_Children:
   - {fileID: 1468984510}
   m_Father: {fileID: 1233188820}
@@ -3172,7 +3172,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &369695682
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3252,10 +3252,10 @@ MonoBehaviour:
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1.333578
+  mAspectRatio: 1.497872
   mImageTargetType: 0
-  mWidth: 1.1231979
-  mHeight: 1.497872
+  mWidth: 0.08011365
+  mHeight: 0.12
 --- !u!4 &369695687
 Transform:
   m_ObjectHideFlags: 0
@@ -3264,7 +3264,7 @@ Transform:
   m_GameObject: {fileID: 369695681}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5762.4233, y: -490.5984, z: 39.28946}
-  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_Children:
   - {fileID: 1850297746}
   m_Father: {fileID: 1233188820}
@@ -4464,7 +4464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &478785669
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4539,15 +4539,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: maskeron-dog-onofrio-full
+  mTrackableName: stained_glass_AR_resized
   mPreserveChildSize: 0
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1.333578
+  mAspectRatio: 1.333333
   mImageTargetType: 0
-  mWidth: 1.1231979
-  mHeight: 1.497872
+  mWidth: 0.09000002
+  mHeight: 0.12
 --- !u!4 &478785674
 Transform:
   m_ObjectHideFlags: 0
@@ -4556,7 +4556,7 @@ Transform:
   m_GameObject: {fileID: 478785668}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5763.1733, y: -490.5984, z: 39.53946}
-  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_Children:
   - {fileID: 1290612559}
   m_Father: {fileID: 1233188820}
@@ -4805,7 +4805,7 @@ Prefab:
     - target: {fileID: 9500000, guid: ffb9cad0d72527e429a0f547807d8bb0, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 458b3ad395f38774d808edb984b74705, type: 2}
+      objectReference: {fileID: 9100000, guid: ebca4e65757cce948ac646aede99502e, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ffb9cad0d72527e429a0f547807d8bb0, type: 3}
   m_IsPrefabParent: 0
@@ -4824,11 +4824,11 @@ SphereCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 484483897}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 100
-  m_Center: {x: 0.0000000013969839, y: -0.0000000029685907, z: 0.00012206845}
+  m_Radius: 0.0100000035
+  m_Center: {x: -0.00024413923, y: 0.000012554985, z: -0.00012207218}
 --- !u!114 &484483902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7695,7 +7695,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.3338069, y: 0, z: 0.5}
+      m_Extent: {x: 0.37507746, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -7748,7 +7748,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: bde8aabe00000000000000bf000000000000803f000000000000000000000000bde8aabe000000000000003f000000000000803f00000000000000000000803fbde8aa3e00000000000000bf000000000000803f000000000000803f00000000bde8aa3e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: 270ac0be00000000000000bf000000000000803f000000000000000000000000270ac0be000000000000003f000000000000803f00000000000000000000803f270ac03e00000000000000bf000000000000803f000000000000803f00000000270ac03e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -8084,7 +8084,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.3338069, y: 0, z: 0.5}
+      m_Extent: {x: 0.3750001, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -8137,7 +8137,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: bde8aabe00000000000000bf000000000000803f000000000000000000000000bde8aabe000000000000003f000000000000803f00000000000000000000803fbde8aa3e00000000000000bf000000000000803f000000000000803f00000000bde8aa3e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: 0300c0be00000000000000bf000000000000803f0000000000000000000000000300c0be000000000000003f000000000000803f00000000000000000000803f0300c03e00000000000000bf000000000000803f000000000000803f000000000300c03e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -8489,7 +8489,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.3338069, y: 0, z: 0.5}
+      m_Extent: {x: 0.37507746, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -8542,7 +8542,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: bde8aabe00000000000000bf000000000000803f000000000000000000000000bde8aabe000000000000003f000000000000803f00000000000000000000803fbde8aa3e00000000000000bf000000000000803f000000000000803f00000000bde8aa3e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: 270ac0be00000000000000bf000000000000803f000000000000000000000000270ac0be000000000000003f000000000000803f00000000000000000000803f270ac03e00000000000000bf000000000000803f000000000000803f00000000270ac03e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -8695,7 +8695,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &966668134
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8770,15 +8770,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: maskeron-dog-onofrio-full
+  mTrackableName: wierd_tiles_AR_resized
   mPreserveChildSize: 0
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
   mAspectRatio: 1.333058
   mImageTargetType: 0
-  mWidth: 1.123636
-  mHeight: 1.497872
+  mWidth: 0.090018585
+  mHeight: 0.12
 --- !u!4 &966668139
 Transform:
   m_ObjectHideFlags: 0
@@ -8787,7 +8787,7 @@ Transform:
   m_GameObject: {fileID: 966668133}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5763.1733, y: -490.5984, z: 39.28946}
-  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_Children:
   - {fileID: 27108320}
   m_Father: {fileID: 1233188820}
@@ -8921,7 +8921,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &968582500
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -8996,15 +8996,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: maskeron-dog-onofrio-full
+  mTrackableName: monk_college_AR_resized
   mPreserveChildSize: 0
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1.333578
+  mAspectRatio: 1.333333
   mImageTargetType: 0
-  mWidth: 1.1231979
-  mHeight: 1.497872
+  mWidth: 0.09000002
+  mHeight: 0.12
 --- !u!4 &968582505
 Transform:
   m_ObjectHideFlags: 0
@@ -9013,7 +9013,7 @@ Transform:
   m_GameObject: {fileID: 968582499}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5762.9233, y: -490.5984, z: 39.53946}
-  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_Children:
   - {fileID: 1997701961}
   m_Father: {fileID: 1233188820}
@@ -9251,7 +9251,8 @@ MonoBehaviour:
   cams:
   - {fileID: 1680601343}
   - {fileID: 1490892115}
-  items: []
+  items:
+  - {fileID: 484483897}
   Debug: 0
   DistCountEnabled: 1
   VibrateEnable: 1
@@ -10241,7 +10242,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &1038837943
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10321,10 +10322,10 @@ MonoBehaviour:
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1.333578
+  mAspectRatio: 1.497872
   mImageTargetType: 0
-  mWidth: 1.1231979
-  mHeight: 1.497872
+  mWidth: 0.08011365
+  mHeight: 0.12
 --- !u!4 &1038837948
 Transform:
   m_ObjectHideFlags: 0
@@ -10333,7 +10334,7 @@ Transform:
   m_GameObject: {fileID: 1038837942}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5762.9233, y: -490.5984, z: 39.78946}
-  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_Children:
   - {fileID: 696031285}
   m_Father: {fileID: 1233188820}
@@ -10729,7 +10730,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &1135712304
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10809,10 +10810,10 @@ MonoBehaviour:
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1.333578
+  mAspectRatio: 1.497872
   mImageTargetType: 0
-  mWidth: 1.1231979
-  mHeight: 1.497872
+  mWidth: 0.08011365
+  mHeight: 0.12
 --- !u!4 &1135712309
 Transform:
   m_ObjectHideFlags: 0
@@ -10821,7 +10822,7 @@ Transform:
   m_GameObject: {fileID: 1135712303}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5762.6733, y: -490.5984, z: 39.28946}
-  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_Children:
   - {fileID: 410281491}
   m_Father: {fileID: 1233188820}
@@ -11153,7 +11154,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &1142995572
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -11233,10 +11234,10 @@ MonoBehaviour:
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1.333578
+  mAspectRatio: 1.497872
   mImageTargetType: 0
-  mWidth: 1.1231979
-  mHeight: 1.497872
+  mWidth: 0.08011365
+  mHeight: 0.12
 --- !u!4 &1142995577
 Transform:
   m_ObjectHideFlags: 0
@@ -11245,7 +11246,7 @@ Transform:
   m_GameObject: {fileID: 1142995571}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5762.6733, y: -490.5984, z: 39.53946}
-  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_Children:
   - {fileID: 1683313623}
   m_Father: {fileID: 1233188820}
@@ -12205,7 +12206,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &1209731281
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -12285,10 +12286,10 @@ MonoBehaviour:
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1.333578
+  mAspectRatio: 1.497872
   mImageTargetType: 0
-  mWidth: 1.1231979
-  mHeight: 1.497872
+  mWidth: 0.08011365
+  mHeight: 0.12
 --- !u!4 &1209731286
 Transform:
   m_ObjectHideFlags: 0
@@ -12297,7 +12298,7 @@ Transform:
   m_GameObject: {fileID: 1209731280}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5762.6733, y: -490.5984, z: 39.78946}
-  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_Children:
   - {fileID: 1142858989}
   m_Father: {fileID: 1233188820}
@@ -12417,7 +12418,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 299.99997}
+  m_AnchoredPosition: {x: 0, y: 300}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1233188819
@@ -14026,7 +14027,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &1402231014
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -14106,10 +14107,10 @@ MonoBehaviour:
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1.333578
+  mAspectRatio: 1.497872
   mImageTargetType: 0
-  mWidth: 1.1231979
-  mHeight: 1.497872
+  mWidth: 0.08011365
+  mHeight: 0.12
 --- !u!4 &1402231019
 Transform:
   m_ObjectHideFlags: 0
@@ -14118,7 +14119,7 @@ Transform:
   m_GameObject: {fileID: 1402231013}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5763.4233, y: -490.5984, z: 39.53946}
-  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_Children:
   - {fileID: 1022726617}
   m_Father: {fileID: 1233188820}
@@ -14600,7 +14601,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &1436663404
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -14675,15 +14676,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: maskeron-dog-onofrio-full
+  mTrackableName: wooden_guillotine_AR_resized
   mPreserveChildSize: 0
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1.497872
+  mAspectRatio: 1.333058
   mImageTargetType: 0
-  mWidth: 1
-  mHeight: 1.497872
+  mWidth: 0.090018585
+  mHeight: 0.12
 --- !u!4 &1436663409
 Transform:
   m_ObjectHideFlags: 0
@@ -14692,7 +14693,7 @@ Transform:
   m_GameObject: {fileID: 1436663403}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5763.4233, y: -490.5984, z: 39.78946}
-  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_Children:
   - {fileID: 728213000}
   m_Father: {fileID: 1233188820}
@@ -15408,7 +15409,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 42.400036, y: -0.00003817892}
+  m_AnchoredPosition: {x: 42.400005, y: -0.00003817892}
   m_SizeDelta: {x: -42.4, y: 2000}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1472073414
@@ -17194,7 +17195,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1025202210}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.3354722
+  m_Size: 0.28686112
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -18830,7 +18831,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &1787201765
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -18910,10 +18911,10 @@ MonoBehaviour:
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1.333578
+  mAspectRatio: 1.497872
   mImageTargetType: 0
-  mWidth: 1.1231979
-  mHeight: 1.497872
+  mWidth: 0.08011365
+  mHeight: 0.12
 --- !u!4 &1787201770
 Transform:
   m_ObjectHideFlags: 0
@@ -18922,7 +18923,7 @@ Transform:
   m_GameObject: {fileID: 1787201764}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5762.9233, y: -490.5984, z: 39.28946}
-  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_Children:
   - {fileID: 656055498}
   m_Father: {fileID: 1233188820}
@@ -21819,7 +21820,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!33 &2108846593
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -21899,10 +21900,10 @@ MonoBehaviour:
   mInitializedInEditor: 1
   mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1.333578
+  mAspectRatio: 1.497872
   mImageTargetType: 0
-  mWidth: 1.1231979
-  mHeight: 1.497872
+  mWidth: 0.08011365
+  mHeight: 0.12
 --- !u!4 &2108846598
 Transform:
   m_ObjectHideFlags: 0
@@ -21911,7 +21912,7 @@ Transform:
   m_GameObject: {fileID: 2108846592}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5762.4233, y: -490.5984, z: 39.53946}
-  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_Children:
   - {fileID: 290006579}
   m_Father: {fileID: 1233188820}
