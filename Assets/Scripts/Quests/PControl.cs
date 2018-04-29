@@ -57,7 +57,7 @@ public class PControl : MonoBehaviour
             m.GetComponent<Marker>().Loc = puzzles[i].location;
             m.GetComponent<Marker>().Puzzle = puzzles[i];
             m.GetComponent<Marker>().Map = GetComponent<GameControl>().Map;
-            m.GetComponent<Marker>().Radius = 20;
+            m.GetComponent<Marker>().Radius = 30;
             m.GetComponent<Marker>().IsPuzzle = true;
             m.name = "p.marker";
         }

@@ -99,7 +99,7 @@ public class Marker : Mappable
             var c = 2 * Mathf.Atan2(Mathf.Sqrt(a), Mathf.Sqrt(1 - a)); //optimize this part or limit frequency of calculation
             double distance = earthRadiusM * c;
             #endregion
-            if (distance < 30)
+            if (distance < 50)
                 puzzleP.SetActive(true);
             else
                 puzzleP.SetActive(false);
@@ -129,7 +129,7 @@ public class Marker : Mappable
             var c = 2 * Mathf.Atan2(Mathf.Sqrt(a), Mathf.Sqrt(1 - a)); //optimize this part or limit frequency of calculation
             double distance = earthRadiusM * c;
             #endregion
-            if (distance < 30)
+            if (distance < 50)
                 puzzleP.SetActive(true);
             else
                 puzzleP.SetActive(false);

@@ -9,7 +9,7 @@
 				"x": 42.641787,
 				"y": 18.106856
 			},
-			"mRadius": 20,
+			"mRadius": 30,
 			"prereqMarker": -1
 		},
 		{
@@ -19,7 +19,7 @@
 				"x": 42.641584,
 				"y": 18.107329
 			},
-			"mRadius": 20,
+			"mRadius": 30,
 			"prereqMarker": 0
 		},
 		{
@@ -29,7 +29,7 @@
 				"x": 42.640865,
 				"y": 18.110373
 			},
-			"mRadius": 20,
+			"mRadius": 30,
 			"prereqMarker": 1
 		}
     ],

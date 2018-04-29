@@ -110,15 +110,14 @@ public class GameControl : MonoBehaviour
 						UnityEngine.Debug.Log(mod.y);
 						UnityEngine.Debug.Log(Screen.height);
 
-						float scale = 2.0f;
+                        float scale = 3.0f;
 
-						while(mod.y < Screen.height)
-						{
-							mod *= scale;
-							scale *= 0.75f;
-						}
+                        if (mod.y < 1280.0f)
+                        {
+                            mod *= scale;
+                        }
 
-						uiControl.Dial.BG.GetComponent<RectTransform>().sizeDelta = mod;
+                        uiControl.Dial.BG.GetComponent<RectTransform>().sizeDelta = mod;
 						uiControl.Dial.BG.preserveAspect = true;
 						uiControl.Dial.BG.sprite = s;
 
@@ -140,12 +139,12 @@ public class GameControl : MonoBehaviour
 						Vector2 mod = new Vector2(s.rect.width, s.rect.height);
 
 						float scale = 3.0f;
-
+                        
 						if(mod.y < 1280.0f)
 						{
-                            mod *= scale;
+							mod *= scale;
 						}
-
+                        
 						uiControl.Dial.BG.GetComponent<RectTransform>().sizeDelta = mod;
 						uiControl.Dial.BG.preserveAspect = true;
 						uiControl.Dial.BG.sprite = s;

@@ -130,7 +130,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.3750001, y: 0, z: 0.5}
+      m_Extent: {x: 0.3338069, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -183,7 +183,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 0300c0be00000000000000bf000000000000803f0000000000000000000000000300c0be000000000000003f000000000000803f00000000000000000000803f0300c03e00000000000000bf000000000000803f000000000000803f000000000300c03e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: bde8aabe00000000000000bf000000000000803f000000000000000000000000bde8aabe000000000000003f000000000000803f00000000000000000000803fbde8aa3e00000000000000bf000000000000803f000000000000803f00000000bde8aa3e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -736,7 +736,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1178639308}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -992,31 +992,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 88770591}
---- !u!21 &90408601
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: bricked_church_AR_resizedMaterial
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 8083a866ff114410855903ae4c3597a2, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1 &101426324 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 100000, guid: ffb9cad0d72527e429a0f547807d8bb0, type: 3}
@@ -1161,7 +1136,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.3750001, y: 0, z: 0.5}
+      m_Extent: {x: 0.3338069, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -1214,7 +1189,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 0300c0be00000000000000bf000000000000803f0000000000000000000000000300c0be000000000000003f000000000000803f00000000000000000000803f0300c03e00000000000000bf000000000000803f000000000000803f000000000300c03e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: bde8aabe00000000000000bf000000000000803f000000000000000000000000bde8aabe000000000000003f000000000000803f00000000000000000000803fbde8aa3e00000000000000bf000000000000803f000000000000803f00000000bde8aa3e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -1491,15 +1466,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: 
+  mTrackableName: maskeron-dog-onofrio-full
   mPreserveChildSize: 0
-  mInitializedInEditor: 0
-  mDataSetPath: 
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1
+  mAspectRatio: 1.333578
   mImageTargetType: 0
-  mWidth: 0.12065
-  mHeight: 0.12065
+  mWidth: 1.1231979
+  mHeight: 1.497872
 --- !u!4 &169095407
 Transform:
   m_ObjectHideFlags: 0
@@ -1508,7 +1483,7 @@ Transform:
   m_GameObject: {fileID: 169095401}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5763.1733, y: -490.5984, z: 39.78946}
-  m_LocalScale: {x: 0.12065, y: 0.12065, z: 0.12065}
+  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
   m_Children:
   - {fileID: 1736029487}
   m_Father: {fileID: 1233188820}
@@ -1544,7 +1519,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 300}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!43 &179125050
@@ -1564,7 +1539,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.3750001, y: 0, z: 0.5}
+      m_Extent: {x: 0.3338069, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -1617,7 +1592,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 0300c0be00000000000000bf000000000000803f0000000000000000000000000300c0be000000000000003f000000000000803f00000000000000000000803f0300c03e00000000000000bf000000000000803f000000000000803f000000000300c03e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: bde8aabe00000000000000bf000000000000803f000000000000000000000000bde8aabe000000000000003f000000000000803f00000000000000000000803fbde8aa3e00000000000000bf000000000000803f000000000000803f00000000bde8aa3e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -1968,7 +1943,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 1324701606}
+  - {fileID: 1442144704}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2021,15 +1996,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: 
+  mTrackableName: maskeron-dog-onofrio-full
   mPreserveChildSize: 0
-  mInitializedInEditor: 0
-  mDataSetPath: 
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1
+  mAspectRatio: 1.333578
   mImageTargetType: 0
-  mWidth: 0.12065
-  mHeight: 0.12065
+  mWidth: 1.1231979
+  mHeight: 1.497872
 --- !u!4 &207706532
 Transform:
   m_ObjectHideFlags: 0
@@ -2038,7 +2013,7 @@ Transform:
   m_GameObject: {fileID: 207706526}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5762.4233, y: -490.5984, z: 39.78946}
-  m_LocalScale: {x: 0.12065, y: 0.12065, z: 0.12065}
+  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
   m_Children:
   - {fileID: 1468984510}
   m_Father: {fileID: 1233188820}
@@ -3049,7 +3024,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.3750001, y: 0, z: 0.5}
+      m_Extent: {x: 0.3338069, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -3102,7 +3077,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 0300c0be00000000000000bf000000000000803f0000000000000000000000000300c0be000000000000003f000000000000803f00000000000000000000803f0300c03e00000000000000bf000000000000803f000000000000803f000000000300c03e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: bde8aabe00000000000000bf000000000000803f000000000000000000000000bde8aabe000000000000003f000000000000803f00000000000000000000803fbde8aa3e00000000000000bf000000000000803f000000000000803f00000000bde8aa3e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -3219,7 +3194,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 1916458028}
+  - {fileID: 1442144704}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3272,15 +3247,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: 
+  mTrackableName: maskeron-dog-onofrio-full
   mPreserveChildSize: 0
-  mInitializedInEditor: 0
-  mDataSetPath: 
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1
+  mAspectRatio: 1.333578
   mImageTargetType: 0
-  mWidth: 0.12065
-  mHeight: 0.12065
+  mWidth: 1.1231979
+  mHeight: 1.497872
 --- !u!4 &369695687
 Transform:
   m_ObjectHideFlags: 0
@@ -3289,37 +3264,12 @@ Transform:
   m_GameObject: {fileID: 369695681}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5762.4233, y: -490.5984, z: 39.28946}
-  m_LocalScale: {x: 0.12065, y: 0.12065, z: 0.12065}
+  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
   m_Children:
   - {fileID: 1850297746}
   m_Father: {fileID: 1233188820}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &397863380
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: wierd_tiles_AR_resizedMaterial
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 164719caea104f6b9e13f82774986b1b, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1 &398555683
 GameObject:
   m_ObjectHideFlags: 0
@@ -3924,7 +3874,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.37493122, y: 0, z: 0.5}
+      m_Extent: {x: 0.3338069, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -3977,7 +3927,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: fcf6bfbe00000000000000bf000000000000803f000000000000000000000000fcf6bfbe000000000000003f000000000000803f00000000000000000000803ffcf6bf3e00000000000000bf000000000000803f000000000000803f00000000fcf6bf3e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: bde8aabe00000000000000bf000000000000803f000000000000000000000000bde8aabe000000000000003f000000000000803f00000000000000000000803fbde8aa3e00000000000000bf000000000000803f000000000000803f00000000bde8aa3e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -4536,7 +4486,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 532251220}
+  - {fileID: 1442144704}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4589,15 +4539,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: 
+  mTrackableName: maskeron-dog-onofrio-full
   mPreserveChildSize: 0
-  mInitializedInEditor: 0
-  mDataSetPath: 
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1
+  mAspectRatio: 1.333578
   mImageTargetType: 0
-  mWidth: 0.12065
-  mHeight: 0.12065
+  mWidth: 1.1231979
+  mHeight: 1.497872
 --- !u!4 &478785674
 Transform:
   m_ObjectHideFlags: 0
@@ -4606,7 +4556,7 @@ Transform:
   m_GameObject: {fileID: 478785668}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5763.1733, y: -490.5984, z: 39.53946}
-  m_LocalScale: {x: 0.12065, y: 0.12065, z: 0.12065}
+  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
   m_Children:
   - {fileID: 1290612559}
   m_Father: {fileID: 1233188820}
@@ -4640,7 +4590,7 @@ Transform:
   m_GameObject: {fileID: 482428365}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5763.428, y: -490.5984, z: 39.28946}
-  m_LocalScale: {x: 0.120654, y: 0.120654, z: 0.120654}
+  m_LocalScale: {x: 0.12, y: 0.12, z: 0.12}
   m_Children:
   - {fileID: 484483896}
   m_Father: {fileID: 1233188820}
@@ -4667,7 +4617,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 397863380}
+  - {fileID: 1442144704}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4720,15 +4670,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: 
+  mTrackableName: maskeron-dog-onofrio-full
   mPreserveChildSize: 0
-  mInitializedInEditor: 0
-  mDataSetPath: 
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1
+  mAspectRatio: 1.497872
   mImageTargetType: 0
-  mWidth: 0.120654
-  mHeight: 0.120654
+  mWidth: 0.08011365
+  mHeight: 0.12
 --- !u!1 &483114999
 GameObject:
   m_ObjectHideFlags: 0
@@ -4874,11 +4824,24 @@ SphereCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 484483897}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.010000003
+  m_Radius: 100
   m_Center: {x: 0.0000000013969839, y: -0.0000000029685907, z: 0.00012206845}
+--- !u!114 &484483902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 484483897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb4826aca42999843a60defa43404407, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xpGain: 100
+  congrats: {fileID: 1248575140}
 --- !u!1 &488661251
 GameObject:
   m_ObjectHideFlags: 0
@@ -5095,9 +5058,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 720, y: 125}
+  m_SizeDelta: {x: 0, y: 125}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &505361852
 MonoBehaviour:
@@ -5240,31 +5203,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!21 &532251220
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: stained_glass_AR_resizedMaterial
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c5df11f5c4c84d71a586bc2d233f042b, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1 &538733082
 GameObject:
   m_ObjectHideFlags: 0
@@ -6388,31 +6326,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 665548691}
---- !u!21 &674591067
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: monk_college_AR_resizedMaterial
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 3c1be71604764019a50ca690b230c3e9, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1 &687571282
 GameObject:
   m_ObjectHideFlags: 0
@@ -7019,31 +6932,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 701312532}
---- !u!21 &702330894
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: churhc_door_AR_resizedMaterial
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 7d502eae6aae4b21a60818bf994a9155, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1 &722957429
 GameObject:
   m_ObjectHideFlags: 0
@@ -7807,7 +7695,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.37507746, y: 0, z: 0.5}
+      m_Extent: {x: 0.3338069, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -7860,7 +7748,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 270ac0be00000000000000bf000000000000803f000000000000000000000000270ac0be000000000000003f000000000000803f00000000000000000000803f270ac03e00000000000000bf000000000000803f000000000000803f00000000270ac03e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: bde8aabe00000000000000bf000000000000803f000000000000000000000000bde8aabe000000000000003f000000000000803f00000000000000000000803fbde8aa3e00000000000000bf000000000000803f000000000000803f00000000bde8aa3e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -8196,7 +8084,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.3750001, y: 0, z: 0.5}
+      m_Extent: {x: 0.3338069, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -8249,7 +8137,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 0300c0be00000000000000bf000000000000803f0000000000000000000000000300c0be000000000000003f000000000000803f00000000000000000000803f0300c03e00000000000000bf000000000000803f000000000000803f000000000300c03e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: bde8aabe00000000000000bf000000000000803f000000000000000000000000bde8aabe000000000000003f000000000000803f00000000000000000000803fbde8aa3e00000000000000bf000000000000803f000000000000803f00000000bde8aa3e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -8601,7 +8489,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.37507746, y: 0, z: 0.5}
+      m_Extent: {x: 0.3338069, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -8654,7 +8542,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 270ac0be00000000000000bf000000000000803f000000000000000000000000270ac0be000000000000003f000000000000803f00000000000000000000803f270ac03e00000000000000bf000000000000803f000000000000803f00000000270ac03e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: bde8aabe00000000000000bf000000000000803f000000000000000000000000bde8aabe000000000000003f000000000000803f00000000000000000000803fbde8aa3e00000000000000bf000000000000803f000000000000803f00000000bde8aa3e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -8829,7 +8717,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 397863380}
+  - {fileID: 1442144704}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -8882,15 +8770,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: 
+  mTrackableName: maskeron-dog-onofrio-full
   mPreserveChildSize: 0
-  mInitializedInEditor: 0
-  mDataSetPath: 
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1
+  mAspectRatio: 1.333058
   mImageTargetType: 0
-  mWidth: 0.12065
-  mHeight: 0.12065
+  mWidth: 1.123636
+  mHeight: 1.497872
 --- !u!4 &966668139
 Transform:
   m_ObjectHideFlags: 0
@@ -8899,7 +8787,7 @@ Transform:
   m_GameObject: {fileID: 966668133}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5763.1733, y: -490.5984, z: 39.28946}
-  m_LocalScale: {x: 0.12065, y: 0.12065, z: 0.12065}
+  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
   m_Children:
   - {fileID: 27108320}
   m_Father: {fileID: 1233188820}
@@ -9055,7 +8943,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 674591067}
+  - {fileID: 1442144704}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9108,15 +8996,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: 
+  mTrackableName: maskeron-dog-onofrio-full
   mPreserveChildSize: 0
-  mInitializedInEditor: 0
-  mDataSetPath: 
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1
+  mAspectRatio: 1.333578
   mImageTargetType: 0
-  mWidth: 0.12065
-  mHeight: 0.12065
+  mWidth: 1.1231979
+  mHeight: 1.497872
 --- !u!4 &968582505
 Transform:
   m_ObjectHideFlags: 0
@@ -9125,7 +9013,7 @@ Transform:
   m_GameObject: {fileID: 968582499}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5762.9233, y: -490.5984, z: 39.53946}
-  m_LocalScale: {x: 0.12065, y: 0.12065, z: 0.12065}
+  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
   m_Children:
   - {fileID: 1997701961}
   m_Father: {fileID: 1233188820}
@@ -9679,7 +9567,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1793151574}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10200,31 +10088,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1020109512}
---- !u!21 &1020357956
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: mini_statue_AR_resizedMaterial
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 302e050ed6814a19b9f8b1ff2bca3edf, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1001 &1022726616
 Prefab:
   m_ObjectHideFlags: 0
@@ -10400,7 +10263,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 1020357956}
+  - {fileID: 1442144704}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10453,15 +10316,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: 
+  mTrackableName: maskeron-dog-onofrio-full
   mPreserveChildSize: 0
-  mInitializedInEditor: 0
-  mDataSetPath: 
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1
+  mAspectRatio: 1.333578
   mImageTargetType: 0
-  mWidth: 0.12065
-  mHeight: 0.12065
+  mWidth: 1.1231979
+  mHeight: 1.497872
 --- !u!4 &1038837948
 Transform:
   m_ObjectHideFlags: 0
@@ -10470,7 +10333,7 @@ Transform:
   m_GameObject: {fileID: 1038837942}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5762.9233, y: -490.5984, z: 39.78946}
-  m_LocalScale: {x: 0.12065, y: 0.12065, z: 0.12065}
+  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
   m_Children:
   - {fileID: 696031285}
   m_Father: {fileID: 1233188820}
@@ -10644,10 +10507,10 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 720, y: 1280}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -10888,7 +10751,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 1879160706}
+  - {fileID: 1442144704}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -10941,15 +10804,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: 
+  mTrackableName: maskeron-dog-onofrio-full
   mPreserveChildSize: 0
-  mInitializedInEditor: 0
-  mDataSetPath: 
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1
+  mAspectRatio: 1.333578
   mImageTargetType: 0
-  mWidth: 0.120654
-  mHeight: 0.120654
+  mWidth: 1.1231979
+  mHeight: 1.497872
 --- !u!4 &1135712309
 Transform:
   m_ObjectHideFlags: 0
@@ -10958,7 +10821,7 @@ Transform:
   m_GameObject: {fileID: 1135712303}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5762.6733, y: -490.5984, z: 39.28946}
-  m_LocalScale: {x: 0.120654, y: 0.120654, z: 0.120654}
+  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
   m_Children:
   - {fileID: 410281491}
   m_Father: {fileID: 1233188820}
@@ -10996,11 +10859,11 @@ RectTransform:
   m_Father: {fileID: 1071320516}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 100}
-  m_SizeDelta: {x: 346, y: 75}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.2, y: 0.05}
+  m_AnchorMax: {x: 0.8, y: 0.05}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 75}
+  m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1140702474
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11092,7 +10955,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.3750001, y: 0, z: 0.5}
+      m_Extent: {x: 0.3338069, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -11145,7 +11008,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 0300c0be00000000000000bf000000000000803f0000000000000000000000000300c0be000000000000003f000000000000803f00000000000000000000803f0300c03e00000000000000bf000000000000803f000000000000803f000000000300c03e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: bde8aabe00000000000000bf000000000000803f000000000000000000000000bde8aabe000000000000003f000000000000803f00000000000000000000803fbde8aa3e00000000000000bf000000000000803f000000000000803f00000000bde8aa3e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -11312,7 +11175,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 1299223284}
+  - {fileID: 1442144704}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -11365,15 +11228,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: 
+  mTrackableName: maskeron-dog-onofrio-full
   mPreserveChildSize: 0
-  mInitializedInEditor: 0
-  mDataSetPath: 
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1
+  mAspectRatio: 1.333578
   mImageTargetType: 0
-  mWidth: 0.12065
-  mHeight: 0.12065
+  mWidth: 1.1231979
+  mHeight: 1.497872
 --- !u!4 &1142995577
 Transform:
   m_ObjectHideFlags: 0
@@ -11382,7 +11245,7 @@ Transform:
   m_GameObject: {fileID: 1142995571}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5762.6733, y: -490.5984, z: 39.53946}
-  m_LocalScale: {x: 0.12065, y: 0.12065, z: 0.12065}
+  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
   m_Children:
   - {fileID: 1683313623}
   m_Father: {fileID: 1233188820}
@@ -11666,7 +11529,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.37493122, y: 0, z: 0.5}
+      m_Extent: {x: 0.3338069, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -11719,7 +11582,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: fcf6bfbe00000000000000bf000000000000803f000000000000000000000000fcf6bfbe000000000000003f000000000000803f00000000000000000000803ffcf6bf3e00000000000000bf000000000000803f000000000000803f00000000fcf6bf3e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: bde8aabe00000000000000bf000000000000803f000000000000000000000000bde8aabe000000000000003f000000000000803f00000000000000000000803fbde8aa3e00000000000000bf000000000000803f000000000000803f00000000bde8aa3e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -11864,7 +11727,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.37493122, y: 0, z: 0.5}
+      m_Extent: {x: 0.3338069, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -11917,7 +11780,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: fcf6bfbe00000000000000bf000000000000803f000000000000000000000000fcf6bfbe000000000000003f000000000000803f00000000000000000000803ffcf6bf3e00000000000000bf000000000000803f000000000000803f00000000fcf6bf3e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: bde8aabe00000000000000bf000000000000803f000000000000000000000000bde8aabe000000000000003f000000000000803f00000000000000000000803fbde8aa3e00000000000000bf000000000000803f000000000000803f00000000bde8aa3e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -12364,7 +12227,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 702330894}
+  - {fileID: 1442144704}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -12417,15 +12280,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: 
+  mTrackableName: maskeron-dog-onofrio-full
   mPreserveChildSize: 0
-  mInitializedInEditor: 0
-  mDataSetPath: 
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1
+  mAspectRatio: 1.333578
   mImageTargetType: 0
-  mWidth: 0.12065
-  mHeight: 0.12065
+  mWidth: 1.1231979
+  mHeight: 1.497872
 --- !u!4 &1209731286
 Transform:
   m_ObjectHideFlags: 0
@@ -12434,7 +12297,7 @@ Transform:
   m_GameObject: {fileID: 1209731280}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5762.6733, y: -490.5984, z: 39.78946}
-  m_LocalScale: {x: 0.12065, y: 0.12065, z: 0.12065}
+  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
   m_Children:
   - {fileID: 1142858989}
   m_Father: {fileID: 1233188820}
@@ -12554,7 +12417,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -6.953512e-12}
+  m_AnchoredPosition: {x: 0, y: 299.99997}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1233188819
@@ -12887,10 +12750,10 @@ RectTransform:
   m_Father: {fileID: 505361851}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -62}
-  m_SizeDelta: {x: 720, y: 125}
+  m_SizeDelta: {x: 0, y: 125}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1248575140
 MonoBehaviour:
@@ -13531,7 +13394,7 @@ MonoBehaviour:
     filePath: 
   DialogueFile: 
   player: {fileID: 0}
-  radius: 0
+  radius: 30
   settings: {fileID: 406336825}
 --- !u!23 &1298260556
 MeshRenderer:
@@ -13596,31 +13459,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!21 &1299223284
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: clock_tower_AR_resizedMaterial
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: fe63d18696e8492bbaca505f024daa20, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1 &1310114671
 GameObject:
   m_ObjectHideFlags: 0
@@ -13671,31 +13509,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.010000003
   m_Center: {x: 0.00048828265, y: -0.0000000029685907, z: -0.0000000018626451}
---- !u!21 &1324701606
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: gol-frontMaterial
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 61cc300720084b7bb6864381fbc6dfe6, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1 &1337167625
 GameObject:
   m_ObjectHideFlags: 0
@@ -14235,7 +14048,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 1421775501}
+  - {fileID: 1442144704}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14288,15 +14101,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: 
+  mTrackableName: maskeron-dog-onofrio-full
   mPreserveChildSize: 0
-  mInitializedInEditor: 0
-  mDataSetPath: 
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1
+  mAspectRatio: 1.333578
   mImageTargetType: 0
-  mWidth: 0.12065
-  mHeight: 0.12065
+  mWidth: 1.1231979
+  mHeight: 1.497872
 --- !u!4 &1402231019
 Transform:
   m_ObjectHideFlags: 0
@@ -14305,7 +14118,7 @@ Transform:
   m_GameObject: {fileID: 1402231013}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5763.4233, y: -490.5984, z: 39.53946}
-  m_LocalScale: {x: 0.12065, y: 0.12065, z: 0.12065}
+  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
   m_Children:
   - {fileID: 1022726617}
   m_Father: {fileID: 1233188820}
@@ -14476,7 +14289,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.37507746, y: 0, z: 0.5}
+      m_Extent: {x: 0.3338069, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -14529,7 +14342,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 270ac0be00000000000000bf000000000000803f000000000000000000000000270ac0be000000000000003f000000000000803f00000000000000000000803f270ac03e00000000000000bf000000000000803f000000000000803f00000000270ac03e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: bde8aabe00000000000000bf000000000000803f000000000000000000000000bde8aabe000000000000003f000000000000803f00000000000000000000803fbde8aa3e00000000000000bf000000000000803f000000000000803f00000000bde8aa3e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -14657,31 +14470,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1411063002}
---- !u!21 &1421775501
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: wrecked_hapel_AR_resizedMaterial
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 3177c70222884d9cac0caf4732ccb7ca, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1 &1432683996
 GameObject:
   m_ObjectHideFlags: 0
@@ -14834,7 +14622,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 1773367683}
+  - {fileID: 1442144704}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14887,15 +14675,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: 
+  mTrackableName: maskeron-dog-onofrio-full
   mPreserveChildSize: 0
-  mInitializedInEditor: 0
-  mDataSetPath: 
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1
+  mAspectRatio: 1.497872
   mImageTargetType: 0
-  mWidth: 0.12065
-  mHeight: 0.12065
+  mWidth: 1
+  mHeight: 1.497872
 --- !u!4 &1436663409
 Transform:
   m_ObjectHideFlags: 0
@@ -14904,7 +14692,7 @@ Transform:
   m_GameObject: {fileID: 1436663403}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5763.4233, y: -490.5984, z: 39.78946}
-  m_LocalScale: {x: 0.12065, y: 0.12065, z: 0.12065}
+  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
   m_Children:
   - {fileID: 728213000}
   m_Father: {fileID: 1233188820}
@@ -15032,7 +14820,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: RTP_AR_resizedMaterial
+  m_Name: maskeron-dog-onofrio-fullMaterial
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -15045,7 +14833,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: e9861490eb62444fb99bff6356b0270a, type: 3}
+        m_Texture: {fileID: 2800000, guid: db00e4fb86694837a4d6bb5cd18b991e, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
@@ -15620,7 +15408,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000038146973, y: -0.00003817892}
+  m_AnchoredPosition: {x: 42.400036, y: -0.00003817892}
   m_SizeDelta: {x: -42.4, y: 2000}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1472073414
@@ -16375,7 +16163,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.05, y: 0.075}
   m_AnchorMax: {x: 0.95, y: 0.7}
-  m_AnchoredPosition: {x: 9.7, y: -15.7}
+  m_AnchoredPosition: {x: 9.700001, y: -15.700012}
   m_SizeDelta: {x: -19.4, y: -31.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1551034571
@@ -16432,7 +16220,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.3750001, y: 0, z: 0.5}
+      m_Extent: {x: 0.3338069, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -16485,7 +16273,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 0300c0be00000000000000bf000000000000803f0000000000000000000000000300c0be000000000000003f000000000000803f00000000000000000000803f0300c03e00000000000000bf000000000000803f000000000000803f000000000300c03e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: bde8aabe00000000000000bf000000000000803f000000000000000000000000bde8aabe000000000000003f000000000000803f00000000000000000000803fbde8aa3e00000000000000bf000000000000803f000000000000803f00000000bde8aa3e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -17406,7 +17194,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1025202210}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.28686112
+  m_Size: 0.3354722
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -18955,31 +18743,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!21 &1773367683
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: wooden_guillotine_AR_resizedMaterial
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: eb80dfcf4cfd430f9ed7f74f6dc8e437, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1 &1781753895
 GameObject:
   m_ObjectHideFlags: 0
@@ -19089,7 +18852,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 1971302168}
+  - {fileID: 1442144704}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -19142,15 +18905,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: 
+  mTrackableName: maskeron-dog-onofrio-full
   mPreserveChildSize: 0
-  mInitializedInEditor: 0
-  mDataSetPath: 
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1
+  mAspectRatio: 1.333578
   mImageTargetType: 0
-  mWidth: 0.12065
-  mHeight: 0.12065
+  mWidth: 1.1231979
+  mHeight: 1.497872
 --- !u!4 &1787201770
 Transform:
   m_ObjectHideFlags: 0
@@ -19159,7 +18922,7 @@ Transform:
   m_GameObject: {fileID: 1787201764}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5762.9233, y: -490.5984, z: 39.28946}
-  m_LocalScale: {x: 0.12065, y: 0.12065, z: 0.12065}
+  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
   m_Children:
   - {fileID: 656055498}
   m_Father: {fileID: 1233188820}
@@ -19371,7 +19134,7 @@ Mesh:
     vertexCount: 4
     localAABB:
       m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0.3750001, y: 0, z: 0.5}
+      m_Extent: {x: 0.3338069, y: 0, z: 0.5}
   m_Shapes:
     vertices: []
     shapes: []
@@ -19424,7 +19187,7 @@ Mesh:
       format: 0
       dimension: 0
     m_DataSize: 128
-    _typelessdata: 0300c0be00000000000000bf000000000000803f0000000000000000000000000300c0be000000000000003f000000000000803f00000000000000000000803f0300c03e00000000000000bf000000000000803f000000000000803f000000000300c03e000000000000003f000000000000803f000000000000803f0000803f
+    _typelessdata: bde8aabe00000000000000bf000000000000803f000000000000000000000000bde8aabe000000000000003f000000000000803f00000000000000000000803fbde8aa3e00000000000000bf000000000000803f000000000000803f00000000bde8aa3e000000000000003f000000000000803f000000000000803f0000803f
   m_CompressedMesh:
     m_Vertices:
       m_NumItems: 0
@@ -20160,31 +19923,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f90cbecc072f4dab81805a33f0b76e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!21 &1879160706
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: light_house_AR_resizedMaterial
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: bbaf67fa64c3471bbd10e7acb21c1749, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1 &1889346881
 GameObject:
   m_ObjectHideFlags: 0
@@ -20375,31 +20113,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1892351069}
---- !u!21 &1916458028
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: bust_AR_resizedMaterial
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: c1ae8f8de66744118be1d99225db96d5, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1 &1920010244
 GameObject:
   m_ObjectHideFlags: 0
@@ -20788,31 +20501,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1969550396}
---- !u!21 &1971302168
-Material:
-  serializedVersion: 6
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_Name: plaque_AR_resizedMaterial
-  m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: 
-  m_LightmapFlags: 5
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 2800000, guid: f4147cb8cf6345dd9836531c006d24f5, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats: []
-    m_Colors:
-    - _Color: {r: 0.82089555, g: 0.82089555, b: 0.82089555, a: 1}
 --- !u!1 &1980570808
 GameObject:
   m_ObjectHideFlags: 0
@@ -22153,7 +21841,7 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 90408601}
+  - {fileID: 1442144704}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -22206,15 +21894,15 @@ MonoBehaviour:
   m_Script: {fileID: -1631628248, guid: bab6fa851cf5a1a4bba3cec5f191cb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTrackableName: 
+  mTrackableName: maskeron-dog-onofrio-full
   mPreserveChildSize: 0
-  mInitializedInEditor: 0
-  mDataSetPath: 
+  mInitializedInEditor: 1
+  mDataSetPath: Vuforia/Golem-test.xml
   mExtendedTracking: 0
-  mAspectRatio: 1
+  mAspectRatio: 1.333578
   mImageTargetType: 0
-  mWidth: 0.12065
-  mHeight: 0.12065
+  mWidth: 1.1231979
+  mHeight: 1.497872
 --- !u!4 &2108846598
 Transform:
   m_ObjectHideFlags: 0
@@ -22223,7 +21911,7 @@ Transform:
   m_GameObject: {fileID: 2108846592}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -5762.4233, y: -490.5984, z: 39.53946}
-  m_LocalScale: {x: 0.12065, y: 0.12065, z: 0.12065}
+  m_LocalScale: {x: 1.497872, y: 1.497872, z: 1.497872}
   m_Children:
   - {fileID: 290006579}
   m_Father: {fileID: 1233188820}
