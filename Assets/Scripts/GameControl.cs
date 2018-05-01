@@ -107,23 +107,18 @@ public class GameControl : MonoBehaviour
 						Sprite s = ResourceManager.GetSprite(qControl.CurQuest.convo[qControl.MarkerCurrent].bgPic);
 						Vector2 mod = new Vector2(s.rect.width, s.rect.height);
 
-						UnityEngine.Debug.Log(mod.y);
-						UnityEngine.Debug.Log(Screen.height);
+						float scale = 3.0f;
 
-                        float scale = 3.0f;
-
-                        if (mod.y < 1280.0f)
-                        {
-                            mod *= scale;
-                        }
+						if (mod.y < 1280.0f)
+						{
+							mod *= scale;
+						}
 
                         uiControl.Dial.BG.GetComponent<RectTransform>().sizeDelta = mod;
 						uiControl.Dial.BG.preserveAspect = true;
 						uiControl.Dial.BG.sprite = s;
 
-						s = ResourceManager.GetSprite(qControl.CurQuest.convo[qControl.MarkerCurrent].charPic);
-						uiControl.Dial.CharPic.preserveAspect = true;
-						uiControl.Dial.CharPic.sprite = s;
+						uiControl.Dial.Img =  qControl.CurQuest.convo[qControl.MarkerCurrent].charPic;
 					}
 
 					if (qControl.QuestShouldFinish)
@@ -139,20 +134,17 @@ public class GameControl : MonoBehaviour
 						Vector2 mod = new Vector2(s.rect.width, s.rect.height);
 
 						float scale = 3.0f;
-                        
+
 						if(mod.y < 1280.0f)
 						{
 							mod *= scale;
 						}
-                        
+
 						uiControl.Dial.BG.GetComponent<RectTransform>().sizeDelta = mod;
 						uiControl.Dial.BG.preserveAspect = true;
 						uiControl.Dial.BG.sprite = s;
 
-						s = ResourceManager.GetSprite(qControl.CurQuest.convo[qControl.MarkerCurrent].charPic);
-
-						uiControl.Dial.CharPic.preserveAspect = true;
-						uiControl.Dial.CharPic.sprite = s;
+						uiControl.Dial.Img =  qControl.CurQuest.convo[qControl.MarkerCurrent].charPic;
 
 						qControl.SetCurrentQuest(null);
 						qControl.QuestShouldFinish = false;
