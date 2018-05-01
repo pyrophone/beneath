@@ -68,6 +68,25 @@ public class GameControl : MonoBehaviour
         //set player as map center
         mapCam.CenterOnTarget(player.GetComponent<Player>().Loc);
 
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            player.GetComponent<Player>().EXP += 100;
+            UnityEngine.Debug.Log("100 xp");
+            UnityEngine.Debug.Log(player.GetComponent<Player>().EXP);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            player.GetComponent<Player>().EXP += 50;
+            UnityEngine.Debug.Log("50 xp");
+            UnityEngine.Debug.Log(player.GetComponent<Player>().EXP);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            player.GetComponent<Player>().EXP += 2;
+            UnityEngine.Debug.Log("2 xp");
+            UnityEngine.Debug.Log(player.GetComponent<Player>().EXP);
+        }
+
         //for now, this will test vuforia by switching the scene on click, tap, or keypress.
         if (Input.GetMouseButtonDown(0) && Input.touchCount > 2 || Input.GetKeyDown(KeyCode.BackQuote))
         {

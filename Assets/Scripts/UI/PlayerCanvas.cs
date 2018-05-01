@@ -32,6 +32,9 @@ public class PlayerCanvas : AbstractCanvas
 
     private Player player; //! The instantiated prefab of Player
 
+    private float max;
+    private float barX;
+
     protected override void Awake()
     {
         base.Awake();
@@ -55,6 +58,8 @@ public class PlayerCanvas : AbstractCanvas
 	{
         player = GameObject.Find("player").GetComponent<Player>();
         gains.transform.localScale = new Vector3(0.0f, 1.0f, 1.0f);
+        max = 0.0f;
+        barX = 0.0f;
     }
 
     /*! \brief Updates the object
@@ -106,19 +111,35 @@ public class PlayerCanvas : AbstractCanvas
         }
         */
 
-        if(player.LVL == 0)
+
+        // float max = 0.0f;
+
+        if (player.LVL == 0)
         {
             maxXP.text = "300 xp";
+            max = 300.0f;
         }
-        else if(player.LVL == 1)
+        else if (player.LVL == 1)
         {
             maxXP.text = "600 xp";
+            max = 600.0f;
         }
-        else if(player.LVL == 2)
+        else if (player.LVL == 2)
         {
             maxXP.text = "900 xp";
+            max = 900.0f;
         }
 
+        barX = player.EXP / max;
+
+        if(gains.transform.localScale.x > 1.0f)
+        {
+            LevelUp(); // 
+        }
+
+        gains.transform.localScale = new Vector3(barX, 1.0f, 1.0f);
+
+        /*
         if(player.EXP == 50)
         {
             if(player.LVL == 0)
@@ -237,17 +258,20 @@ public class PlayerCanvas : AbstractCanvas
                 player.LVL = 3;
             }
         }
+        */
     }
 
     /*! \brief Called when a new level has been gained
      */
     private void LevelUp()
     {
+        player.EXP -= (int)max;
+
         player.LVL += 1;
 
-        player.EXP = 0;
+        // player.EXP = 0;
 
-        gains.transform.localScale = new Vector3(0, 1, 1);
+        // gains.transform.localScale = new Vector3(0, 1, 1);
     }
 
     public void SetReward(string resource)

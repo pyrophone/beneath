@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="lighthouser" size="1.000000 1.333125" />
+    <ImageTarget name="arch2r" size="1.000000 1.333077" />
+    <ImageTarget name="arch1r" size="1.000000 1.333578" />
+    <ImageTarget name="D06r" size="1.000000 1.333527" />
+    <ImageTarget name="D05r" size="1.000000 1.333125" />
+    <ImageTarget name="D04r" size="1.000000 1.333491" />
+    <ImageTarget name="D03r" size="1.000000 1.333463" />
+    <ImageTarget name="D02r" size="1.000000 1.333171" />
+    <ImageTarget name="D01r" size="1.000000 1.333517" />
     <ImageTarget name="dog2" size="1.000000 0.600000" />
     <ImageTarget name="maskeron-dog-onofrio-full" size="1.000000 1.497872" />
     <ImageTarget name="Onos_Fountain_03" size="1.000000 1.333136" />
