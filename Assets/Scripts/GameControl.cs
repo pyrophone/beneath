@@ -68,25 +68,6 @@ public class GameControl : MonoBehaviour
         //set player as map center
         mapCam.CenterOnTarget(player.GetComponent<Player>().Loc);
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            player.GetComponent<Player>().EXP += 100;
-            UnityEngine.Debug.Log("100 xp");
-            UnityEngine.Debug.Log(player.GetComponent<Player>().EXP);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            player.GetComponent<Player>().EXP += 50;
-            UnityEngine.Debug.Log("50 xp");
-            UnityEngine.Debug.Log(player.GetComponent<Player>().EXP);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            player.GetComponent<Player>().EXP += 2;
-            UnityEngine.Debug.Log("2 xp");
-            UnityEngine.Debug.Log(player.GetComponent<Player>().EXP);
-        }
-
         //for now, this will test vuforia by switching the scene on click, tap, or keypress.
         if (Input.GetMouseButtonDown(0) && Input.touchCount > 2 || Input.GetKeyDown(KeyCode.BackQuote))
         {
@@ -126,23 +107,18 @@ public class GameControl : MonoBehaviour
 						Sprite s = ResourceManager.GetSprite(qControl.CurQuest.convo[qControl.MarkerCurrent].bgPic);
 						Vector2 mod = new Vector2(s.rect.width, s.rect.height);
 
-						UnityEngine.Debug.Log(mod.y);
-						UnityEngine.Debug.Log(Screen.height);
+						float scale = 3.0f;
 
-                        float scale = 3.0f;
-
-                        if (mod.y < 1280.0f)
-                        {
-                            mod *= scale;
-                        }
+						if (mod.y < 1280.0f)
+						{
+							mod *= scale;
+						}
 
                         uiControl.Dial.BG.GetComponent<RectTransform>().sizeDelta = mod;
 						uiControl.Dial.BG.preserveAspect = true;
 						uiControl.Dial.BG.sprite = s;
 
-						s = ResourceManager.GetSprite(qControl.CurQuest.convo[qControl.MarkerCurrent].charPic);
-						uiControl.Dial.CharPic.preserveAspect = true;
-						uiControl.Dial.CharPic.sprite = s;
+						uiControl.Dial.Img =  qControl.CurQuest.convo[qControl.MarkerCurrent].charPic;
 					}
 
 					if (qControl.QuestShouldFinish)
@@ -158,20 +134,17 @@ public class GameControl : MonoBehaviour
 						Vector2 mod = new Vector2(s.rect.width, s.rect.height);
 
 						float scale = 3.0f;
-                        
+
 						if(mod.y < 1280.0f)
 						{
 							mod *= scale;
 						}
-                        
+
 						uiControl.Dial.BG.GetComponent<RectTransform>().sizeDelta = mod;
 						uiControl.Dial.BG.preserveAspect = true;
 						uiControl.Dial.BG.sprite = s;
 
-						s = ResourceManager.GetSprite(qControl.CurQuest.convo[qControl.MarkerCurrent].charPic);
-
-						uiControl.Dial.CharPic.preserveAspect = true;
-						uiControl.Dial.CharPic.sprite = s;
+						uiControl.Dial.Img =  qControl.CurQuest.convo[qControl.MarkerCurrent].charPic;
 
 						qControl.SetCurrentQuest(null);
 						qControl.QuestShouldFinish = false;

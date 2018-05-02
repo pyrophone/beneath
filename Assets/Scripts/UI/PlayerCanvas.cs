@@ -32,8 +32,7 @@ public class PlayerCanvas : AbstractCanvas
 
     private Player player; //! The instantiated prefab of Player
 
-    private float max;
-    private float barX;
+    private int[] lvs = { 300, 600, 2100 }; //hardcoded array of max xp
 
     protected override void Awake()
     {
@@ -58,8 +57,6 @@ public class PlayerCanvas : AbstractCanvas
 	{
         player = GameObject.Find("player").GetComponent<Player>();
         gains.transform.localScale = new Vector3(0.0f, 1.0f, 1.0f);
-        max = 0.0f;
-        barX = 0.0f;
     }
 
     /*! \brief Updates the object
@@ -67,8 +64,8 @@ public class PlayerCanvas : AbstractCanvas
     protected override void Update()
 	{
         nameText.text = player.PName; // get the player name
-        lvlText.text = "Level:" + player.LVL; // get the player level
-        expText.text = "xp: " + player.EXP; // get the player exp
+        lvlText.text = "Level " + player.LVL; // get the player level
+        expText.text = "xp " + player.EXP; // get the player exp
 
         XPGains();
     }
@@ -97,181 +94,28 @@ public class PlayerCanvas : AbstractCanvas
      */
     private void XPGains()
     {
-        /*
-        switch (player.EXP)
-        {
-            case 100:
-                if(player.LVL == 0)
-                    gains.transform.localScale = new Vector3(0.3f, 1.0f, 1.0f);
-                else if(player.LVL == 1)
-                    gains.transform.localScale = new Vector3(0.15f, 1.0f, 1.0f);
-                else if(player.LVL == 2)
-                    gains.transform.localScale = new Vector3(0.09f, 1.0f, 1.0f);
-                break;
-        }
-        */
+        maxXP.text = lvs[player.LVL].ToString();
 
+        float progress = (float)player.EXP / lvs[player.LVL];
+        gains.transform.localScale = new Vector3(progress, 1.0f, 1.0f);
 
-        // float max = 0.0f;
+        if (player.EXP >= lvs[player.LVL] && player.LVL < 2)
+            LevelUp();
+    }
 
-        if (player.LVL == 0)
-        {
-            maxXP.text = "300 xp";
-            max = 300.0f;
-        }
-        else if (player.LVL == 1)
-        {
-            maxXP.text = "600 xp";
-            max = 600.0f;
-        }
-        else if (player.LVL == 2)
-        {
-            maxXP.text = "900 xp";
-            max = 900.0f;
-        }
-
-        barX = player.EXP / max;
-
-        if(gains.transform.localScale.x > 1.0f)
-        {
-            LevelUp(); // 
-        }
-
-        gains.transform.localScale = new Vector3(barX, 1.0f, 1.0f);
-
-        /*
-        if(player.EXP == 50)
-        {
-            if(player.LVL == 0)
-            {
-                gains.transform.localScale = new Vector3(0.15f, 1.0f, 1.0f);
-            }
-            else if(player.LVL == 1)
-            {
-                gains.transform.localScale = new Vector3(0.5f, 1.0f, 1.0f);
-            }
-            else if(player.LVL == 2)
-            {
-                gains.transform.localScale = new Vector3(0.05f, 1.0f, 1.0f);
-            }
-        }
-        else if(player.EXP == 100) // 100 XP checks
-        {
-            if(player.LVL == 0)
-            {
-                gains.transform.localScale = new Vector3(0.3f, 1.0f, 1.0f);
-            }
-            else if(player.LVL == 1)
-            {
-                gains.transform.localScale = new Vector3(0.15f, 1.0f, 1.0f);
-            }
-            else if (player.LVL == 2)
-            {
-                gains.transform.localScale = new Vector3(0.09f, 1.0f, 1.0f);
-            }
-        }
-        else if(player.EXP == 200) // 200 XP checks
-        {
-            if (player.LVL == 0)
-            {
-                gains.transform.localScale = new Vector3(0.6f, 1.0f, 1.0f);
-            }
-            else if (player.LVL == 1)
-            {
-                gains.transform.localScale = new Vector3(0.35f, 1.0f, 1.0f);
-            }
-            else if (player.LVL == 2)
-            {
-                gains.transform.localScale = new Vector3(0.2f, 1.0f, 1.0f);
-            }
-        }
-        else if(player.EXP == 300) // 300 XP checks
-        {
-            if (player.LVL == 0) // level 1 req met
-            {
-                gains.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                LevelUp();
-            }
-            else if (player.LVL == 1)
-            {
-                gains.transform.localScale = new Vector3(0.5f, 1.0f, 1.0f);
-            }
-            else if (player.LVL == 2)
-            {
-                gains.transform.localScale = new Vector3(0.36f, 1.0f, 1.0f);
-            }
-        }
-        else if(player.EXP == 400) // 400 XP checks
-        {
-            if (player.LVL == 1)
-            {
-                gains.transform.localScale = new Vector3(0.7f, 1.0f, 1.0f);
-            }
-            else if(player.LVL == 2)
-            {
-                gains.transform.localScale = new Vector3(0.45f, 1.0f, 1.0f);
-            }
-        }
-        else if (player.EXP == 500) // 500 XP checks
-        {
-            if (player.LVL == 1)
-            {
-                gains.transform.localScale = new Vector3(0.85f, 1.0f, 1.0f);
-            }
-            else if(player.LVL == 2)
-            {
-                gains.transform.localScale = new Vector3(0.56f, 1.0f, 1.0f);
-            }
-        }
-        else if(player.EXP == 600) // 600 XP checks
-        {
-            if(player.LVL == 1) // level 2 req met
-            {
-                gains.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                LevelUp();
-            }
-            else if(player.LVL == 2)
-            {
-                gains.transform.localScale = new Vector3(0.67f, 1.0f, 1.0f);
-            }
-        }
-        else if(player.EXP == 700) // 700 xp checks
-        {
-            if(player.LVL == 2)
-            {
-                gains.transform.localScale = new Vector3(0.71f, 1.0f, 1.0f);
-            }
-        }
-        else if(player.EXP == 800) // 800 xp checks
-        {
-            if(player.LVL == 2)
-            {
-                gains.transform.localScale = new Vector3(0.82f, 1.0f, 1.0f);
-            }
-        }
-        else if(player.EXP == 900) // 900 xp checks
-        {
-            if(player.LVL == 2) // level 3 req met
-            {
-                gains.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-                // LevelUp();
-                player.LVL = 3;
-            }
-        }
-        */
+    /*! \brief Called to get top amount of xp that a level has
+     */
+    private int LevelXPTop(int level)
+    {
+        return lvs[level];
     }
 
     /*! \brief Called when a new level has been gained
      */
     private void LevelUp()
     {
-        player.EXP -= (int)max;
-
-        player.LVL += 1;
-
-        // player.EXP = 0;
-
-        // gains.transform.localScale = new Vector3(0, 1, 1);
+        player.EXP -= lvs[player.LVL];
+        player.LVL++;
     }
 
     public void SetReward(string resource)

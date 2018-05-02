@@ -21,6 +21,7 @@ public class DialogueCanvas : AbstractCanvas
 	private bool lastDialogue; //! If the dialogue is the last one
 	private bool displayReward; //! If the reward should be displayed
 	private List<string> text; //! The text to display
+	private List<string> img; //! The character images
 
 	/*! \brief Called on startup
 	 */
@@ -63,6 +64,8 @@ public class DialogueCanvas : AbstractCanvas
 		if(convoNum < dialogueAmount)
 		{
 			dialogueField.text = text[convoNum].Replace("-----", GameObject.Find("player").GetComponent<Player>().PName);
+			charPic.sprite = ResourceManager.GetSprite(img[convoNum]);
+			charPic.preserveAspect = true;
 		}
 	}
 
@@ -206,5 +209,13 @@ public class DialogueCanvas : AbstractCanvas
 	{
 		get { return text; }
 		set { text = value; }
+	}
+
+	/*! \brief Getter / Setter for the img
+	 */
+	public List<string> Img
+	{
+		get { return img; }
+		set { img = value; }
 	}
 }

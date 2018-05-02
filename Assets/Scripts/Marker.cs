@@ -42,9 +42,6 @@ public class Marker : Mappable
     private GameObject waypointP;
     private GameObject puzzleP;
 
-    [SerializeField]
-    private SettingsCanvas settings;
-
     private PopupCanvas popup; //! The popup canvas script
 
     /*! \brief Called on startup
