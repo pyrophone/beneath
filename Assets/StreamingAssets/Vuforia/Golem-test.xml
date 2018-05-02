@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="Golem8r" size="1.000000 1.333333" />
+    <ImageTarget name="Golem7r" size="1.000000 1.333333" />
+    <ImageTarget name="Golem6r" size="1.000000 1.333333" />
+    <ImageTarget name="Arch13" size="1.000000 1.333333" />
+    <ImageTarget name="Arch12" size="1.000000 1.333333" />
+    <ImageTarget name="Arch11" size="1.000000 1.333333" />
+    <ImageTarget name="Golem5r" size="1.000000 1.333568" />
+    <ImageTarget name="Golem4r" size="1.000000 1.333333" />
+    <ImageTarget name="Golem3r" size="1.000000 1.333578" />
+    <ImageTarget name="Golem2r" size="1.000000 1.333573" />
+    <ImageTarget name="Arch10r" size="1.000000 1.333578" />
+    <ImageTarget name="Arch9r" size="1.000000 1.333573" />
+    <ImageTarget name="Arch8r" size="1.000000 1.333568" />
+    <ImageTarget name="Arch7r" size="1.000000 1.333573" />
+    <ImageTarget name="Arch6r" size="1.000000 1.333578" />
+    <ImageTarget name="Arch5r" size="1.000000 1.333333" />
+    <ImageTarget name="Arch4r" size="1.000000 1.333573" />
+    <ImageTarget name="Arch3r" size="1.000000 1.333578" />
     <ImageTarget name="lighthouser" size="1.000000 1.333125" />
     <ImageTarget name="arch2r" size="1.000000 1.333077" />
     <ImageTarget name="arch1r" size="1.000000 1.333578" />
