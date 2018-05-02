@@ -32,8 +32,6 @@ public class PlayerCanvas : AbstractCanvas
 
     private Player player; //! The instantiated prefab of Player
 
-    private int[] lvs = { 300, 600, 2100 }; //hardcoded array of max xp
-
     protected override void Awake()
     {
         base.Awake();
@@ -94,28 +92,20 @@ public class PlayerCanvas : AbstractCanvas
      */
     private void XPGains()
     {
-        maxXP.text = lvs[player.LVL].ToString();
+        maxXP.text = LevelXPTop(player.LVL).ToString();
 
-        float progress = (float)player.EXP / lvs[player.LVL];
+        float progress = (float)player.EXP / LevelXPTop(player.LVL);
         gains.transform.localScale = new Vector3(progress, 1.0f, 1.0f);
 
-        if (player.EXP >= lvs[player.LVL] && player.LVL < 2)
-            LevelUp();
+        if (player.EXP >= LevelXPTop(player.LVL))
+            player.LVL++;
     }
 
     /*! \brief Called to get top amount of xp that a level has
      */
     private int LevelXPTop(int level)
     {
-        return lvs[level];
-    }
-
-    /*! \brief Called when a new level has been gained
-     */
-    private void LevelUp()
-    {
-        player.EXP -= lvs[player.LVL];
-        player.LVL++;
+        return 100 * (level * level) + 600 * level + 300;
     }
 
     public void SetReward(string resource)
