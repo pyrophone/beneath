@@ -68,7 +68,7 @@ public class NameCanvas : AbstractCanvas
 
 			else
 			{
-				displayText.GetComponent<Text>().text = "Are you sure your name is\n" + nameField.text + "?";
+				displayText.GetComponent<Text>().text = "Ah, your name is...\n" + nameField.text + "?";
 				nameField.gameObject.SetActive(false);
 				errorText.SetActive(false);
 				enterBtn.gameObject.SetActive(false);

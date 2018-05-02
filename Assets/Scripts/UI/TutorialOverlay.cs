@@ -46,7 +46,7 @@ public class TutorialOverlay : AbstractCanvas
 		tutorialDialogue.Add("As a newcomer to the city, you only have one available quest. As you finish tasks and explore the city, more will become available to you.");
 		tutorialDialogue.Add("");
 		tutorialDialogue.Add("I will meet you by the Pile Gate, one of the entrances to the Old Town. You can see how far you have to travel at the top of the screen.\n\nFollow the directional arrow until you see the location highlighted on your map.");
-		tutorialDialogue.Add("Move Your Feet!\nWhat Lies Beneath is a game that requires you to move around the city\n\nEyes Up!\nYour phone will vibrate when you need to look at it. Don't miss out on the beauty of the city!");
+		tutorialDialogue.Add("<b>Move Your Feet!</b>\nWhat Lies Beneath is a game that requires you to move around the city\n\n<b>Eyes Up!</b>\nYour phone will vibrate when you need to look at it. Don't miss out on the beauty of the city!");
 
 		textBox.text = tutorialDialogue[tutorialProgress];
 		Reset();
