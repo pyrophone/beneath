@@ -163,6 +163,7 @@ public class Marker : Mappable
                 Mathf.Sin(dLon / 2) * Mathf.Sin(dLon / 2) * Mathf.Cos(lat1) * Mathf.Cos(lat2);
         var c = 2 * Mathf.Atan2(Mathf.Sqrt(a), Mathf.Sqrt(1 - a)); //optimize this part or limit frequency of calculation
         double distance = earthRadiusM * c;
+        double trueDistance = distance;
         #endregion
 
         try //wrap this in try catch to get rid of some dumb exceptions
@@ -188,7 +189,7 @@ public class Marker : Mappable
         catch { }
 
 
-        if (distance < radius)
+        if (trueDistance < radius)
             return true;
 
         return false;
@@ -207,6 +208,8 @@ public class Marker : Mappable
                 Handheld.Vibrate();
             }
             inRange = true;
+            if (!GameObject.Find("GameManager").GetComponent<UIControl>().TutorialActive && IsQuest)
+                OnMouseDown();
         }
 
         //TODO
@@ -235,6 +238,7 @@ public class Marker : Mappable
     public bool IsQuest
     {
         get { return isQuest; }
+        set { isQuest = value; }
     }
 
     /*! \brief Gets the bool for if current marker has a puzzle

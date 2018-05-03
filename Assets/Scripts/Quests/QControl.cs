@@ -80,6 +80,7 @@ public class QControl : MonoBehaviour
                 m.GetComponent<Marker>().Radius = curQuest.markerGenList[i].mRadius;
                 m.GetComponent<Marker>().MName = curQuest.markerGenList[i].markerName;
                 m.GetComponent<Marker>().MPic = curQuest.markerGenList[i].markerPic;
+                m.GetComponent<Marker>().IsQuest = true;
                 m.name = "q" + curQuest.id + "." + "marker" + i;
 
 				if (i != 0)

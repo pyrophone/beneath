@@ -22,6 +22,8 @@ public class MapCanvas : AbstractCanvas
 
     private Player player; //! The instantiated prefab of Player
 
+    private bool gotHelp; //! to trigger help once
+
     /*! \brief Called when the object is initialized
 	 */
 
@@ -96,12 +98,19 @@ public class MapCanvas : AbstractCanvas
         {
             playerButton.interactable = false;
             settingsButton.interactable = false;
+            helpButton.gameObject.SetActive(false);
         }
 
         else
         {
             playerButton.interactable = true;
             settingsButton.interactable = true;
+            if (!gotHelp)
+            {
+                OnHelpButtonClick();
+                gotHelp = true;
+            }
+                
         }
     }
 
