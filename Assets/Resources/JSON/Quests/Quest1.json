@@ -49,7 +49,8 @@
 			"name": "Aleksander",
 			"bgPic": "Backgrounds/grim-beginnings-pile",
 			"convoPiece": [
-				"Hello again, -----!\n\nFollow me into town. We're headed to the church of St. Blaise, where the archbishop would like to speak with you."
+				"Hello again, -----!\n\nFollow me into town. We're headed to the church of St. Blaise. Our archbishop would like to speak with you.",
+				"Something odd is afoot, and we need your help to find out what it is."
 			],
 			"charPic": [
 				"Characters/aleksandr"
@@ -72,9 +73,12 @@
 			"bgPic": "Backgrounds/grim-beginnings-church-st-blaise",
 			"convoPiece": [
 				"Here we are, the Church of St. Blaise! It looks like the archbishop is waiting for us.",
-                "Hello, explorer. Thank you for coming to see our beautiful city. We are excited to have someone here who can uncover all of Dubrovnik's secrets!",
+                "Hello, explorer. Thank you for coming to see our beautiful city. I am glad to have someone here who ",
                 "I have a gift for you!",
-				"Here, take this license. It will allow you to explore the old city and the surrounding area unhindered. We have already recieved word from a number of citizens who have tasks for you to undertake!"
+				"Here, take this license. It will allow you to explore the old city and the surrounding area unhindered. We have already recieved word from a number of citizens who have tasks for you to undertake!",
+				"After walking through the city, I'm sure you've seen that it's a beautiful place; one worth protecting.",
+				"Something strange has been happening in the city lately. We have reason to believe that something sinister lurks in the shadows of Dubrovnik.",
+				"Explorer, we need your help to solve this mystery. I hope you're up to the task."
 			],
 			"charPic": [
 				"Characters/aleksandr",
@@ -84,5 +88,5 @@
 			]
 		}
     ],
-    "qDescription": "Meet Aleksandr at the Pile Gate and follow him down the Stradun (the main street of the Old Town). The area where the quest takes place is indicated on the map below."
+    "qDescription": "Meet Aleksandr at the Pile Gate and follow him down the Stradun (the main street of the Old Town). The archbishop wishes to speak to you about the mystery beneath the surface of Dubrovnik."
 }
