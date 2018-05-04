@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -824,7 +824,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1178639308}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0
+  m_Size: 0.9999707
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1586,7 +1586,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 300}
+  m_AnchoredPosition: {x: 0, y: 0.000013844825}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!43 &179125050
@@ -1800,7 +1800,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8333207
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2820,7 +2820,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8333207
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3030,7 +3030,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.2734315
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3129,7 +3129,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8333207
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3488,7 +3488,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8333207
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3773,7 +3773,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8333207
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5276,7 +5276,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8333207
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6131,7 +6131,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8333207
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -6410,7 +6410,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8333207
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -8691,7 +8691,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Golem7rMaterial
+  m_Name: Arch6rMaterial
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -8704,7 +8704,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 18389061e0cc4d5fab521d0641fbf511, type: 3}
+        m_Texture: {fileID: 2800000, guid: efb814911af04ed1b0d174f79e23459d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
@@ -12041,7 +12041,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1793151574}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0
+  m_Size: 0.99997437
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -12875,7 +12875,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8333207
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14352,7 +14352,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8333207
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -14762,7 +14762,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8333207
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15203,7 +15203,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 299.99997}
+  m_AnchoredPosition: {x: 0, y: -0.000016672753}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1233188819
@@ -17924,7 +17924,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: wooden_guillotine_AR_resizedMaterial
+  m_Name: Golem4rMaterial
   m_Shader: {fileID: 10752, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -17937,7 +17937,7 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: aaf9bf01f69d4130b32c913ad2296516, type: 3}
+        m_Texture: {fileID: 2800000, guid: f04467c2d6684d75bd2968c5fe992d52, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
@@ -18820,7 +18820,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8333207
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -20290,7 +20290,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1025202210}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.3354722
+  m_Size: 0.28686112
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -20485,7 +20485,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8333207
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -20970,7 +20970,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8333207
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -21065,7 +21065,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8333207
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8e0d090f356c3e3428db3ed42e956f5a, type: 3}
       propertyPath: m_LocalPosition.z
